@@ -100,7 +100,7 @@ redirect_from:
     </div>
 
     <a class="project-gate" href="{{ '/projects/' | relative_url }}">
-      <span>Projects that Yiyao Participated</span>
+      <span>Projects that I Participated</span>
     </a>
   </section>
 </main>
