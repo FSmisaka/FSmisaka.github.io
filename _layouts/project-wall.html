@@ -1,0 +1,48 @@
+---
+layout: compress
+---
+
+{% include base_path %}
+
+<!doctype html>
+<html lang="{{ site.locale | slice: 0,2 }}" class="no-js"{% if site.site_theme == "dark" %} data-theme="dark"{% endif %}>
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+  </head>
+
+  <body class="project-wall-body">
+    <main class="shelf-wall" aria-labelledby="wall-title">
+      <header class="shelf-wall-header">
+        <h1 id="wall-title">{{ page.title | default: "Projects" }}</h1>
+      </header>
+
+      {% assign rows = page.shelf_rows | default: 3 %}
+      {% assign cols = page.shelf_cols | default: 6 %}
+      {% assign total = rows | times: cols %}
+
+      <div class="shelf-wall-grid" style="--shelf-cols: {{ cols }};">
+        {% for row_idx in (1..rows) %}
+          <div class="shelf-row">
+          {% for col_idx in (1..cols) %}
+            {% assign idx = row_idx | minus: 1 | times: cols | plus: col_idx | minus: 1 %}
+            {% assign project = site.data.projects[idx] %}
+            {% if project and project.title %}
+              <a href="{{ project.link | relative_url }}" class="shelf-photo">
+                <div class="photo-mat">
+                  <img src="{{ '/images/' | append: project.image | relative_url }}" alt="{{ project.title }}" loading="lazy">
+                </div>
+                <span class="photo-label">{{ project.title }}</span>
+              </a>
+            {% else %}
+              <div class="shelf-photo is-empty" aria-hidden="true">
+                <div class="photo-mat"></div>
+              </div>
+            {% endif %}
+          {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    </main>
+  </body>
+</html>

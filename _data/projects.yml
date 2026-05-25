@@ -1,0 +1,80 @@
+# Project wall data
+# Each project needs: title, image (thumbnail), link (detail page URL)
+# Images should be placed in: images/projects/
+#
+# Example entry:
+# - title: "My Project"
+#   image: "projects/my-project-thumb.jpg"
+#   link: "/portfolio/my-project/"
+
+- title: "Project 01"
+  image: "projects/placeholder.jpg"
+  link: "/portfolio/portfolio-1/"
+
+- title: "Project 02"
+  image: "projects/placeholder.jpg"
+  link: "/portfolio/portfolio-2/"
+
+- title: "Project 03"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 04"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 05"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 06"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 07"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 08"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 09"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 10"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 11"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 12"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 13"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 14"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 15"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 16"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 17"
+  image: "projects/placeholder.jpg"
+  link: "#"
+
+- title: "Project 18"
+  image: "projects/placeholder.jpg"
+  link: "#"

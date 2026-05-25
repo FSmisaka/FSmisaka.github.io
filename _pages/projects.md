@@ -1,8 +1,10 @@
 ---
 permalink: /projects/
 title: "Projects"
-layout: single
+layout: project-wall
 author_profile: false
----
 
-The project wall is being prepared.
+# Shelf configuration — change these to adjust rows / columns
+shelf_rows: 3
+shelf_cols: 6
+---
