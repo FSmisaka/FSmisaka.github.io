@@ -2,7 +2,10 @@
   margin: 0;
   min-height: 100vh;
   background:
-    linear-gradient(135deg, #fff6df 0%, #e9f7f4 42%, #f7e7ee 100%);
+    radial-gradient(ellipse at 15% 10%, rgba(255, 218, 185, 0.45) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 90%, rgba(186, 213, 200, 0.48) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 50%, rgba(210, 195, 180, 0.22) 0%, transparent 70%),
+    linear-gradient(160deg, #fefaf3 0%, #f2f0e8 28%, #edf4ef 58%, #f2e9ed 100%);
   color: #203041;
   cursor: none;
 }
@@ -21,7 +24,7 @@
   justify-content: center;
   padding: 42px;
   overflow: hidden;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .home-poster::before {
@@ -30,10 +33,10 @@
   inset: 0;
   z-index: -2;
   background-image:
-    linear-gradient(rgba(32, 48, 65, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(32, 48, 65, 0.06) 1px, transparent 1px);
-  background-size: 34px 34px;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.2));
+    linear-gradient(rgba(32, 48, 65, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32, 48, 65, 0.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.10));
 }
 
 .home-poster::after {
@@ -41,8 +44,8 @@
   position: absolute;
   inset: 18px;
   z-index: -1;
-  border: 2px dashed rgba(32, 48, 65, 0.28);
-  border-radius: 8px;
+  border: 2px dashed rgba(32, 48, 65, 0.18);
+  border-radius: 12px;
   pointer-events: none;
 }
 
@@ -52,38 +55,41 @@
   min-height: calc(100vh - 84px);
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  padding: 42px;
-  border: 2px solid #203041;
-  border-radius: 8px;
+  gap: 32px;
+  padding: 48px;
+  border: 2px solid rgba(32, 48, 65, 0.55);
+  border-radius: 10px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 252, 243, 0.94)),
-    radial-gradient(circle at 12% 20%, rgba(239, 113, 91, 0.14), transparent 28%),
-    radial-gradient(circle at 88% 14%, rgba(65, 165, 148, 0.16), transparent 26%);
-  box-shadow: 12px 12px 0 #203041;
+    linear-gradient(175deg, rgba(255, 255, 255, 0.82), rgba(254, 250, 242, 0.90)),
+    radial-gradient(circle at 10% 18%, rgba(227, 95, 79, 0.10), transparent 32%),
+    radial-gradient(circle at 90% 12%, rgba(65, 165, 148, 0.10), transparent 30%);
+  box-shadow:
+    10px 10px 0 rgba(32, 48, 65, 0.58),
+    0 2px 24px rgba(32, 48, 65, 0.06);
+  transition: box-shadow 320ms ease;
 }
 
 .poster-sheet::before,
 .poster-sheet::after {
   content: "";
   position: absolute;
-  width: 112px;
-  height: 28px;
-  border: 1px solid rgba(32, 48, 65, 0.22);
-  background: rgba(255, 224, 118, 0.74);
-  box-shadow: 0 5px 16px rgba(32, 48, 65, 0.08);
+  width: 120px;
+  height: 30px;
+  border: 1px solid rgba(32, 48, 65, 0.16);
+  background: rgba(250, 225, 130, 0.68);
+  box-shadow: 0 5px 18px rgba(32, 48, 65, 0.06);
 }
 
 .poster-sheet::before {
   top: 16px;
-  left: 36px;
-  transform: rotate(-5deg);
+  left: 38px;
+  transform: rotate(-4deg);
 }
 
 .poster-sheet::after {
-  right: 44px;
-  bottom: 26px;
-  transform: rotate(4deg);
+  right: 46px;
+  bottom: 28px;
+  transform: rotate(3deg);
 }
 
 .poster-greeting {
@@ -91,20 +97,23 @@
   z-index: 1;
   margin: 0;
   max-width: 920px;
-  font-size: 5.2rem;
-  line-height: 1.02;
-  letter-spacing: 0;
-  font-weight: 820;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 5.4rem;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  font-weight: 750;
   color: #203041;
 }
 
 .poster-greeting .fancy-name {
   display: inline-block;
-  font-family: "Brush Script MT", "Comic Sans MS", Georgia, cursive;
-  font-weight: 700;
-  color: #e35f4f;
-  text-shadow: 2px 2px 0 #f6c95e, 4px 4px 0 rgba(32, 48, 65, 0.16);
-  transform: rotate(-2deg);
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 680;
+  color: #d45846;
+  text-shadow: 2px 2px 0 rgba(246, 201, 94, 0.55), 4px 4px 0 rgba(32, 48, 65, 0.10);
+  transform: rotate(-1.5deg);
+  letter-spacing: 0.01em;
 }
 
 .poster-grid {
@@ -113,20 +122,22 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 378px);
   align-items: center;
-  gap: 38px;
+  gap: 42px;
 }
 
 .intro-copy {
   position: relative;
   max-width: 660px;
-  padding-left: 24px;
-  border-left: 4px solid #e35f4f;
+  padding-left: 22px;
+  border-left: 4px solid #d45846;
 }
 
 .intro-copy p {
-  margin: 0 0 18px;
-  font-size: 1.05rem;
-  line-height: 1.78;
+  margin: 0 0 20px;
+  font-size: 1.08rem;
+  line-height: 1.82;
+  font-weight: 420;
+  color: rgba(32, 48, 65, 0.88);
 }
 
 .intro-copy p:last-child {
@@ -143,11 +154,17 @@
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  border: 2px solid #203041;
-  border-radius: 8px;
+  border: 2px solid rgba(32, 48, 65, 0.48);
+  border-radius: 10px;
   background: #e6eaee;
-  box-shadow: 8px 8px 0 #f6c95e;
-  transform: rotate(1.3deg);
+  box-shadow: 8px 8px 0 rgba(32, 48, 65, 0.52);
+  transform: rotate(1deg);
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+
+.portrait-image-wrap:hover {
+  transform: rotate(0deg);
+  box-shadow: 6px 6px 0 rgba(32, 48, 65, 0.45);
 }
 
 .portrait-image-wrap img {
@@ -159,41 +176,47 @@
 }
 
 .portrait-caption {
-  margin-top: 18px;
+  margin-top: 20px;
   color: #203041;
 }
 
 .portrait-caption strong {
   display: block;
-  font-size: 1.32rem;
+  font-size: 1.36rem;
   line-height: 1.25;
+  font-weight: 700;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  letter-spacing: 0.02em;
 }
 
 .school-logos {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 14px;
-  margin-top: 14px;
+  gap: 18px;
+  margin-top: 16px;
 }
 
 .school-logo {
-  width: 54px;
-  height: 54px;
+  width: 58px;
+  height: 58px;
   display: grid;
   place-items: center;
-  border: 2px solid rgba(32, 48, 65, 0.82);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.76);
-  box-shadow: 3px 3px 0 rgba(32, 48, 65, 0.14);
   overflow: hidden;
 }
 
 .school-logo img {
-  width: 78%;
-  height: 78%;
+  width: 100%;
+  height: 100%;
   display: block;
   object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(32, 48, 65, 0.10));
+  transition: filter 240ms ease, transform 240ms ease;
+}
+
+.school-logo img:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 3px 6px rgba(32, 48, 65, 0.16));
 }
 
 .school-logo-fallback {
@@ -210,7 +233,7 @@
   flex-wrap: wrap;
   gap: 16px;
   min-height: 78px;
-  margin-top: 18px;
+  margin-top: 20px;
 }
 
 .social-icon {
@@ -219,13 +242,13 @@
   height: 46px;
   display: grid;
   place-items: center;
-  border: 2px solid #203041;
+  border: 2px solid rgba(32, 48, 65, 0.70);
   border-radius: 50%;
-  background: #fffaf0;
+  background: #fefaf3;
   color: #203041;
   text-decoration: none;
-  box-shadow: 4px 4px 0 rgba(32, 48, 65, 0.16);
-  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  box-shadow: 3px 3px 0 rgba(32, 48, 65, 0.12);
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
 }
 
 .social-icon .douban-mark,
@@ -268,7 +291,7 @@
 }
 
 .social-icon[data-social="mail"] {
-  background: #ffe1d8;
+  background: #ffe4db;
 }
 
 .social-icon[data-social="douban"] {
@@ -276,13 +299,14 @@
 }
 
 .social-icon[data-social="steam"] {
-  background: #e7e2ff;
+  background: #e8e3ff;
 }
 
 .social-icon:hover,
 .social-icon:focus-visible {
-  transform: translate(-2px, -2px) rotate(-3deg) scale(1.08);
-  box-shadow: 7px 7px 0 rgba(32, 48, 65, 0.18);
+  transform: translate(-2px, -2px) rotate(-4deg) scale(1.1);
+  box-shadow: 6px 6px 0 rgba(32, 48, 65, 0.16);
+  border-color: #203041;
   outline: none;
 }
 
@@ -297,18 +321,18 @@
   left: 50%;
   width: max-content;
   max-width: 190px;
-  padding: 6px 8px;
-  border: 1px solid rgba(32, 48, 65, 0.24);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.92);
+  padding: 7px 10px;
+  border: 1px solid rgba(32, 48, 65, 0.20);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.94);
   color: #203041;
   font-size: 0.68rem;
-  line-height: 1.32;
+  line-height: 1.36;
   text-align: center;
-  box-shadow: 0 8px 18px rgba(32, 48, 65, 0.12);
+  box-shadow: 0 8px 20px rgba(32, 48, 65, 0.10);
   opacity: 0;
   transform: translate(-50%, 5px);
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition: opacity 200ms ease, transform 200ms ease;
   pointer-events: none;
 }
 
@@ -318,7 +342,7 @@
 
 .social-icon:hover .social-tip,
 .social-icon:focus-visible .social-tip {
-  opacity: 0.92;
+  opacity: 0.94;
   transform: translate(-50%, 0);
 }
 
@@ -327,20 +351,22 @@
   z-index: 1;
   display: block;
   margin-top: auto;
-  padding: 20px 24px;
-  border: 2px solid #203041;
-  border-radius: 8px;
+  padding: 22px 28px;
+  border: 2px solid rgba(32, 48, 65, 0.60);
+  border-radius: 9px;
   background:
     linear-gradient(90deg, #203041 0 11px, transparent 11px),
-    linear-gradient(135deg, #fffaf0, #dff3d0 54%, #d9ecff);
+    linear-gradient(135deg, #fefaf3, #dff3d0 52%, #d9ecff);
   color: #203041;
   text-decoration: none;
   text-align: center;
-  font-size: 1.15rem;
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 1.18rem;
   line-height: 1.35;
-  font-weight: 800;
-  box-shadow: 8px 8px 0 rgba(32, 48, 65, 0.2);
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 6px 6px 0 rgba(32, 48, 65, 0.18);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
 }
 
 .project-gate span {
@@ -351,7 +377,8 @@
 .project-gate:hover,
 .project-gate:focus-visible {
   transform: translate(-3px, -3px);
-  box-shadow: 12px 12px 0 rgba(32, 48, 65, 0.22);
+  box-shadow: 10px 10px 0 rgba(32, 48, 65, 0.20);
+  border-color: #203041;
   outline: none;
 }
 
@@ -484,12 +511,12 @@
 
   .poster-sheet {
     min-height: calc(100vh - 56px);
-    padding: 34px;
-    box-shadow: 8px 8px 0 #203041;
+    padding: 36px;
+    box-shadow: 7px 7px 0 rgba(32, 48, 65, 0.55);
   }
 
   .poster-greeting {
-    font-size: 3.9rem;
+    font-size: 3.8rem;
   }
 
   .poster-grid {
@@ -518,7 +545,7 @@
   .poster-sheet {
     min-height: calc(100vh - 36px);
     gap: 24px;
-    padding: 24px 18px 28px;
+    padding: 26px 18px 30px;
   }
 
   .poster-sheet::before,
@@ -539,17 +566,17 @@
   }
 
   .intro-copy p {
-    font-size: 0.96rem;
-    line-height: 1.68;
+    font-size: 0.98rem;
+    line-height: 1.70;
   }
 
   .portrait-caption strong {
-    font-size: 1.14rem;
+    font-size: 1.18rem;
   }
 
   .school-logo {
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
   }
 
   .social-dock {
@@ -562,8 +589,8 @@
   }
 
   .project-gate {
-    padding: 17px 16px;
-    font-size: 1rem;
+    padding: 18px 16px;
+    font-size: 1.02rem;
   }
 }
 
