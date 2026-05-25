@@ -1,56 +1,193 @@
 ---
 permalink: /
-title: "Academic Pages is a ready-to-fork GitHub Pages template for academic personal websites"
-author_profile: true
-redirect_from: 
+layout: home-poster
+title: "Yiyao Wang"
+author_profile: false
+redirect_from:
   - /about/
   - /about.html
 ---
 
-This is the front page of a website that is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the repository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. Incidentally, these same features make it a great template for anyone that needs to show off a professional template!
+<main class="home-poster" aria-labelledby="poster-title">
+  <div class="poster-butterfly" data-butterfly aria-hidden="true">
+    <span class="poster-butterfly__wing poster-butterfly__wing--left"></span>
+    <span class="poster-butterfly__body"></span>
+    <span class="poster-butterfly__wing poster-butterfly__wing--right"></span>
+  </div>
 
- You can fork [this template](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and Markdown files, add your own PDFs and other content, and have your own site for free, with no ads!
+  <div class="net-cursor" data-net-cursor aria-hidden="true">
+    <span class="net-cursor__hoop"></span>
+    <span class="net-cursor__neck"></span>
+    <span class="net-cursor__handle"></span>
+  </div>
 
-A data-driven personal website
-======
-Like many other Jekyll-based GitHub Pages templates, Academic Pages makes you separate the website's content from its form. The content & metadata of your website are in structured Markdown files, while various other files constitute the theme, specifying how to transform that content & metadata into HTML pages. You keep these various Markdown (.md), YAML (.yml), HTML, and CSS files in a public GitHub repository. Each time you commit and push an update to the repository, the [GitHub pages](https://pages.github.com/) service creates static HTML pages based on these files, which are hosted on GitHub's servers free of charge.
+  <section class="poster-sheet">
+    <span class="poster-note poster-note--top" aria-hidden="true">LLM</span>
+    <span class="poster-note poster-note--left" aria-hidden="true">Rec</span>
 
-Many of the features of dynamic content management systems (like Wordpress) can be achieved in this fashion, using a fraction of the computational resources and with far less vulnerability to hacking and DDoSing. You can also modify the theme to your heart's content without touching the content of your site. If you get to a point where you've broken something in Jekyll/HTML/CSS beyond repair, your Markdown files describing your talks, publications, etc. are safe. You can rollback the changes or even delete the repository and start over - just be sure to save the Markdown files! You can also write scripts that process the structured data on the site, such as [this one](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb) that analyzes metadata in pages about talks to display [a map of every location you've given a talk](https://academicpages.github.io/talkmap.html).
+    <h1 class="poster-greeting" id="poster-title">
+      Halo, I am <span class="fancy-name">Yiyao Wang</span>
+    </h1>
 
-For those users that need more advanced functionality, the template also supports the following popular tools:
-- [MathJax](https://www.mathjax.org/) for mathematical equations
-- [Mermaid](https://mermaid.js.org/) for diagraming
-- [Plotly](https://plotly.com/javascript/) for plotting
+    <div class="poster-grid">
+      <div>
+        <div class="intro-copy">
+          <p>Halo and welcome to my profile. I enjoy building models with Statistical ML, DL, and LLMs to solve real-world problems (especially those related to business challenges).</p>
+          <p>-- Skills &amp; Tools: Hands-on experience with Python, C, and Java, with current interests in recommendation systems and LLM, particularly GR, LLM4Rec, LLM inference acceleration, and Agent memory.</p>
+          <p>-- Career interests: MLE.</p>
+          <p>Always open to learning, collaboration, and exchanging ideas :)</p>
+        </div>
 
-Getting started
-======
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Fork [this template](https://github.com/academicpages/academicpages.github.io) by clicking the "Use this template" button in the top right. 
-1. Go to the repository's settings (rightmost item in the tabs that start with "Code", should be below "Unwatch"). Rename the repository "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and create content & metadata (see below -- also see [this set of diffs](https://archive.is/3TPas) showing what files were changed to set up [an example site](https://getorg-testacct.github.io) for a user with the username "getorg-testacct")
-1. Upload any files (like PDFs, .zip files, etc.) to the files/ directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
+        <div class="identity-list" aria-label="Basic information">
+          <a class="identity-row" href="mailto:york2004cn@163.com">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <span>york2004cn@163.com</span>
+          </a>
+          <div class="identity-row">
+            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+            <span>Beihang University / Tsinghua University</span>
+          </div>
+        </div>
+      </div>
 
-Site-wide configuration
-------
-The main configuration file for the site is in the base directory in [_config.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_config.yml), which defines the content in the sidebars and other site-wide features. You will need to replace the default variables with ones about yourself and your site's github repository. The configuration file for the top menu is in [_data/navigation.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_data/navigation.yml). For example, if you don't have a portfolio or blog posts, you can remove those items from that navigation.yml file to remove them from the header. 
+      <figure class="portrait-frame">
+        <div class="portrait-image-wrap">
+          <img src="{{ '/images/York_Wang.jpg' | relative_url }}" alt="Portrait of Yiyao Wang">
+        </div>
+        <figcaption class="portrait-caption">
+          <strong>Yiyao Wang 王羿珧</strong>
+          <span>Beihang University · Tsinghua University</span>
+        </figcaption>
 
-Create content & metadata
-------
-For site content, there is one Markdown file for each type of content, which are stored in directories like _publications, _talks, _posts, _teaching, or _pages. For example, each talk is a Markdown file in the [_talks directory](https://github.com/academicpages/academicpages.github.io/tree/master/_talks). At the top of each Markdown file is structured data in YAML about the talk, which the theme will parse to do lots of cool stuff. The same structured data about a talk is used to generate the list of talks on the [Talks page](https://academicpages.github.io/talks), each [individual page](https://academicpages.github.io/talks/2012-03-01-talk-1) for specific talks, the talks section for the [CV page](https://academicpages.github.io/cv), and the [map of places you've given a talk](https://academicpages.github.io/talkmap.html) (if you run this [python file](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.py) or [Jupyter notebook](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb), which creates the HTML for the map based on the contents of the _talks directory).
+        <nav class="social-dock" aria-label="Social links">
+          <a class="social-icon" data-social="linkedin" href="www.linkedin.com/in/york-yiyao-wang" aria-label="LinkedIn link placeholder">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+            <span class="social-tip">
+              <span>生活所迫 在这是伪人</span>
+              <span>Life forces me to fake myself here</span>
+            </span>
+          </a>
 
-**Markdown generator**
+          <a class="social-icon" data-social="mail" href="mailto:york2004cn@163.com" aria-label="Email Yiyao Wang">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <span class="social-tip">
+              <span>真会有人从这里联系吗</span>
+              <span>Will anyone really contact me from here?</span>
+            </span>
+          </a>
 
-The repository includes [a set of Jupyter notebooks](https://github.com/academicpages/academicpages.github.io/tree/master/markdown_generator
-) that converts a CSV containing structured data about talks or presentations into individual Markdown files that will be properly formatted for the Academic Pages template. The sample CSVs in that directory are the ones I used to create my own personal website at stuartgeiger.com. My usual workflow is that I keep a spreadsheet of my publications and talks, then run the code in these notebooks to generate the Markdown files, then commit and push them to the GitHub repository.
+          <a class="social-icon" data-social="douban" href="https://www.douban.com/people/214758071" aria-label="Douban link placeholder">
+            <span class="douban-mark" aria-hidden="true">豆</span>
+            <span class="social-tip">
+              <span>看那么多总要记一下吧</span>
+              <span>something to look back on when I'm old</span>
+            </span>
+          </a>
 
-How to edit your site's GitHub repository
-------
-Many people use a git client to create files on their local computer and then push them to GitHub's servers. If you are not familiar with git, you can directly edit these configuration and Markdown files directly in the github.com interface. Navigate to a file (like [this one](https://github.com/academicpages/academicpages.github.io/blob/master/_talks/2012-03-01-talk-1.md) and click the pencil icon in the top right of the content preview (to the right of the "Raw | Blame | History" buttons). You can delete a file by clicking the trashcan icon to the right of the pencil icon. You can also create new files or upload files by navigating to a directory and clicking the "Create new file" or "Upload files" buttons. 
+          <a class="social-icon" data-social="steam" href="https://steamcommunity.com/id/FSmisaka/" aria-label="Steam link placeholder">
+            <i class="fa-brands fa-steam-symbol" aria-hidden="true"></i>
+            <span class="social-tip">
+              <span>陪我打游戏！</span>
+              <span>Come play games with me!</span>
+            </span>
+          </a>
+        </nav>
+      </figure>
+    </div>
 
-Example: editing a Markdown file for a talk
-![Editing a Markdown file for a talk](/images/editing-talk.png)
+    <a class="project-gate" href="{{ '/projects/' | relative_url }}">
+      <span>Projects that Yiyao Participated</span>
+      <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+    </a>
+  </section>
+</main>
 
-For more info
-------
-More info about configuring Academic Pages can be found in [the guide](https://academicpages.github.io/markdown/), the [growing wiki](https://github.com/academicpages/academicpages.github.io/wiki), and you can always [ask a question on GitHub](https://github.com/academicpages/academicpages.github.io/discussions). The [guides for the Minimal Mistakes theme](https://mmistakes.github.io/minimal-mistakes/docs/configuration/) (which this theme was forked from) might also be helpful.
+<script>
+  (function () {
+    var root = document.querySelector(".home-poster");
+    var net = document.querySelector("[data-net-cursor]");
+    var butterfly = document.querySelector("[data-butterfly]");
+
+    if (!root || !net || !butterfly) {
+      return;
+    }
+
+    var lastPoint = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    var lastEscape = 0;
+    var resetTimer = null;
+
+    function randomBetween(min, max) {
+      return min + Math.random() * (max - min);
+    }
+
+    function placeButterfly(startled) {
+      var margin = window.innerWidth < 620 ? 58 : 92;
+      var x = randomBetween(margin, Math.max(margin + 1, window.innerWidth - margin));
+      var y = randomBetween(margin, Math.max(margin + 1, window.innerHeight - margin));
+      var rotate = Math.round(randomBetween(-24, 24));
+      var scale = randomBetween(0.86, 1.15).toFixed(2);
+      var hue = Math.round(randomBetween(8, 320));
+
+      butterfly.style.setProperty("--butterfly-x", x + "px");
+      butterfly.style.setProperty("--butterfly-y", y + "px");
+      butterfly.style.setProperty("--butterfly-rotate", rotate + "deg");
+      butterfly.style.setProperty("--butterfly-scale", scale);
+      butterfly.style.setProperty("--butterfly-hue", hue);
+
+      butterfly.classList.toggle("is-surprised", Boolean(startled));
+      window.clearTimeout(resetTimer);
+      resetTimer = window.setTimeout(function () {
+        butterfly.classList.remove("is-surprised");
+      }, 700);
+    }
+
+    function moveNet(event) {
+      var dx = event.clientX - lastPoint.x;
+      var dy = event.clientY - lastPoint.y;
+      var angle = Math.max(-30, Math.min(30, dx * 0.25 + dy * 0.08 - 16));
+
+      net.style.transform = "translate3d(" + (event.clientX - 24) + "px, " + (event.clientY - 20) + "px, 0) rotate(" + angle + "deg)";
+      net.classList.add("is-visible");
+      lastPoint = { x: event.clientX, y: event.clientY };
+    }
+
+    function checkCatch(event) {
+      var now = Date.now();
+      if (now - lastEscape < 520) {
+        return;
+      }
+
+      var rect = butterfly.getBoundingClientRect();
+      var centerX = rect.left + rect.width / 2;
+      var centerY = rect.top + rect.height / 2;
+      var distance = Math.hypot(event.clientX - centerX, event.clientY - centerY);
+
+      if (distance < 64) {
+        lastEscape = now;
+        placeButterfly(true);
+      }
+    }
+
+    root.addEventListener("pointermove", function (event) {
+      moveNet(event);
+      checkCatch(event);
+    });
+
+    root.addEventListener("pointerenter", function () {
+      net.classList.add("is-visible");
+    });
+
+    root.addEventListener("pointerleave", function () {
+      net.classList.remove("is-visible");
+    });
+
+    window.addEventListener("resize", function () {
+      placeButterfly(false);
+    });
+
+    placeButterfly(false);
+    window.setInterval(function () {
+      placeButterfly(false);
+    }, 5200);
+  }());
+</script>

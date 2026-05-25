@@ -9,10 +9,10 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # Currently available options are "default", "air"
-title                    : "York Wang"
+title                    : "Yiyao Wang"
 title_separator          : "-"
-name                     : &name "王羿珧"
-description              : &description "Your Name's academic portfolio"   # Update this with a general description of your site, this is the default if not overridden by a page
+name                     : &name "Yiyao Wang 王羿珧"
+description              : &description "Yiyao Wang's personal portfolio for machine learning and recommendation projects"
 url                      : https://fsmisaka.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -24,11 +24,11 @@ repository               : "FSmisaka/FSmisaka.github.io"
 author:
   # Biographic information
   avatar           : "York_Wang.jpg"
-  name             : "York Wang"
+  name             : "Yiyao Wang 王羿珧"
   pronouns         : "he/his"  
-  bio              : "Short biography for the left-hand sidebar"
+  bio              : "Student interested in Statistical ML, DL, LLMs, recommendation systems, and MLE work."
   location         : "Beijing, China"
-  employer         : "Beihang University"
+  employer         : "Beihang University / Tsinghua University"
   uri              : # URL
   email            : "york2004cn@163.com" 
 
@@ -38,10 +38,10 @@ author:
   googlescholar    : # "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
   inspire-hep      : # URL
   impactstory      : # URL
-  orcid            : "https://orcid.org/yourorcidurl"
+  orcid            :
   semantic         : # URL
   ssrn             : # URL
-  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
+  pubmed           :
   researchgate     : # URL
   scopus           : # URL
   zotero           : # URL
@@ -51,7 +51,7 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "academicpages"
+  github           :
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
