@@ -12,6 +12,11 @@ layout: compress
   </head>
 
   <body class="project-wall-body">
+    <a href="{{ '/' | relative_url }}" class="door-knob" aria-label="Back to home">
+      <span class="door-knob__handle"></span>
+      <span class="door-knob__plate"></span>
+    </a>
+
     <main class="shelf-wall" aria-labelledby="wall-title">
       <header class="shelf-wall-header">
         <h1 id="wall-title">{{ page.title | default: "Projects" }}</h1>
