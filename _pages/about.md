@@ -22,9 +22,6 @@ redirect_from:
   </div>
 
   <section class="poster-sheet">
-    <span class="poster-note poster-note--top" aria-hidden="true">LLM</span>
-    <span class="poster-note poster-note--left" aria-hidden="true">Rec</span>
-
     <h1 class="poster-greeting" id="poster-title">
       Halo, I am <span class="fancy-name">Yiyao Wang</span>
     </h1>
@@ -37,17 +34,6 @@ redirect_from:
           <p>-- Career interests: MLE.</p>
           <p>Always open to learning, collaboration, and exchanging ideas :)</p>
         </div>
-
-        <div class="identity-list" aria-label="Basic information">
-          <a class="identity-row" href="mailto:york2004cn@163.com">
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-            <span>york2004cn@163.com</span>
-          </a>
-          <div class="identity-row">
-            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
-            <span>Beihang University / Tsinghua University</span>
-          </div>
-        </div>
       </div>
 
       <figure class="portrait-frame">
@@ -56,20 +42,32 @@ redirect_from:
         </div>
         <figcaption class="portrait-caption">
           <strong>Yiyao Wang 王羿珧</strong>
-          <span>Beihang University · Tsinghua University</span>
+          <div class="school-logos" aria-label="School logos">
+            <span class="school-logo">
+              <img src="{{ '/images/schools/beihang-logo.png' | relative_url }}" alt="Beihang University logo" onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
+              <span class="school-logo-fallback" hidden>BUAA</span>
+            </span>
+            <span class="school-logo">
+              <img src="{{ '/images/schools/tsinghua-logo.png' | relative_url }}" alt="Tsinghua University logo" onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
+              <span class="school-logo-fallback" hidden>THU</span>
+            </span>
+          </div>
         </figcaption>
 
         <nav class="social-dock" aria-label="Social links">
-          <a class="social-icon" data-social="linkedin" href="www.linkedin.com/in/york-yiyao-wang" aria-label="LinkedIn link placeholder">
-            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          <a class="social-icon" data-social="linkedin" href="https://www.linkedin.com/in/york-yiyao-wang" aria-label="LinkedIn link placeholder">
+            <span class="linkedin-mark" aria-hidden="true">in</span>
             <span class="social-tip">
               <span>生活所迫 在这是伪人</span>
-              <span>Life forces me to fake myself here</span>
+              <span>Life forces me to fake myself</span>
             </span>
           </a>
 
           <a class="social-icon" data-social="mail" href="mailto:york2004cn@163.com" aria-label="Email Yiyao Wang">
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <svg class="social-svg" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6.5h16v11H4z"></path>
+              <path d="m5 7.5 7 5.4 7-5.4"></path>
+            </svg>
             <span class="social-tip">
               <span>真会有人从这里联系吗</span>
               <span>Will anyone really contact me from here?</span>
@@ -79,16 +77,22 @@ redirect_from:
           <a class="social-icon" data-social="douban" href="https://www.douban.com/people/214758071" aria-label="Douban link placeholder">
             <span class="douban-mark" aria-hidden="true">豆</span>
             <span class="social-tip">
-              <span>看那么多总要记一下吧</span>
-              <span>something to look back on when I'm old</span>
+              <span>记录一下看过的电影 ^ ^</span>
+              <span>Something to look back on when I'm old</span>
             </span>
           </a>
 
           <a class="social-icon" data-social="steam" href="https://steamcommunity.com/id/FSmisaka/" aria-label="Steam link placeholder">
-            <i class="fa-brands fa-steam-symbol" aria-hidden="true"></i>
+            <svg class="social-svg steam-svg" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="16.5" cy="7.5" r="3.6"></circle>
+              <circle cx="16.5" cy="7.5" r="1.35"></circle>
+              <circle cx="8.2" cy="15.4" r="3.15"></circle>
+              <path d="M5.5 13.7 3.2 12.8"></path>
+              <path d="m10.7 13.8 3.4-3.4"></path>
+            </svg>
             <span class="social-tip">
-              <span>陪我打游戏！</span>
-              <span>Come play games with me!</span>
+              <span>爽玩</span>
+              <span>ARPG!</span>
             </span>
           </a>
         </nav>
@@ -97,7 +101,6 @@ redirect_from:
 
     <a class="project-gate" href="{{ '/projects/' | relative_url }}">
       <span>Projects that Yiyao Participated</span>
-      <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
     </a>
   </section>
 </main>
