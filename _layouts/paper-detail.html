@@ -16,15 +16,18 @@ layout: compress
   </head>
 
   <body class="note-detail-body">
+    <!-- Single back button at top-left -->
+    {% if page.domain %}
+    <a href="{{ '/papers/' | relative_url }}" class="note-back-link" style="--tag-color: #dce0e8;" aria-label="Back to papers">
+      <span class="note-back-arrow">←</span>
+      <span class="note-back-label">Papers</span>
+      <span class="paper-back-domain">{{ page.domain }}</span>
+    </a>
+    {% else %}
     <a href="{{ '/papers/' | relative_url }}" class="note-back-link" aria-label="Back to papers">
       <span class="note-back-arrow">←</span>
       <span class="note-back-label">Papers</span>
     </a>
-
-    {% if page.domain %}
-    <span class="note-category-tag" style="--tag-color: #dce0e8;">
-      <span class="note-category-tag__name">{{ page.domain }}</span>
-    </span>
     {% endif %}
 
     <main class="note-paper" aria-labelledby="paper-title">
@@ -56,6 +59,9 @@ layout: compress
     <footer class="note-footer">
       <a href="{{ '/papers/' | relative_url }}" class="note-footer-link">← Back to all papers</a>
     </footer>
+
+    <!-- TOC + back-to-top (shared JS) -->
+    <script defer src="{{ '/assets/js/detail-page.js' | relative_url }}"></script>
 
     <script defer>
       (function() {

@@ -376,73 +376,73 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-// ── Back link ──────────────────────────────
+// ── Back link (now includes the category chip look) ──
 .note-back-link {
   position: fixed;
   top: 24px;
   left: 28px;
-  z-index: 60;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border: 1px solid rgba(44, 36, 22, 0.18);
-  border-radius: 20px;
-  background: rgba(250, 247, 240, 0.80);
-  backdrop-filter: blur(8px);
-  color: rgba(44, 36, 22, 0.65);
-  text-decoration: none;
-  font-family: "Inter", ui-sans-serif, sans-serif;
-  font-size: 0.85rem;
-  font-weight: 520;
-  letter-spacing: 0.02em;
-  transition: color 200ms ease, border-color 200ms ease, background 200ms ease;
-}
-
-.note-back-link:hover {
-  color: #2c2416;
-  border-color: rgba(44, 36, 22, 0.34);
-  background: rgba(250, 247, 240, 0.94);
-}
-
-.note-back-arrow {
-  font-size: 1.05rem;
-}
-
-// ── Category tag ───────────────────────────
-.note-category-tag {
-  position: fixed;
-  top: 24px;
-  right: 28px;
-  z-index: 60;
+  z-index: 70;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 7px 16px;
-  border: 1px solid rgba(44, 36, 22, 0.14);
+  border: 1px solid rgba(44, 36, 22, 0.16);
   border-radius: 20px;
   background:
     linear-gradient(135deg,
       color-mix(in srgb, var(--tag-color, #e8e8e8) 50%, #fff 50%) 0%,
       color-mix(in srgb, var(--tag-color, #d0d0d0) 60%, #fff 40%) 100%
     );
-  color: rgba(44, 36, 22, 0.70);
+  backdrop-filter: blur(8px);
+  color: rgba(44, 36, 22, 0.68);
   text-decoration: none;
   font-family: "Inter", ui-sans-serif, sans-serif;
   font-size: 0.82rem;
   font-weight: 540;
   letter-spacing: 0.02em;
-  transition: border-color 200ms ease, box-shadow 200ms ease;
+  transition: color 200ms ease, border-color 200ms ease, background 200ms ease, box-shadow 200ms ease;
 }
 
-.note-category-tag:hover {
-  border-color: rgba(44, 36, 22, 0.30);
+.note-back-link:hover {
+  color: #2c2416;
+  border-color: rgba(44, 36, 22, 0.34);
   box-shadow: 0 2px 8px rgba(44, 36, 22, 0.08);
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--tag-color, #e8e8e8) 65%, #fff 35%) 0%,
+      color-mix(in srgb, var(--tag-color, #c0c0c0) 72%, #fff 28%) 100%
+    );
+}
+
+.note-back-arrow {
+  font-size: 1.05rem;
+  margin-right: 1px;
+}
+
+.note-back-label {
+  // Shown when there's no category (fallback)
 }
 
 .note-category-tag__icon {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1;
+}
+
+.note-category-tag__name {
+  // Category name text
+}
+
+.paper-back-domain {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(44, 36, 22, 0.46);
+  padding-left: 2px;
+
+  &::before {
+    content: "·";
+    margin-right: 4px;
+    opacity: 0.5;
+  }
 }
 
 // ── Paper — continuous scroll design ───────
@@ -760,6 +760,173 @@
 }
 
 // ============================
+// TOC SIDEBAR — right-edge dash indicators
+// ============================
+.toc-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  width: 44px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+// ── Dashes (visible by default; hidden on sidebar hover) ──
+.toc-dashes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  padding-right: 10px;
+  transition: opacity 220ms ease;
+
+  .toc-sidebar:hover & {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.toc-dash {
+  display: block;
+  height: 2px;
+  border-radius: 1px;
+  background: rgba(44, 36, 22, 0.18);
+  cursor: pointer;
+  transition: background 180ms ease, width 180ms ease;
+
+  &:hover {
+    background: rgba(44, 36, 22, 0.42);
+  }
+
+  &.is-active {
+    background: rgba(44, 36, 22, 0.52);
+  }
+
+  // Width varies by heading level
+  &--l1 { width: 22px; }
+  &--l2 { width: 16px; }
+  &--l3 { width: 11px; }
+  &--l4 { width: 8px;  }
+  &--l5 { width: 6px;  }
+  &--l6 { width: 5px;  }
+}
+
+// ── Panel (hidden by default; shown on sidebar :hover) ──
+.toc-panel {
+  position: absolute;
+  top: 50%;
+  right: 44px;  // flush with left edge of dash zone — no gap
+  transform: translateY(-50%) translateX(6px);
+  min-width: 220px;
+  max-width: 340px;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 18px 20px;
+  border: 1px solid rgba(44, 36, 22, 0.12);
+  border-radius: 10px;
+  background: rgba(254, 252, 247, 0.96);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 24px rgba(44, 36, 22, 0.10);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease, transform 240ms ease;
+
+  // CSS :hover on the parent sidebar triggers panel visibility.
+  // Because .toc-panel is an absolutely-positioned child of .toc-sidebar,
+  // hovering the panel keeps :hover active — no gap, no flicker.
+  .toc-sidebar:hover & {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+.toc-panel__title {
+  font-family: "Inter", ui-sans-serif, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(44, 36, 22, 0.38);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(44, 36, 22, 0.08);
+}
+
+.toc-link {
+  display: block;
+  padding: 4px 0 4px 8px;
+  font-family: "Inter", ui-sans-serif, sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgba(44, 36, 22, 0.55);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color 140ms ease, border-color 140ms ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover {
+    color: rgba(44, 36, 22, 0.82);
+    border-left-color: rgba(44, 36, 22, 0.16);
+  }
+
+  &.is-active {
+    color: rgba(44, 36, 22, 0.88);
+    border-left-color: rgba(44, 36, 22, 0.38);
+    font-weight: 560;
+  }
+
+  &--l1 { font-weight: 600; font-size: 0.82rem; }
+  &--l2 { font-weight: 540; }
+  &--l3 { font-size: 0.74rem; }
+  &--l4 { font-size: 0.72rem; }
+  &--l5 { font-size: 0.70rem; }
+  &--l6 { font-size: 0.68rem; }
+}
+
+// ============================
+// BACK TO TOP
+// ============================
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 55;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(44, 36, 22, 0.14);
+  border-radius: 50%;
+  background: rgba(254, 252, 247, 0.78);
+  backdrop-filter: blur(6px);
+  color: rgba(44, 36, 22, 0.40);
+  font-family: "Inter", ui-sans-serif, sans-serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease, color 180ms ease, border-color 180ms ease, background 180ms ease;
+
+  &.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &:hover {
+    color: rgba(44, 36, 22, 0.72);
+    border-color: rgba(44, 36, 22, 0.28);
+    background: rgba(254, 252, 247, 0.94);
+  }
+}
+
+// ============================
 // RESPONSIVE
 // ============================
 @media (max-width: 1100px) {
@@ -943,6 +1110,19 @@
 
   .note-footer {
     padding: 0 20px 32px;
+  }
+
+  // TOC → hide on mobile (too cramped)
+  .toc-sidebar {
+    display: none;
+  }
+
+  .back-to-top {
+    bottom: 20px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    font-size: 0.95rem;
   }
 }
 

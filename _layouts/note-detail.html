@@ -17,18 +17,18 @@ layout: compress
   </head>
 
   <body class="note-detail-body">
-    <!-- Back to notes wall (with category pre-selected) -->
-    <a href="{{ '/notes/' | relative_url }}?category={{ page.category | default: '' }}" class="note-back-link" aria-label="Back to notes wall">
-      <span class="note-back-arrow">←</span>
-      <span class="note-back-label">Notes</span>
-    </a>
-
-    <!-- Category tag -->
+    <!-- Single back button: category chip at top-left -->
     {% assign cat = site.data.notes_categories | where: "slug", page.category | first %}
     {% if cat %}
-    <a href="{{ '/notes/' | relative_url }}?category={{ cat.slug }}" class="note-category-tag" style="--tag-color: {{ cat.color }};">
+    <a href="{{ '/notes/' | relative_url }}?category={{ cat.slug }}" class="note-back-link" style="--tag-color: {{ cat.color }};" aria-label="Back to {{ cat.name }} notes">
+      <span class="note-back-arrow">←</span>
       <span class="note-category-tag__icon">{{ cat.icon }}</span>
       <span class="note-category-tag__name">{{ cat.name }}</span>
+    </a>
+    {% else %}
+    <a href="{{ '/notes/' | relative_url }}" class="note-back-link" aria-label="Back to notes">
+      <span class="note-back-arrow">←</span>
+      <span class="note-back-label">Notes</span>
     </a>
     {% endif %}
 
@@ -62,6 +62,9 @@ layout: compress
     <footer class="note-footer">
       <a href="{{ '/notes/' | relative_url }}?category={{ page.category | default: '' }}" class="note-footer-link">← Back to notes</a>
     </footer>
+
+    <!-- TOC + back-to-top (shared JS) -->
+    <script defer src="{{ '/assets/js/detail-page.js' | relative_url }}"></script>
 
     <!--
       kramdown with math_engine:mathjax wraps $...$ in <script type="math/tex"> tags.
