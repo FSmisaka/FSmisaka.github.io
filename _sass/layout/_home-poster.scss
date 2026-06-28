@@ -415,6 +415,25 @@
 }
 
 // ============================
+// POSTER GATES — side-by-side buttons
+// ============================
+.poster-gates {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 22px;
+  margin-top: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.poster-gates .project-gate {
+  flex: 1;
+  min-width: 260px;
+  max-width: 420px;
+}
+
+// ============================
 // PROJECT GATE — sticky note
 // with washi tape
 // ============================
@@ -422,7 +441,6 @@
   position: relative;
   z-index: 1;
   display: block;
-  margin-top: auto;
   padding: 26px 28px 24px;
   border: none;
   border-radius: 3px;
@@ -489,6 +507,30 @@
     0 6px 20px rgba(32, 48, 65, 0.12),
     inset 0 -8px 16px rgba(32, 48, 65, 0.04);
   outline: none;
+}
+
+// Notes gate — different color and rotation
+.notes-gate {
+  background:
+    linear-gradient(180deg, #f8f5ff 0%, #e8e0f8 100%);
+  transform: rotate(0.8deg);
+
+  &::before {
+    background:
+      repeating-linear-gradient(3deg, rgba(255, 255, 255, 0.30) 0 2px, transparent 2px 6px),
+      rgba(140, 160, 210, 0.70);
+  }
+
+  &::after {
+    background:
+      repeating-linear-gradient(-2deg, rgba(255, 255, 255, 0.28) 0 2px, transparent 2px 6px),
+      rgba(180, 140, 200, 0.64);
+  }
+
+  &:hover,
+  &:focus-visible {
+    transform: rotate(0.4deg) translate(-2px, -2px);
+  }
 }
 
 // ============================
@@ -745,6 +787,14 @@
   .social-icon {
     width: 42px;
     height: 42px;
+  }
+
+  .poster-gates {
+    gap: 14px;
+  }
+
+  .poster-gates .project-gate {
+    min-width: 200px;
   }
 
   .project-gate {

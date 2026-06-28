@@ -1,0 +1,73 @@
+---
+layout: compress
+---
+
+{% include base_path %}
+
+<!doctype html>
+<html lang="{{ site.locale | slice: 0,2 }}" class="no-js"{% if site.site_theme == "dark" %} data-theme="dark"{% endif %}>
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+
+    <!-- Additional serif fonts for note detail pages -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="note-detail-body">
+    <!-- Back to notes -->
+    <a href="{{ '/notes/' | relative_url }}" class="note-back-link" aria-label="Back to notes">
+      <span class="note-back-arrow">←</span>
+      <span class="note-back-label">Notes</span>
+    </a>
+
+    <!-- Category tag -->
+    {% assign cat = site.data.notes_categories | where: "slug", page.category | first %}
+    {% if cat %}
+    <a href="{{ '/notes/' | relative_url }}" class="note-category-tag" style="--tag-color: {{ cat.color }};">
+      <span class="note-category-tag__icon">{{ cat.icon }}</span>
+      <span class="note-category-tag__name">{{ cat.name }}</span>
+    </a>
+    {% endif %}
+
+    <main class="note-paper" aria-labelledby="note-title">
+      <!-- Paper stack shadows -->
+      <div class="note-paper-stack" aria-hidden="true">
+        <div class="note-paper-stack__sheet note-paper-stack__sheet--back"></div>
+        <div class="note-paper-stack__sheet note-paper-stack__sheet--mid"></div>
+      </div>
+
+      <article class="note-content">
+        <header class="note-header">
+          <h1 id="note-title" class="note-title">{{ page.title }}</h1>
+          {% if page.date %}
+          <time class="note-date" datetime="{{ page.date | date_to_xmlschema }}">
+            {{ page.date | date: "%B %d, %Y" }}
+          </time>
+          {% endif %}
+          {% if page.excerpt %}
+          <p class="note-excerpt">{{ page.excerpt }}</p>
+          {% endif %}
+          <hr class="note-divider" aria-hidden="true">
+        </header>
+
+        <div class="note-body">
+          {{ content }}
+        </div>
+      </article>
+
+      <!-- Page corner fold -->
+      <div class="note-corner" aria-hidden="true"></div>
+    </main>
+
+    <footer class="note-footer">
+      <a href="{{ '/notes/' | relative_url }}" class="note-footer-link">← Back to all notes</a>
+    </footer>
+
+    <!-- MathJax support -->
+    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+  </body>
+</html>

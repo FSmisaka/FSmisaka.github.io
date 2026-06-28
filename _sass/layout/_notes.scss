@@ -1,0 +1,965 @@
+// ============================
+// NOTES — shared body
+// ============================
+.notes-overview-body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(180, 160, 200, 0.18) 0%, transparent 60%),
+    linear-gradient(180deg, #f4f1ed 0%, #eae5db 100%);
+  color: #2c2416;
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.notes-overview-body * {
+  box-sizing: border-box;
+}
+
+// ============================
+// CATEGORY STAGE — full-screen
+// ============================
+.category-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 140px);
+  padding: 48px 24px 32px;
+}
+
+.stage-title {
+  margin: 0 0 4px;
+  font-family: "Caveat", "Brush Script MT", cursive;
+  font-size: 3.4rem;
+  font-weight: 580;
+  color: #2c2416;
+  letter-spacing: 0.03em;
+}
+
+.stage-subtitle {
+  margin: 0 0 40px;
+  font-family: "Caveat", "Brush Script MT", cursive;
+  font-size: 1.25rem;
+  font-weight: 460;
+  color: rgba(44, 36, 22, 0.52);
+  letter-spacing: 0.04em;
+}
+
+// ============================
+// CAROUSEL — Switch-style
+// ============================
+.carousel-viewport {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  overflow: hidden;
+  touch-action: pan-y; // allow vertical scroll, handle horizontal ourselves
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  will-change: transform;
+}
+
+// ── Category cards ──────────────────────────
+.carousel-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 240px;
+  height: 164px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg,
+      color-mix(in srgb, var(--card-color, #e8e8e8) 100%, #fff 0%) 0%,
+      color-mix(in srgb, var(--card-color, #d0d0d0) 100%, #000 8%) 100%
+    );
+  border: 2px solid rgba(44, 36, 22, 0.12);
+  box-shadow:
+    0 2px 12px rgba(44, 36, 22, 0.08),
+    0 1px 3px rgba(44, 36, 22, 0.06);
+  transition: transform 320ms cubic-bezier(0.22, 0.68, 0, 1.02),
+              box-shadow 320ms ease,
+              border-color 320ms ease;
+  cursor: pointer;
+}
+
+.carousel-card.is-active {
+  transform: scale(1.08);
+  border-color: rgba(44, 36, 22, 0.32);
+  box-shadow:
+    0 8px 30px rgba(44, 36, 22, 0.16),
+    0 3px 8px rgba(44, 36, 22, 0.10);
+  z-index: 2;
+}
+
+.carousel-card:hover {
+  border-color: rgba(44, 36, 22, 0.24);
+}
+
+.carousel-card.is-active:hover {
+  border-color: rgba(44, 36, 22, 0.38);
+}
+
+.carousel-card__icon {
+  font-size: 2.8rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 3px rgba(44, 36, 22, 0.10));
+}
+
+.carousel-card__name {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(44, 36, 22, 0.82);
+  letter-spacing: 0.02em;
+  text-align: center;
+  max-width: 200px;
+}
+
+// ── Hint text ──────────────────────────────
+.category-hint {
+  margin-top: 36px;
+  font-family: "Caveat", "Brush Script MT", cursive;
+  font-size: 1.15rem;
+  color: rgba(44, 36, 22, 0.44);
+  letter-spacing: 0.03em;
+  pointer-events: none;
+}
+
+// ============================
+// NOTES WALL STAGE
+// ============================
+.notes-wall-stage {
+  min-height: 100vh;
+  padding: 48px 44px 64px;
+}
+
+.back-to-categories {
+  position: fixed;
+  top: 26px;
+  left: 74px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 2px solid rgba(44, 36, 22, 0.22);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(6px);
+  color: rgba(44, 36, 22, 0.72);
+  font-family: "Caveat", "Brush Script MT", cursive;
+  font-size: 1.15rem;
+  font-weight: 540;
+  cursor: pointer;
+  transition: background 220ms ease, border-color 220ms ease, color 220ms ease;
+}
+
+.back-to-categories:hover {
+  background: rgba(255, 255, 255, 0.90);
+  border-color: rgba(44, 36, 22, 0.38);
+  color: #2c2416;
+}
+
+.back-arrow {
+  font-size: 1.2rem;
+}
+
+// ── No notes message ───────────────────────
+.no-notes-msg {
+  text-align: center;
+  padding: 64px 24px;
+  font-family: "Caveat", "Brush Script MT", cursive;
+  font-size: 1.8rem;
+  color: rgba(44, 36, 22, 0.48);
+}
+
+// ============================
+// NOTE CARD — inside notes wall
+// ============================
+.note-card {
+  text-decoration: none;
+  color: inherit;
+
+  .note-mat__inner {
+    position: absolute;
+    inset: 9px 9px 28px 9px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background:
+      linear-gradient(145deg,
+        color-mix(in srgb, var(--card-color, #e8f0f8) 40%, #fff 60%) 0%,
+        color-mix(in srgb, var(--card-color, #d0dde8) 50%, #fff 50%) 100%
+      );
+    border-radius: 2px;
+    padding: 8px;
+    overflow: hidden;
+  }
+
+  .note-mat__icon {
+    font-size: 1.8rem;
+    line-height: 1;
+    opacity: 0.7;
+  }
+
+  .note-mat__title {
+    font-family: "Caveat", "Brush Script MT", cursive;
+    font-size: 1rem;
+    font-weight: 560;
+    color: rgba(32, 48, 65, 0.82);
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// Category-specific note card colors
+.notes-wall-stage .shelf-photo:nth-child(odd) .note-mat__inner {
+  --card-color: #dceaf6;
+}
+.notes-wall-stage .shelf-photo:nth-child(even) .note-mat__inner {
+  --card-color: #fef3e4;
+}
+.notes-wall-stage .shelf-photo:nth-child(3n) .note-mat__inner {
+  --card-color: #ede4f6;
+}
+
+// ── Reuse shelf/photo styles from project wall ──
+.notes-wall-stage {
+  .shelf-wall {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 24px 44px 64px;
+  }
+
+  .shelf-wall-grid {
+    --shelf-cols: 4;
+  }
+
+  .shelf-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(var(--shelf-cols, 4), 1fr);
+    gap: 28px 24px;
+    padding: 38px 28px 46px;
+    margin-bottom: 10px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 8px;
+      right: 8px;
+      height: 18px;
+      border-radius: 3px;
+      background:
+        linear-gradient(180deg,
+          rgba(180, 140, 100, 0.55) 0%,
+          rgba(145, 105, 65, 0.70) 30%,
+          rgba(120, 80, 45, 0.78) 100%
+        );
+      box-shadow:
+        0 4px 10px rgba(32, 48, 65, 0.20),
+        inset 0 2px 0 rgba(255, 255, 255, 0.18);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      left: 18px;
+      width: 22px;
+      height: 14px;
+      background: rgba(32, 48, 65, 0.12);
+      border-radius: 1px;
+      box-shadow:
+        0 0 0 2px rgba(32, 48, 65, 0.06),
+        calc(var(--shelf-cols, 4) * 140px - 36px) 0 0 rgba(32, 48, 65, 0.10);
+      clip-path: polygon(0 0, 100% 0, 70% 100%, 30% 100%);
+    }
+  }
+
+  .shelf-photo {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 220ms ease, box-shadow 220ms ease;
+    z-index: 1;
+
+    &:hover,
+    &:focus-visible {
+      transform: translateY(-4px) rotate(0deg) !important;
+      box-shadow:
+        0 8px 24px rgba(32, 48, 65, 0.20),
+        0 2px 6px rgba(32, 48, 65, 0.10);
+      z-index: 5;
+      outline: none;
+    }
+
+    &.is-empty {
+      visibility: hidden;
+    }
+  }
+
+  .photo-mat {
+    position: relative;
+    padding: 9px 9px 28px;
+    background: #fefefe;
+    border: 1px solid rgba(32, 48, 65, 0.12);
+    border-radius: 3px;
+    box-shadow:
+      2px 3px 8px rgba(32, 48, 65, 0.14),
+      0 1px 2px rgba(32, 48, 65, 0.08);
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      display: block;
+      padding-top: 75%;
+    }
+  }
+
+  .photo-label {
+    display: block;
+    margin-top: 6px;
+    font-family: "Caveat", "Brush Script MT", cursive;
+    font-size: 1.18rem;
+    font-weight: 540;
+    text-align: center;
+    color: rgba(32, 48, 65, 0.78);
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+  }
+
+  // Alternating rotations
+  .shelf-photo:nth-child(3n+1) { transform: rotate(-1.8deg); }
+  .shelf-photo:nth-child(3n+2) { transform: rotate(0.6deg); }
+  .shelf-photo:nth-child(3n+3) { transform: rotate(-0.5deg); }
+  .shelf-photo:nth-child(5n+4) { transform: rotate(1.4deg); }
+}
+
+// ============================
+// NOTE DETAIL — paper design
+// ============================
+.note-detail-body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(212, 160, 120, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 85% 80%, rgba(160, 180, 200, 0.06) 0%, transparent 50%),
+    linear-gradient(175deg, #faf7f0 0%, #f3efe4 40%, #f2ede0 100%);
+  color: #2c2416;
+  font-family: "Cormorant Garamond", "Georgia", "Times New Roman", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ── Back link ──────────────────────────────
+.note-back-link {
+  position: fixed;
+  top: 24px;
+  left: 28px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid rgba(44, 36, 22, 0.18);
+  border-radius: 20px;
+  background: rgba(250, 247, 240, 0.80);
+  backdrop-filter: blur(8px);
+  color: rgba(44, 36, 22, 0.65);
+  text-decoration: none;
+  font-family: "Inter", ui-sans-serif, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 520;
+  letter-spacing: 0.02em;
+  transition: color 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+
+.note-back-link:hover {
+  color: #2c2416;
+  border-color: rgba(44, 36, 22, 0.34);
+  background: rgba(250, 247, 240, 0.94);
+}
+
+.note-back-arrow {
+  font-size: 1.05rem;
+}
+
+// ── Category tag ───────────────────────────
+.note-category-tag {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border: 1px solid rgba(44, 36, 22, 0.14);
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--tag-color, #e8e8e8) 50%, #fff 50%) 0%,
+      color-mix(in srgb, var(--tag-color, #d0d0d0) 60%, #fff 40%) 100%
+    );
+  color: rgba(44, 36, 22, 0.70);
+  text-decoration: none;
+  font-family: "Inter", ui-sans-serif, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 540;
+  letter-spacing: 0.02em;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.note-category-tag:hover {
+  border-color: rgba(44, 36, 22, 0.30);
+  box-shadow: 0 2px 8px rgba(44, 36, 22, 0.08);
+}
+
+.note-category-tag__icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+// ── Paper ──────────────────────────────────
+.note-paper {
+  position: relative;
+  isolation: isolate;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 80px 64px 72px;
+
+  // Single sheet of paper
+  background:
+    linear-gradient(180deg, #fffef9 0%, #fdfaf2 100%);
+  border: 1px solid rgba(44, 36, 22, 0.14);
+  box-shadow:
+    0 2px 16px rgba(44, 36, 22, 0.07),
+    0 8px 40px rgba(44, 36, 22, 0.05),
+    inset 0 0 60px rgba(44, 36, 22, 0.012);
+}
+
+// ── Paper stack effect ─────────────────────
+.note-paper-stack {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.note-paper-stack__sheet {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(44, 36, 22, 0.08);
+  border-radius: 1px;
+  background: #fdfaf2;
+}
+
+.note-paper-stack__sheet--back {
+  transform: rotate(-1.2deg) translate(4px, 6px);
+  box-shadow: 0 2px 8px rgba(44, 36, 22, 0.04);
+  background: #faf6ec;
+}
+
+.note-paper-stack__sheet--mid {
+  transform: rotate(0.6deg) translate(-3px, 3px);
+  box-shadow: 0 2px 6px rgba(44, 36, 22, 0.04);
+  background: #fcf8f0;
+}
+
+// ── Paper corner fold ──────────────────────
+.note-corner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background:
+    linear-gradient(135deg,
+      transparent 50%,
+      rgba(44, 36, 22, 0.06) 50%,
+      rgba(44, 36, 22, 0.03) 100%
+    );
+  border-radius: 0;
+  pointer-events: none;
+}
+
+// ── Note header ────────────────────────────
+.note-header {
+  margin-bottom: 36px;
+}
+
+.note-title {
+  margin: 0 0 12px;
+  font-family: "Playfair Display", "Cormorant Garamond", "Georgia", serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #1a1510;
+  letter-spacing: -0.01em;
+}
+
+.note-date {
+  display: block;
+  margin-bottom: 12px;
+  font-family: "Inter", ui-sans-serif, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 450;
+  color: rgba(44, 36, 22, 0.46);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.note-excerpt {
+  margin: 0 0 0;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.55;
+  color: rgba(44, 36, 22, 0.52);
+  letter-spacing: 0.01em;
+}
+
+.note-divider {
+  margin: 28px 0 0;
+  border: none;
+  height: 1px;
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(44, 36, 22, 0.15) 20%,
+      rgba(44, 36, 22, 0.15) 80%,
+      transparent 100%
+    );
+}
+
+// ── Note body — markdown content ───────────
+.note-body {
+  font-family: "Cormorant Garamond", "Georgia", "Times New Roman", serif;
+  font-size: 1.18rem;
+  line-height: 1.78;
+  color: rgba(28, 22, 12, 0.88);
+  letter-spacing: 0.008em;
+
+  // Headings
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", "Cormorant Garamond", "Georgia", serif;
+    color: #1a1510;
+    letter-spacing: -0.01em;
+    margin-top: 1.8em;
+    margin-bottom: 0.5em;
+    line-height: 1.3;
+  }
+
+  h1 { font-size: 2rem; font-weight: 700; }
+  h2 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    padding-bottom: 0.35em;
+    border-bottom: 1px solid rgba(44, 36, 22, 0.10);
+  }
+  h3 { font-size: 1.3rem; font-weight: 600; }
+  h4 { font-size: 1.12rem; font-weight: 600; }
+
+  // Paragraphs
+  p {
+    margin: 0 0 1.15em;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  // Links
+  a {
+    color: #8b3a2a;
+    text-decoration: underline;
+    text-decoration-color: rgba(139, 58, 42, 0.28);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 180ms ease, color 180ms ease;
+
+    &:hover {
+      color: #6b2418;
+      text-decoration-color: rgba(107, 36, 24, 0.55);
+    }
+  }
+
+  // Lists
+  ul, ol {
+    padding-left: 1.6em;
+    margin: 0 0 1.15em;
+  }
+
+  li {
+    margin-bottom: 0.35em;
+  }
+
+  // Strong / emphasis
+  strong {
+    font-weight: 650;
+    color: rgba(28, 22, 12, 0.94);
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  // Blockquotes
+  blockquote {
+    margin: 1.6em 0;
+    padding: 16px 24px;
+    border-left: 3px solid rgba(139, 58, 42, 0.30);
+    background:
+      linear-gradient(90deg, rgba(44, 36, 22, 0.018) 0%, transparent 100%);
+    border-radius: 0 4px 4px 0;
+
+    p {
+      margin: 0;
+      font-style: italic;
+      color: rgba(44, 36, 22, 0.70);
+    }
+  }
+
+  // Code (inline)
+  code {
+    padding: 2px 6px;
+    font-family: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
+    font-size: 0.85em;
+    font-weight: 430;
+    color: #6b3a20;
+    background: rgba(44, 36, 22, 0.06);
+    border-radius: 3px;
+    letter-spacing: -0.01em;
+  }
+
+  // Code blocks
+  pre {
+    margin: 1.5em 0;
+    padding: 20px 24px;
+    background:
+      linear-gradient(180deg, #faf7f0 0%, #f5f0e5 100%);
+    border: 1px solid rgba(44, 36, 22, 0.12);
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    box-shadow: inset 0 1px 3px rgba(44, 36, 22, 0.03);
+
+    code {
+      padding: 0;
+      background: none;
+      color: #2c2416;
+      font-size: inherit;
+    }
+  }
+
+  // Tables
+  table {
+    width: 100%;
+    margin: 1.5em 0;
+    border-collapse: collapse;
+    font-size: 0.95em;
+    font-family: "Inter", ui-sans-serif, sans-serif;
+  }
+
+  th {
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 620;
+    font-size: 0.85em;
+    color: rgba(44, 36, 22, 0.76);
+    border-bottom: 2px solid rgba(44, 36, 22, 0.16);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: 9px 14px;
+    border-bottom: 1px solid rgba(44, 36, 22, 0.08);
+    vertical-align: top;
+  }
+
+  tr:hover td {
+    background: rgba(44, 36, 22, 0.02);
+  }
+
+  // Horizontal rules
+  hr {
+    margin: 2em 0;
+    border: none;
+    height: 1px;
+    background:
+      linear-gradient(90deg,
+        transparent 0%,
+        rgba(44, 36, 22, 0.12) 30%,
+        rgba(44, 36, 22, 0.12) 70%,
+        transparent 100%
+      );
+  }
+
+  // Images
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(44, 36, 22, 0.08);
+    margin: 1em 0;
+  }
+
+  // Math (rendered by MathJax)
+  mjx-container {
+    margin: 1em 0;
+  }
+}
+
+// ── Footer ─────────────────────────────────
+.note-footer {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 64px 48px;
+  text-align: center;
+}
+
+.note-footer-link {
+  display: inline-block;
+  padding: 8px 20px;
+  border: 1px solid rgba(44, 36, 22, 0.16);
+  border-radius: 20px;
+  color: rgba(44, 36, 22, 0.60);
+  text-decoration: none;
+  font-family: "Inter", ui-sans-serif, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 200ms ease, border-color 200ms ease, background 200ms ease;
+
+  &:hover {
+    color: #2c2416;
+    border-color: rgba(44, 36, 22, 0.32);
+    background: rgba(255, 255, 255, 0.50);
+  }
+}
+
+// ============================
+// RESPONSIVE
+// ============================
+@media (max-width: 1100px) {
+  .carousel-card {
+    width: 200px;
+    height: 142px;
+  }
+
+  .carousel-card__icon {
+    font-size: 2.2rem;
+  }
+
+  .carousel-card__name {
+    font-size: 0.85rem;
+  }
+
+  .notes-wall-stage {
+    padding: 36px 28px 52px;
+
+    .shelf-row {
+      gap: 20px 16px;
+      padding: 30px 20px 40px;
+    }
+
+    .photo-mat {
+      padding: 7px 7px 22px;
+    }
+
+    .photo-label {
+      font-size: 1rem;
+    }
+
+    .note-mat__icon {
+      font-size: 1.4rem;
+    }
+
+    .note-mat__title {
+      font-size: 0.85rem;
+    }
+  }
+
+  .note-paper {
+    max-width: 92%;
+    padding: 56px 40px 52px;
+  }
+
+  .note-title {
+    font-size: 1.95rem;
+  }
+
+  .note-body {
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: 760px) {
+  .door-knob {
+    top: 12px;
+    left: 12px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .door-knob__handle {
+    width: 11px;
+    height: 11px;
+  }
+
+  .door-knob::after {
+    display: none;
+  }
+
+  .category-stage {
+    padding: 32px 16px 24px;
+    min-height: calc(100vh - 100px);
+  }
+
+  .stage-title {
+    font-size: 2.4rem;
+  }
+
+  .carousel-card {
+    width: 160px;
+    height: 120px;
+    border-radius: 14px;
+  }
+
+  .carousel-card__icon {
+    font-size: 1.8rem;
+  }
+
+  .carousel-card__name {
+    font-size: 0.78rem;
+  }
+
+  .carousel-track {
+    gap: 16px;
+  }
+
+  .category-hint {
+    font-size: 0.95rem;
+  }
+
+  .back-to-categories {
+    top: 12px;
+    left: 54px;
+    padding: 6px 12px;
+    font-size: 0.95rem;
+  }
+
+  .notes-wall-stage {
+    padding: 24px 16px 40px;
+
+    .shelf-row {
+      gap: 14px 10px;
+      padding: 24px 14px 34px;
+
+      &::after {
+        height: 12px;
+      }
+    }
+
+    .photo-mat {
+      padding: 5px 5px 18px;
+      border-radius: 2px;
+    }
+
+    .photo-label {
+      font-size: 0.85rem;
+    }
+
+    .note-mat__icon {
+      font-size: 1.2rem;
+    }
+
+    .note-mat__title {
+      font-size: 0.72rem;
+      -webkit-line-clamp: 2;
+    }
+  }
+
+  .note-back-link {
+    top: 14px;
+    left: 14px;
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+
+  .note-category-tag {
+    top: 14px;
+    right: 14px;
+    padding: 5px 12px;
+    font-size: 0.75rem;
+  }
+
+  .note-paper {
+    max-width: 96%;
+    padding: 40px 20px 36px;
+
+    .note-paper-stack__sheet--back {
+      transform: rotate(-0.8deg) translate(2px, 3px);
+    }
+    .note-paper-stack__sheet--mid {
+      transform: rotate(0.4deg) translate(-2px, 2px);
+    }
+  }
+
+  .note-title {
+    font-size: 1.55rem;
+  }
+
+  .note-body {
+    font-size: 1rem;
+    line-height: 1.65;
+
+    h2 { font-size: 1.3rem; }
+    h3 { font-size: 1.12rem; }
+    pre { padding: 14px 16px; font-size: 0.8rem; }
+  }
+
+  .note-footer {
+    padding: 0 20px 32px;
+  }
+
+  .note-corner {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (pointer: coarse) {
+  .notes-overview-body,
+  .notes-overview-body * {
+    cursor: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-card,
+  .carousel-track {
+    transition: none;
+  }
+}
