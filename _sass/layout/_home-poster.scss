@@ -533,6 +533,30 @@
   }
 }
 
+// Papers gate — warm amber / academic tone
+.papers-gate {
+  background:
+    linear-gradient(180deg, #fdfaf3 0%, #f7edd8 100%);
+  transform: rotate(-0.5deg);
+
+  &::before {
+    background:
+      repeating-linear-gradient(3deg, rgba(255, 255, 255, 0.30) 0 2px, transparent 2px 6px),
+      rgba(200, 160, 100, 0.66);
+  }
+
+  &::after {
+    background:
+      repeating-linear-gradient(-2deg, rgba(255, 255, 255, 0.28) 0 2px, transparent 2px 6px),
+      rgba(185, 150, 120, 0.60);
+  }
+
+  &:hover,
+  &:focus-visible {
+    transform: rotate(-0.1deg) translate(-2px, -2px);
+  }
+}
+
 // ============================
 // NET CURSOR — unchanged
 // ============================

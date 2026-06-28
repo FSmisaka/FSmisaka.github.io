@@ -1,0 +1,115 @@
+# Papers I've read — each entry shows year, domain, core model, title, venue.
+# On hover, the personal takeaway expands. Click for full review (markdown).
+#
+# Fields:
+#   title   – paper title
+#   year    – publication year
+#   domain  – research area (Recommendation Systems / LLMs / Machine Learning / ...)
+#   model   – core model / method name (e.g. HSTU, OneRec, FlashAttention)
+#   venue   – where it was published (NIPS, ICML, KDD, arxiv, etc.)
+#   excerpt – one-paragraph personal takeaway shown on hover
+#   file    – (optional) slug of the markdown review in _papers/ directory
+#   url     – (optional) external link to the paper
+
+- title: "Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers for Generative Recommendations"
+  year: 2024
+  domain: "Recommendation Systems"
+  model: "HSTU"
+  venue: "ICML"
+  excerpt: "Meta's production-scale generative recommender. The key insight is replacing traditional embedding lookups with a sequential transduction architecture that directly maps user interaction sequences to next-item predictions. At trillion-parameter scale, the model learns rich temporal dynamics that smaller models miss. The engineering feat of training & serving at this scale is as impressive as the algorithmic contribution."
+  file: "hstu-review"
+
+- title: "OneRec: Unifying Retrieval and Ranking for Sequential Recommendation"
+  year: 2024
+  domain: "Recommendation Systems"
+  model: "OneRec"
+  venue: "KDD"
+  excerpt: "Kuaishou's approach to replacing the traditional two-stage retrieve-then-rank pipeline with a single generative model. Uses a sparse mixture-of-experts decoder to generate item tokens autoregressively. The unification eliminates the retrieval bottleneck and enables end-to-end optimization. Practical deployment insights on handling dynamic item catalogs are particularly valuable."
+
+- title: "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness"
+  year: 2022
+  domain: "LLMs"
+  model: "FlashAttention"
+  venue: "NIPS"
+  excerpt: "A landmark paper that made long-context Transformers practical. By carefully tiling the attention computation to minimize HBM reads/writes, achieves exact attention in O(N) memory instead of O(N²). The key is IO-awareness — understanding that attention is memory-bound, not compute-bound, on modern GPUs. FlashAttention-2 & 3 further push this with better parallelism and FP8 support."
+  file: "flashattention-review"
+
+- title: "Direct Preference Optimization: Your Language Model is Secretly a Reward Model"
+  year: 2023
+  domain: "LLMs"
+  model: "DPO"
+  venue: "NIPS"
+  excerpt: "Eliminates the need for a separate reward model in RLHF by reparameterizing the preference objective directly in terms of the policy. Mathematically elegant: the optimal reward function can be expressed in terms of the optimal policy and the base policy. Much simpler to implement than PPO — just a classification loss on preference pairs. Has become the default alignment method for many open-source LLMs."
+  file: "dpo-review"
+
+- title: "Deep Interest Network for Click-Through Rate Prediction"
+  year: 2018
+  domain: "Recommendation Systems"
+  model: "DIN"
+  venue: "KDD"
+  excerpt: "Alibaba's adaptive attention over user behavior sequences. Unlike fixed-sum pooling, DIN computes attention weights between each historical behavior and the candidate item — so a user who bought a phone won't have 'phone case' behaviors activated when recommending shoes. Simple but effective idea that spawned DIN → DIEN → SIM → DMIN lineage."
+  file: "din-review"
+
+- title: "Training Compute-Optimal Large Language Models"
+  year: 2022
+  domain: "LLMs"
+  model: "Chinchilla"
+  venue: "NIPS"
+  excerpt: "The Chinchilla scaling laws paper that changed how we think about model size vs. data size. Shows that for compute-optimal training, model size and number of tokens should scale equally — contrary to the prevailing 'bigger model' trend. Many 'undertrained' large models could be matched by smaller models trained on more data. Led directly to the LLaMA / Llama 2 philosophy of 'smaller model, more data'."
+
+- title: "XGBoost: A Scalable Tree Boosting System"
+  year: 2016
+  domain: "Machine Learning"
+  model: "XGBoost"
+  venue: "KDD"
+  excerpt: "The paper behind the algorithm that dominated structured data competitions for years. Key innovations: (1) a novel sparsity-aware algorithm for handling missing values, (2) a weighted quantile sketch for approximate tree learning, (3) cache-aware access patterns and out-of-core computation. The system engineering is as important as the algorithm — XGBoost won because it was 10x faster than existing GBDT implementations."
+  file: "xgboost-review"
+
+- title: "Attention Is All You Need"
+  year: 2017
+  domain: "LLMs"
+  model: "Transformer"
+  venue: "NIPS"
+  excerpt: "The paper that started it all. Replaced recurrence with self-attention, enabling massively parallel training. Multi-head attention allows different heads to learn different relationship types. Positional encoding with sinusoids is a clever way to inject sequence order. The encoder-decoder architecture proved generalizable far beyond machine translation — to vision, speech, and eventually the entire foundation model paradigm."
+  file: "transformer-review"
+
+- title: "Gemini: A Family of Highly Capable Multimodal Models"
+  year: 2024
+  domain: "LLMs"
+  model: "Gemini"
+  venue: "arxiv"
+  excerpt: "Google's multimodal foundation model family. Demonstrates that native multimodality (training on text+image+audio+video from the start) outperforms post-hoc modality stitching. The ultra-long context (up to 10M tokens) is achieved through efficient attention variants and hierarchical processing. Impressive benchmark results but the technical depth is limited — many architectural details are withheld."
+  file: "gemini-review"
+
+- title: "Scaling Laws for Neural Language Models"
+  year: 2020
+  domain: "LLMs"
+  model: "Scaling Laws"
+  venue: "arxiv"
+  excerpt: "The original scaling laws paper from OpenAI. Establishes power-law relationships between loss and model size, dataset size, and compute. The key practical takeaway: given a compute budget, there's an optimal model size and training duration. Larger models are more sample-efficient. The power-law exponents have guided LLM development ever since, though Chinchilla later refined the optimal allocation."
+  file: "scaling-laws-review"
+
+- title: "Wide & Deep Learning for Recommender Systems"
+  year: 2016
+  domain: "Recommendation Systems"
+  model: "Wide & Deep"
+  venue: "DLRS"
+  excerpt: "Google Play's production recommender that combines memorization (wide linear model with cross-product features) and generalization (deep neural network with embeddings). Jointly trained — not ensembled. The 'wide' part captures specific co-occurrence rules (e.g., 'users who installed Netflix also installed YouTube'), while the 'deep' part generalizes to unseen feature combinations."
+  file: "wide-deep-review"
+
+- title: "GPT-4 Technical Report"
+  year: 2024
+  domain: "LLMs"
+  model: "GPT-4"
+  venue: "arxiv"
+  excerpt: "Notable more for what it doesn't reveal than what it does — the report explicitly withholds architecture details, model size, and training data composition, citing competitive and safety concerns. The key contribution is the extensive safety evaluation framework: adversarial testing, red-teaming, and the systematic measurement of harmful capabilities before and after RLHF mitigation."
+
+# ── Extend by adding new entries below ──
+# - title: ""
+#   year: 2025
+#   domain: ""
+#   model: ""
+#   venue: ""
+#   excerpt: ""
+#   file: ""
+#   url: ""

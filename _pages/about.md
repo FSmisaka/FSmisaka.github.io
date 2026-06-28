@@ -106,6 +106,9 @@ redirect_from:
       <a class="project-gate notes-gate" href="{{ '/notes/' | relative_url }}">
         <span>Notes</span>
       </a>
+      <a class="project-gate papers-gate" href="{{ '/papers/' | relative_url }}">
+        <span>Papers</span>
+      </a>
     </div>
   </section>
 </main>

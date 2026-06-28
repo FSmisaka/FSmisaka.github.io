@@ -236,6 +236,9 @@ collections:
   notes:
     output: true
     permalink: /notes/:path/
+  papers:
+    output: true
+    permalink: /papers/:path/
 
 
 # These settings control how pages and collections are included in the site
@@ -299,6 +302,14 @@ defaults:
       type: notes
     values:
       layout: note-detail
+      author_profile: false
+      share: false
+  # _papers
+  - scope:
+      path: ""
+      type: papers
+    values:
+      layout: paper-detail
       author_profile: false
       share: false
 

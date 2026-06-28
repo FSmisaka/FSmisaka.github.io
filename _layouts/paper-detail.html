@@ -1,0 +1,65 @@
+---
+layout: compress
+---
+
+{% include base_path %}
+
+<!doctype html>
+<html lang="{{ site.locale | slice: 0,2 }}" class="no-js"{% if site.site_theme == "dark" %} data-theme="dark"{% endif %}>
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="note-detail-body">
+    <a href="{{ '/papers/' | relative_url }}" class="note-back-link" aria-label="Back to papers">
+      <span class="note-back-arrow">←</span>
+      <span class="note-back-label">Papers</span>
+    </a>
+
+    {% if page.domain %}
+    <span class="note-category-tag" style="--tag-color: #dce0e8;">
+      <span class="note-category-tag__name">{{ page.domain }}</span>
+    </span>
+    {% endif %}
+
+    <main class="note-paper" aria-labelledby="paper-title">
+      <div class="note-paper-stack" aria-hidden="true">
+        <div class="note-paper-stack__sheet note-paper-stack__sheet--back"></div>
+        <div class="note-paper-stack__sheet note-paper-stack__sheet--mid"></div>
+      </div>
+
+      <article class="note-content">
+        <header class="note-header">
+          <h1 id="paper-title" class="note-title">{{ page.title }}</h1>
+          {% if page.paper_title and page.paper_title != page.title %}
+          <p class="paper-original-title">{{ page.paper_title }}</p>
+          {% endif %}
+          <div class="paper-meta">
+            {% if page.model %}<span class="paper-meta-chip paper-meta-model">{{ page.model }}</span>{% endif %}
+            {% if page.venue %}<span class="paper-meta-chip paper-meta-venue">{{ page.venue }}</span>{% endif %}
+            {% if page.year %}<span class="paper-meta-chip paper-meta-year">{{ page.year }}</span>{% endif %}
+          </div>
+          <hr class="note-divider" aria-hidden="true">
+        </header>
+
+        <div class="note-body">
+          {{ content }}
+        </div>
+      </article>
+
+      <div class="note-corner" aria-hidden="true"></div>
+    </main>
+
+    <footer class="note-footer">
+      <a href="{{ '/papers/' | relative_url }}" class="note-footer-link">← Back to all papers</a>
+    </footer>
+
+    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+  </body>
+</html>

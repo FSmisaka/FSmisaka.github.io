@@ -1,0 +1,48 @@
+---
+layout: compress
+---
+
+{% include base_path %}
+
+<!doctype html>
+<html lang="{{ site.locale | slice: 0,2 }}" class="no-js"{% if site.site_theme == "dark" %} data-theme="dark"{% endif %}>
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+  </head>
+
+  <body class="papers-list-body">
+    <a href="{{ '/' | relative_url }}" class="door-knob" aria-label="Back to home">
+      <span class="door-knob__handle"></span>
+      <span class="door-knob__plate"></span>
+    </a>
+
+    <main class="papers-main">
+      <header class="papers-header">
+        <h1 class="papers-title">Papers</h1>
+        <p class="papers-subtitle">What I've been reading</p>
+        <div class="papers-domain-filter" id="domain-filter">
+          <button class="domain-chip is-active" data-domain="all">All</button>
+          {% assign domains = site.data.papers | map: "domain" | uniq | sort %}
+          {% for d in domains %}
+          <button class="domain-chip" data-domain="{{ d | slugify }}">{{ d }}</button>
+          {% endfor %}
+        </div>
+      </header>
+
+      <div class="papers-list" id="papers-list" aria-label="Paper entries">
+        {% comment %}Populated by JS{% endcomment %}
+      </div>
+
+      <nav class="papers-pagination" id="papers-pagination" aria-label="Paper list pagination">
+        {% comment %}Populated by JS{% endcomment %}
+      </nav>
+    </main>
+
+    {% comment %}Embed papers data as JSON{% endcomment %}
+    <script id="papers-data" type="application/json">
+    {"papers":[{% for p in site.data.papers %}{"title":{{ p.title | jsonify }},"year":{{ p.year | jsonify }},"domain":{{ p.domain | jsonify }},"model":{{ p.model | jsonify }},"venue":{{ p.venue | jsonify }},"excerpt":{{ p.excerpt | jsonify }}{% if p.file %},"file":"{{ p.file }}"{% endif %}{% if p.url %},"url":{{ p.url | jsonify }}{% endif %}}{% unless forloop.last %},{% endunless %}{% endfor %}]}</script>
+
+    <script src="{{ '/assets/js/papers-list.js' | relative_url }}"></script>
+  </body>
+</html>
