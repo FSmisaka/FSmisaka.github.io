@@ -101,7 +101,7 @@ redirect_from:
 
     <div class="poster-gates">
       <a class="project-gate" href="{{ '/projects/' | relative_url }}">
-        <span>Projects that I Participated</span>
+        <span>Projects</span>
       </a>
       <a class="project-gate notes-gate" href="{{ '/notes/' | relative_url }}">
         <span>Notes</span>
