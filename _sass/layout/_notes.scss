@@ -361,14 +361,15 @@
 
 // ============================
 // NOTE DETAIL — paper design
+// (reworked for long-form: continuous scroll, wider, ruled texture)
 // ============================
 .note-detail-body {
   margin: 0;
-  min-height: 100vh;
   background:
-    radial-gradient(circle at 15% 20%, rgba(212, 160, 120, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 85% 80%, rgba(160, 180, 200, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 15% 20%, rgba(212, 160, 120, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 85% 80%, rgba(160, 180, 200, 0.05) 0%, transparent 50%),
     linear-gradient(175deg, #faf7f0 0%, #f3efe4 40%, #f2ede0 100%);
+  background-attachment: fixed; // keeps texture in place while scrolling
   color: #2c2416;
   font-family: "Cormorant Garamond", "Georgia", "Times New Roman", serif;
   -webkit-font-smoothing: antialiased;
@@ -444,67 +445,64 @@
   line-height: 1;
 }
 
-// ── Paper ──────────────────────────────────
+// ── Paper — continuous scroll design ───────
 .note-paper {
   position: relative;
   isolation: isolate;
-  max-width: 780px;
+  max-width: 840px;
   margin: 0 auto;
-  padding: 80px 64px 72px;
 
-  // Single sheet of paper
-  background:
-    linear-gradient(180deg, #fffef9 0%, #fdfaf2 100%);
-  border: 1px solid rgba(44, 36, 22, 0.14);
+  // Warm paper background with subtle ruled lines
+  background-color: #fefcf7;
+  background-image:
+    // Subtle horizontal rules every ~28px for long-form reading
+    repeating-linear-gradient(
+      180deg,
+      transparent,
+      transparent 27px,
+      rgba(180, 160, 130, 0.10) 27px,
+      rgba(180, 160, 130, 0.10) 28px
+    );
+  border-left: 1px solid rgba(44, 36, 22, 0.08);
+  border-right: 1px solid rgba(44, 36, 22, 0.08);
   box-shadow:
-    0 2px 16px rgba(44, 36, 22, 0.07),
-    0 8px 40px rgba(44, 36, 22, 0.05),
-    inset 0 0 60px rgba(44, 36, 22, 0.012);
+    2px 0 12px rgba(44, 36, 22, 0.04),
+    -2px 0 12px rgba(44, 36, 22, 0.04),
+    0 4px 20px rgba(44, 36, 22, 0.06);
+  padding: 72px 68px 64px;
 }
 
-// ── Paper stack effect ─────────────────────
-.note-paper-stack {
+// ── Paper stack header — suggests stacked sheets above ──
+.note-paper-top {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: -1px;
+  right: -1px;
+  height: 28px;
   z-index: -1;
   pointer-events: none;
+  overflow: hidden;
 }
 
-.note-paper-stack__sheet {
+.note-paper-top__sheet {
   position: absolute;
-  inset: 0;
-  border: 1px solid rgba(44, 36, 22, 0.08);
-  border-radius: 1px;
-  background: #fdfaf2;
-}
-
-.note-paper-stack__sheet--back {
-  transform: rotate(-1.2deg) translate(4px, 6px);
-  box-shadow: 0 2px 8px rgba(44, 36, 22, 0.04);
-  background: #faf6ec;
-}
-
-.note-paper-stack__sheet--mid {
-  transform: rotate(0.6deg) translate(-3px, 3px);
-  box-shadow: 0 2px 6px rgba(44, 36, 22, 0.04);
+  left: 0;
+  right: 0;
+  height: 28px;
+  border: 1px solid rgba(44, 36, 22, 0.06);
   background: #fcf8f0;
 }
 
-// ── Paper corner fold ──────────────────────
-.note-corner {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  background:
-    linear-gradient(135deg,
-      transparent 50%,
-      rgba(44, 36, 22, 0.06) 50%,
-      rgba(44, 36, 22, 0.03) 100%
-    );
-  border-radius: 0;
-  pointer-events: none;
+.note-paper-top__sheet--mid {
+  top: 4px;
+  transform: rotate(0.4deg);
+  background: #faf6ec;
+}
+
+.note-paper-top__sheet--back {
+  top: 9px;
+  transform: rotate(-0.8deg);
+  background: #f8f2e4;
 }
 
 // ── Note header ────────────────────────────
@@ -804,7 +802,7 @@
   }
 
   .note-paper {
-    max-width: 92%;
+    max-width: 94%;
     padding: 56px 40px 52px;
   }
 
@@ -919,15 +917,15 @@
   }
 
   .note-paper {
-    max-width: 96%;
-    padding: 40px 20px 36px;
+    max-width: 100%;
+    padding: 40px 18px 36px;
+    border-left: none;
+    border-right: none;
+    box-shadow: 0 4px 20px rgba(44, 36, 22, 0.05);
+  }
 
-    .note-paper-stack__sheet--back {
-      transform: rotate(-0.8deg) translate(2px, 3px);
-    }
-    .note-paper-stack__sheet--mid {
-      transform: rotate(0.4deg) translate(-2px, 2px);
-    }
+  .note-paper-top {
+    display: none; // too subtle on mobile
   }
 
   .note-title {
@@ -945,11 +943,6 @@
 
   .note-footer {
     padding: 0 20px 32px;
-  }
-
-  .note-corner {
-    width: 28px;
-    height: 28px;
   }
 }
 

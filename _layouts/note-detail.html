@@ -17,8 +17,8 @@ layout: compress
   </head>
 
   <body class="note-detail-body">
-    <!-- Back to notes -->
-    <a href="{{ '/notes/' | relative_url }}" class="note-back-link" aria-label="Back to notes">
+    <!-- Back to notes wall (with category pre-selected) -->
+    <a href="{{ '/notes/' | relative_url }}?category={{ page.category | default: '' }}" class="note-back-link" aria-label="Back to notes wall">
       <span class="note-back-arrow">←</span>
       <span class="note-back-label">Notes</span>
     </a>
@@ -26,17 +26,17 @@ layout: compress
     <!-- Category tag -->
     {% assign cat = site.data.notes_categories | where: "slug", page.category | first %}
     {% if cat %}
-    <a href="{{ '/notes/' | relative_url }}" class="note-category-tag" style="--tag-color: {{ cat.color }};">
+    <a href="{{ '/notes/' | relative_url }}?category={{ cat.slug }}" class="note-category-tag" style="--tag-color: {{ cat.color }};">
       <span class="note-category-tag__icon">{{ cat.icon }}</span>
       <span class="note-category-tag__name">{{ cat.name }}</span>
     </a>
     {% endif %}
 
     <main class="note-paper" aria-labelledby="note-title">
-      <!-- Paper stack shadows -->
-      <div class="note-paper-stack" aria-hidden="true">
-        <div class="note-paper-stack__sheet note-paper-stack__sheet--back"></div>
-        <div class="note-paper-stack__sheet note-paper-stack__sheet--mid"></div>
+      <!-- Paper stack header — suggests a stack of pages at the top -->
+      <div class="note-paper-top" aria-hidden="true">
+        <div class="note-paper-top__sheet note-paper-top__sheet--back"></div>
+        <div class="note-paper-top__sheet note-paper-top__sheet--mid"></div>
       </div>
 
       <article class="note-content">
@@ -57,16 +57,44 @@ layout: compress
           {{ content }}
         </div>
       </article>
-
-      <!-- Page corner fold -->
-      <div class="note-corner" aria-hidden="true"></div>
     </main>
 
     <footer class="note-footer">
-      <a href="{{ '/notes/' | relative_url }}" class="note-footer-link">← Back to all notes</a>
+      <a href="{{ '/notes/' | relative_url }}?category={{ page.category | default: '' }}" class="note-footer-link">← Back to notes</a>
     </footer>
 
-    <!-- MathJax support -->
+    <!--
+      kramdown with math_engine:mathjax wraps $...$ in <script type="math/tex"> tags.
+      MathJax 3 doesn't process those — convert back to standard delimiters first.
+    -->
+    <script defer>
+      (function() {
+        document.querySelectorAll('script[type="math/tex; mode=display"]').forEach(function(el) {
+          var div = document.createElement('div');
+          div.textContent = '$$' + el.textContent + '$$';
+          el.parentNode.replaceChild(div, el);
+        });
+        document.querySelectorAll('script[type="math/tex"]').forEach(function(el) {
+          var span = document.createElement('span');
+          span.textContent = '$' + el.textContent + '$';
+          el.parentNode.replaceChild(span, el);
+        });
+      })();
+    </script>
+    <!-- MathJax config: must appear BEFORE the MathJax script -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
+          processEscapes: true,
+          processEnvironments: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+      };
+    </script>
     <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
   </body>

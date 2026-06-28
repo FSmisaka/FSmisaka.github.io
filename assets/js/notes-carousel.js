@@ -261,7 +261,22 @@
     measure();
   });
 
+  /* ── Read ?category= from URL ────────────────── */
+  function getURLParam(name) {
+    var m = (window.location.search || '').match(new RegExp('[?&]' + name + '=([^&]*)'));
+    return m ? decodeURIComponent(m[1]) : null;
+  }
+
   /* ── Init ────────────────────────────────────── */
   measure();
   snapToCard(totalUnique, false);
+
+  /* If URL has ?category=slug, auto-open that category's notes wall */
+  var initCategory = getURLParam('category');
+  if (initCategory) {
+    var catInfo = categoriesMap[initCategory];
+    if (catInfo) {
+      showNotesWall(initCategory, catInfo.name);
+    }
+  }
 })();
