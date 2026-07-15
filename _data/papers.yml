@@ -16,7 +16,7 @@
   domain: "Recommendation Systems"
   model: "Survey"
   venue: "arxiv"
-  excerpt: "生成式推荐综述; Semantic ID & Architecture (Decoder Only | Encoder-Decoder | Diffusion) & RLHF"
+  excerpt: "A survey of Generative Recommendation from three perspectives: Tokenization, Architecture, and Optimization. The paper explains why recommender systems are shifting from discriminative ranking to generative modeling: replacing atomic ID embeddings with semantic representations (SID), fragmented pipelines with unified generative architectures, and local ranking objectives with end-to-end preference alignment. A good entry point for understanding the overall GR landscape."
   file: "2025-kuaishou-generative-recommendation-survey-review"
 
 - title: "Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers for Generative Recommendations"
