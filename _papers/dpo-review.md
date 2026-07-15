@@ -7,7 +7,7 @@ model: "DPO"
 venue: "NIPS"
 ---
 
-# DPO: Direct Preference Optimization
+# [2024] DPO: Direct Preference Optimization
 
 > **Paper**: Direct Preference Optimization: Your Language Model is Secretly a Reward Model (NIPS 2023)
 

@@ -104,6 +104,14 @@
   venue: "arxiv"
   excerpt: "Notable more for what it doesn't reveal than what it does — the report explicitly withholds architecture details, model size, and training data composition, citing competitive and safety concerns. The key contribution is the extensive safety evaluation framework: adversarial testing, red-teaming, and the systematic measurement of harmful capabilities before and after RLHF mitigation."
 
+- title: "A Survey of Generative Recommendation from a Tri-Decoupled Perspective: Tokenization, Architecture, and Optimization"
+  year: 2025
+  domain: "Recommendation Systems"
+  model: "Survey"
+  venue: "arxiv"
+  excerpt: ""
+  file: "2025-kuaishou-generative-recommendation-survey-review"
+
 # ── Extend by adding new entries below ──
 # - title: ""
 #   year: 2025
