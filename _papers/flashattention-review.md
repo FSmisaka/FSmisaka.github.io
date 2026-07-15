@@ -7,9 +7,7 @@ model: "FlashAttention"
 venue: "NIPS"
 ---
 
-# [2022] FlashAttention: Making Long-Context Transformers Practical
-
-> **Paper**: FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness (NIPS 2022)
+# 笔记正文不需要赘述论文题目了
 
 ## 1. The Problem
 

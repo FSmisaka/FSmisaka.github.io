@@ -7,9 +7,7 @@ model: "Survey"
 venue: "arxiv"
 ---
 
-# 标题还没想好怎么取
-
-> **Paper**: A Survey of Generative Recommendation from a Tri-Decoupled Perspective: Tokenization, Architecture, and Optimization (arxiv 2025)
+# 笔记正文不需要赘述论文题目了
 
 ## 1. Motivation
 

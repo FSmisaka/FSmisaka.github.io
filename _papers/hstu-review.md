@@ -7,9 +7,7 @@ model: "HSTU"
 venue: "ICML"
 ---
 
-# [2024] HSTU: Generative Recommendations at Meta Scale
-
-> **Paper**: Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers for Generative Recommendations (ICML 2024)
+# 笔记正文不需要赘述论文题目了
 
 ## 1. Core Idea
 
