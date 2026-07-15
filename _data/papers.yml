@@ -11,6 +11,14 @@
 #   file    – (optional) slug of the markdown review in _papers/ directory
 #   url     – (optional) external link to the paper
 
+- title: "A Survey of Generative Recommendation from a Tri-Decoupled Perspective: Tokenization, Architecture, and Optimization"
+  year: 2025
+  domain: "Recommendation Systems"
+  model: "Survey"
+  venue: "arxiv"
+  excerpt: "生成式推荐综述; Semantic ID & Architecture (Decoder Only | Encoder-Decoder | Diffusion) & RLHF"
+  file: "2025-kuaishou-generative-recommendation-survey-review"
+
 - title: "Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers for Generative Recommendations"
   year: 2024
   domain: "Recommendation Systems"
@@ -103,14 +111,6 @@
   model: "GPT-4"
   venue: "arxiv"
   excerpt: "Notable more for what it doesn't reveal than what it does — the report explicitly withholds architecture details, model size, and training data composition, citing competitive and safety concerns. The key contribution is the extensive safety evaluation framework: adversarial testing, red-teaming, and the systematic measurement of harmful capabilities before and after RLHF mitigation."
-
-- title: "A Survey of Generative Recommendation from a Tri-Decoupled Perspective: Tokenization, Architecture, and Optimization"
-  year: 2025
-  domain: "Recommendation Systems"
-  model: "Survey"
-  venue: "arxiv"
-  excerpt: ""
-  file: "2025-kuaishou-generative-recommendation-survey-review"
 
 # ── Extend by adding new entries below ──
 # - title: ""

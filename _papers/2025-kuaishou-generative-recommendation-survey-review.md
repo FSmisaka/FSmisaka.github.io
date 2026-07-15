@@ -1,5 +1,5 @@
 ---
-title: "[2025] Survey: Generative Recommendation [Kuaishou]"
+title: "[2025] kuaishou Survey: Generative Recommendation"
 paper_title: "A Survey of Generative Recommendation from a Tri-Decoupled Perspective: Tokenization, Architecture, and Optimization"
 year: 2024
 domain: "Recommendation Systems"
@@ -7,7 +7,7 @@ model: "Survey"
 venue: "arxiv"
 ---
 
-# [2025] Kuaishou Survey: Generative Recommendation
+# 标题还没想好怎么取
 
 > **Paper**: A Survey of Generative Recommendation from a Tri-Decoupled Perspective: Tokenization, Architecture, and Optimization (arxiv 2025)
 
@@ -15,7 +15,7 @@ venue: "arxiv"
 
 > Abstarct + [1] Introduction + [2] Background and Preliminary
 
-传统推荐算法的瓶颈
+### 传统推荐算法的瓶颈
 1. **Embedding的问题**:  
     【冷启动问题】: embedding是靠交互数据学出来的，冷门物品、新物品冷启动差  
     【计算低效】: embedding稀疏且庞大，查表效率低
@@ -28,7 +28,7 @@ venue: "arxiv"
     【优化目标是局部的】: 只在正负样本之间划边界，而且不同阶段 (比如召回和排序) 的目标还不一样
     【预测误差的级联】
 
-生成式推荐 & 想解决什么
+### 生成式推荐 & 想解决什么
 1. **Tokenization - Semantic ID**:  
     带语义的embedding解决冷启动问题；词表更紧凑，计算更高效
 
