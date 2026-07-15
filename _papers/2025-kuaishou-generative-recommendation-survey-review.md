@@ -7,7 +7,7 @@ model: "Survey"
 venue: "arxiv"
 ---
 
-# 笔记正文不需要赘述论文题目了
+# 生成式推荐的语义ID表示学习、架构以及强化学习对齐
 
 ## 1. Motivation
 
