@@ -42,13 +42,14 @@ venue: "arxiv"
 
 ### Why Tokenization
 生成式搜推想要模仿 LLM 的 Next-token Prediction，做 Next-item_token Prediction。于是按照惯例就需要把 item 给 tokenize 化  
-Q：为什么一定要做 tokenization，而不能直接 Next-word Prediction 和 Next-item Prediction 呢？  
-A：说实话推荐领域没想很明白，但是 LLM 领域做 token 粒度的生成是有原因的：  
+**Q**：为什么一定要做 tokenization，而不能直接 Next-word Prediction 和 Next-item Prediction 呢？  
+**A**：说实话推荐领域没想很明白，但是 LLM 领域做 token 粒度的生成是有原因的：  
 1. 不可计算：word 粒度的话，词表太大  
 2. 泛化能力：token 粒度可以生成新词（token concatenation）
 
 ### Sparse ID-based、Text-based、Semantic ID-based
-一共三种 Tokenizer：Sparse ID-based、Text-based、Semantic ID-based  
+一共三种 Tokenizer：Sparse ID-based、Text-based、Semantic ID-based
+
 | Tokenizer | token形式 | 优点 | 局限 |
 | :--: | :--: | :--: | :--: |
 | Sparse ID-based | item ID -> 嵌入向量 | ID 唯一 | 冷启问题 (缺乏语义信息)；<br>词表太大 |
@@ -100,7 +101,7 @@ Step 3: Semantic Token Generation
     Token_i = [c_i^1,c_i^2,...,c_i^M]
 ```
 
-<details>
+<details markdown="1">
 <summary>详细的算法描述</summary>  
 
 ---
