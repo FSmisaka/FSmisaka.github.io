@@ -104,8 +104,6 @@ Step 3: Semantic Token Generation
 <details markdown="1">
 <summary>详细的算法描述</summary>  
 
----
-
 **Step 1: Item Representation Learning**
 
 首先利用预训练模型获得 item 的连续语义表示：
@@ -114,35 +112,14 @@ $$
 z_i=Encoder(i)
 $$
 
-其中 Encoder 可以是：
-
-- BERT：编码文本信息；
-- CLIP：编码图文多模态信息。
-
----
+其中 Encoder 可以是 BERT：编码文本信息或 CLIP：编码图文多模态信息。
 
 **Step 2: Residual Quantization**
 
-RQ-VAE 采用多层 residual quantization，而不是直接进行一次向量量化。
+RQ-VAE 采用多层 residual quantization，而不是直接进行一次向量量化。  
+首先，初始化 residual $r_i^0=z_i$
 
-初始化 residual：
-
-$$
-r_i^0=z_i
-$$
-
-
-对于第 $m$ 个 quantization layer：
-
-从 codebook：
-
-$$
-\mathcal{C}^{m}
-=
-\{e_1^m,e_2^m,\dots,e_K^m\}
-$$
-
-中寻找距离 residual 最近的 code：
+对于第 $m$ 个 quantization layer，从 codebook $\mathcal{C}^{m}=\{e_1^m,e_2^m,\dots,e_K^m\}$ 中寻找距离 residual 最近的 code：
 
 $$
 c_i^m=
@@ -152,50 +129,16 @@ r_i^{m-1}-e_k^m
 \right\|_2^2
 $$
 
-
-得到对应的 quantized representation：
-
-$$
-q_i^m=e_{c_i^m}^{m}
-$$
-
-
-然后更新 residual：
-
-$$
-r_i^m=r_i^{m-1}-q_i^m
-$$
-
-
-经过 $M$ 层量化后：
+得到对应的 quantized representation $q_i^m=e_{c_i^m}^{m}$，然后更新 residual $r_i^m=r_i^{m-1}-q_i^m$。经过 $M$ 层量化后：
 
 $$
 z_i\approx
 \sum_{m=1}^{M}q_i^m
 $$
 
-
----
-
 **Step 3: Semantic Token Generation**
 
-最终将每一层选择的 code index 作为 token：
-
-$$
-Token_i=[c_i^1,c_i^2,\dots,c_i^M]
-$$
-
-
-例如：
-
-$$
-Token_i=[23,781,56,902]
-$$
-
-表示该 item 的 Semantic ID。
-
-
----
+最终将每一层选择的 code index 作为 $Token_i=[c_i^1,c_i^2,\dots,c_i^M]$，例如：$Token_i=[23,781,56,902]$，表示该 item 的 Semantic ID。
 
 **Training Objective**
 
@@ -207,13 +150,7 @@ $$
 ||z_i-\hat{z}_i||_2^2
 $$
 
-
-其中：
-
-$$
-\hat{z}_i=
-\sum_{m=1}^{M}q_i^m
-$$
+其中，$\hat{z}_i=\sum_{m=1}^{M}q_i^m$
 
 </details>
 
