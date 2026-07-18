@@ -155,3 +155,18 @@ $$
 </details>
 
 ## 3. Architecture
+
+### Encoder-Decoder、Decoder-only、Diffusion-based
+
+| Architecture | 特点和优势 | 局限 |
+| :--: | :--: | :--: |
+| Encoder-Decoder | 适合输入输出异构的推荐场景；<br>Encoder有双向注意力 | 扩展性 scaling 问题 |
+| Decoder-only | 易扩展 scalable；<br>承接 LLM 生态 | 单向建模的约束 |
+| Diffusion-based | 支持双向建模；<br>特定任务有奇效 | 多步迭代的采样 -> 推理延迟 |
+
+**Encoder-Decoder** 架构的输入侧专门负责理解，输出侧专门负责生成，适合输入信息丰富、需要模型形成对输入特征的理解、输入和输出相对异质化的场景。**Decoder-only** 架构把一切都平摊为一个序列，然后做 Next-item Generation，不明显区分输入和输出。优点是 Scalable、易承接 LLM 生态。**Diffusion-based** 架构是一个有前景但不主流的方向，优势在于不依赖序列的因果关系。
+
+![模型架构的趋势](/images/papers/A%20Survey%20of%20Generative%20Recommendation%20from%20a%20Tri-Decoupled%20Perspective:%20Tokenization,%20Architecture,%20and%20Optimization/Trends%20in%20model%20architecture.PNG)
+
+## 4. Optimization
+
