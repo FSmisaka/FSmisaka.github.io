@@ -40,6 +40,8 @@ venue: "arxiv"
 
 ## 2. Tokenization
 
+> [3] Tokenizer
+
 ### Why Tokenization
 生成式搜推想要模仿 LLM 的 Next-token Prediction，做 Next-item_token Prediction。于是按照惯例就需要把 item 给 tokenize 化  
 **Q**：为什么一定要做 tokenization，而不能直接 Next-word Prediction 和 Next-item Prediction 呢？  
@@ -156,6 +158,8 @@ $$
 
 ## 3. Architecture
 
+> [4] Model Architecture
+
 ### Encoder-Decoder、Decoder-only、Diffusion-based
 
 | Architecture | 特点和优势 | 局限 |
@@ -170,3 +174,251 @@ $$
 
 ## 4. Optimization
 
+> [5] Optimization Strategy
+
+**主流优化框架**：Supervised Next-token Prediction 作为基础训练目标；Reinforcement Learning-based Preference Alignment 用于优化多维用户偏好和平台目标  
+- **SFT**：**NTP** 直接套用 LLM 的训练范式，但面临 Softmax 损失计算压力大的问题。**NCE** / **Sampled-Softmax** 通过采样负样本解决该问题，适合 Sparse ID-based Tokenizer 
+    <details markdown="1">
+
+    <summary><b>对 NTP 训练流程的理解</b></summary>
+    
+    <h3>数据定义</h3>
+    **一个样本**：$(X,Y)$  
+    其中：
+    - $X=[x_1,x_2,...,x_T]$：用户历史行为序列（item token）
+    - $Y=[y_1,y_2,...,y_M]$：用户未来行为序列（预测目标）
+    - $V$：item token vocabulary，大小为 $|V|$
+    - $\theta$：生成模型的参数
+
+    **一个 batch**：$B=\{(X_i,Y_i)\}_{i=1}^{N}$  
+    其中：
+    - $N$：batch size
+    - 每个样本包含用户历史序列和真实下一行为
+
+
+    <h3>单个 Batch 的训练</h3>
+    <h4>Step 1：Forward</h4>
+
+    将输入序列送入 Transformer：$h_t=Transformer_\theta(x_{\leq t})$，代笔第 $t$ 个位置的 hidden state  
+    通过输出层得到每个 token 的预测概率：
+
+    $$
+    P_\theta(y_t|x_{<t})
+    =
+    softmax(Wh_t)
+    $$
+
+    其中：
+    - $W$：输出层参数
+
+    <h4>Step 2：计算 NTP Loss</h4>
+    目标是最大化真实 item token 的概率  
+    损失函数：
+
+    $$
+    L_{NTP}
+    =
+    -\sum_{t=1}^{M}
+    \log P_\theta(y_t|x_{<t})
+    $$
+
+    会驱使模型学会预测真实 item
+
+    <h4>Step 3：反向传播与参数更新</h4>
+    $$
+    \theta
+    \leftarrow
+    \theta-\eta\nabla_\theta L_{NTP}
+    $$
+
+    其中：
+
+    - $\eta$：learning rate
+
+    <h3>NTP 总结</h3>
+    NTP 学习 $P_\theta(item_t|user\ history)$。即根据用户过去行为，预测用户下一步可能发生的行为。
+
+    优点：
+    - 训练稳定；
+    - 与 Transformer 架构天然匹配。
+
+    缺点：
+    - softmax需要遍历整个 item vocabulary；
+    - 当 $|V|$ 很大时计算成本高。
+    </details>
+
+- **RL**：由于 SFT 的目标与推荐系统现实目标有差距，前者促使用户产生点击行为，后者除了关注用户的满意，也关注平台收益和生态如 GMV、留存率、多样性等。于是，基于强化学习的偏好对齐应运而生。其中，**DPO** 是在强化学习老祖宗 RLHF、PPO 的基础上发展而来，优势在于不需要训练 Reward Model，直接上数据优化现有模型。其效果高度依赖偏好对的构建，属于 Pairwise 方法。**GRPO** 则有所不同，使用 Listwise 的 Group Reward。
+
+    <details markdown="1">
+
+    <summary><b>对 DPO 训练流程的理解</b></summary>
+
+    <h3>数据定义</h3>
+    **一个训练样本**：$(x,y_w,y_l)$
+
+    其中：
+    - $x$：用户信息、历史行为
+    - $y_w$：preferred response，用户更喜欢的推荐结果
+    - $y_l$：rejected response，用户不喜欢的推荐结果
+
+    **一个 batch**：$B=\{(x_i,y_i^w,y_i^l)\}_{i=1}^{N}$
+
+    <h3>单个 Batch 的训练</h3>
+    <h4>Step 1：计算当前模型概率</h4>
+
+    使用当前推荐模型 $\pi_\theta$ 计算 $\pi_\theta(y_w|x)$，$\pi_\theta(y_l|x)$  
+    即模型生成 preferred 和 rejected item 的概率。
+
+    <h4>Step 2：计算 DPO Loss</h4>
+
+    DPO 希望 $P(y_w|x)>P(y_l|x)$  
+    Loss 的设计如下，即希望新模型比原模型更能推荐用户喜欢的，更不推荐用户不喜欢的
+
+    $$
+    L_{DPO}
+    =
+    -\log\sigma
+    (
+    \beta
+    (
+    \log
+    \frac{\pi_\theta(y_w|x)}
+    {\pi_{ref}(y_w|x)}
+    -
+    \log
+    \frac{\pi_\theta(y_l|x)}
+    {\pi_{ref}(y_l|x)}
+    )
+    )
+    $$
+
+    其中：
+    - $\pi_\theta$：当前待训练模型（新模型）
+    - $\pi_{ref}$：冻结的参考模型（原模型）
+    - $\beta$：控制偏好优化强度
+    - $\sigma$：sigmoid 函数
+
+    <h4>Step 3：参数更新</h4>
+    $$
+    \theta
+    \leftarrow
+    \theta-\eta\nabla_\theta L_{DPO}
+    $$
+
+    <h3>DPO 总结</h3>
+    DPO：$\boxed{提高chosen概率，降低rejected概率}$  
+    相比 RLHF 不需要：
+    - reward model；
+    - PPO强化学习。
+
+    优点：
+    - 简单稳定；
+    - 训练形式接近监督学习。
+
+    缺点：
+    - 强依赖 preference pair 质量；
+    - 无法直接表达复杂排序目标。
+    </details>
+
+    <details markdown="1">
+
+    <summary><b>对 GRPO 训练流程的理解</b></summary>
+
+    <h3>数据定义</h3>
+    给定用户输入 $x$，模型生成 $G=\{y_1,y_2,...,y_K\}$
+
+    其中：
+    - $K$：candidate 数量
+    - $y_i$：模型生成的第 $i$ 个推荐结果
+    
+
+    <h3>Reward计算</h3>
+    每个候选由 reward system 评分 $r_i=R(x,y_i)$  
+    reward通常由多个指标组成，每个指标可能由单独的模型计算：
+
+    $$
+    R
+    =
+    w_1CTR
+    +
+    w_2GMV
+    +
+    w_3Diversity
+    $$
+
+    其中：
+    - CTR：点击概率预测
+    - GMV：预期成交价值
+    - Diversity：推荐多样性
+    - $w_i$：不同目标权重
+
+    <h3>单个 Batch 的训练</h3>
+    <h4>Step 1：模型生成候选</h4>
+    当前策略 $\pi_\theta$ 对于每个用户生成 $G_i=\{y_1,...,y_K\}$
+
+    <h4>Step 2：计算 Advantage</h4>
+    计算 group 平均 reward：
+
+    $$
+    \bar r
+    =
+    \frac1K
+    \sum_{i=1}^{K}r_i
+    $$
+
+    计算每个候选优势：
+
+    $$
+    A_i=r_i-\bar r
+    $$
+
+    其中：
+    - $A_i>0$：该推荐优于平均水平
+    - $A_i<0$：该推荐低于平均水平
+
+    <h4>Step 3：计算 GRPO Loss</h4>
+    GRPO 希望提高高 reward item 的生成概率。策略梯度形式：
+
+    $$
+    L_{GRPO}
+    =
+    -
+    \sum_i
+    A_i
+    \log
+    \pi_\theta(y_i|x)
+    $$
+
+    reward高于平均则增大推荐概率；反之降低推荐概率  
+    通常额外加入 KL 约束防止模型偏离原始模型太多
+
+    $$
+    L
+    =
+    L_{GRPO}
+    +
+    \beta KL(\pi_\theta||\pi_{ref})
+    $$
+
+    <h4>Step 4：参数更新</h4>
+
+    $$
+    \theta
+    \leftarrow
+    \theta-\eta\nabla_\theta L
+    $$
+
+    <h3>GRPO 总结</h3>
+    GRPO：$\boxed{最大化推荐结果reward}$
+
+    | |DPO|GRPO|
+    |-|-|-|
+    |比较对象|两个结果|多个结果|
+    |反馈形式|chosen/rejected|连续reward|
+    |优化目标|偏好排序|整体reward最大化|
+    |适合任务|二分类偏好|推荐排序、多目标优化|
+
+    GRPO 符合工业推荐场景，因为推荐系统通常同时优化用户满意度、商业价值和内容生态。
+    </details>
+
+![优化策略](/images/papers/A%20Survey%20of%20Generative%20Recommendation%20from%20a%20Tri-Decoupled%20Perspective:%20Tokenization,%20Architecture,%20and%20Optimization/Landscape%20of%20optimization%20strategy%20taxonomy.png)
