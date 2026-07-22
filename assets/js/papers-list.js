@@ -74,7 +74,7 @@
             '<span class="paper-entry__venue">' + escapeHTML(p.venue || '') + '</span>' +
           '</div>' +
           '<div class="paper-entry__excerpt">' +
-            '<div class="paper-entry__excerpt-inner">' + escapeHTML(p.excerpt || '') + '</div>' +
+            '<div class="paper-entry__excerpt-inner">' + escapeHTML(p.excerpt || '').replace(/\n/g, '<br>') + '</div>' +
           '</div>' +
           '<span class="paper-entry__click-hint">' + (p.file ? 'click for review →' : '') + '</span>' +
           '</div>';

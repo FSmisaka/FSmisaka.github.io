@@ -16,7 +16,7 @@
   domain: "Recommendation Systems"
   model: "Survey"
   venue: "arxiv"
-  excerpt: "20260715｜读的第一篇生成式推荐综述，建立了比较完整的知识框架；论文提出了 Tokenization、Architecture、Optimization 三条 GR 主线，使近两年的大量工作都能够放到统一框架下理解；是后续阅读 OneRec、TIGER、HSTU、RecGPT 等代表性工作的导论性质论文。"
+  excerpt: "【20260715】从 Tokenization (Sparse ID、Text、Semantic ID)、Architecture (Decoder-only、Encoder-decoder、Diffusion)、Optimization (DPO、GRPO) 三个角度总结了近 2 年来的生成式推荐工作。【Why GR】embedding 依赖交互数据，冷启动问题；架构碎片化，MFU 低、难以 scale；优化目标太局部、不一致。【Tokenizer】Sparse ID 没有语义且太稀疏、Text 没办法 grounding 到具体 item、Semantic ID 刚刚好; 【Architeture】Decoder-only 更容易 scale、Encoder-decoder 适合输入输出异构的问题且输入支持双向注意力、Diffusion 是全新的范式; 【Optimization】架构是监督预训练+偏好对齐，现在最主流的对齐方法是 DPO 和 GRPO"
   file: "2025-kuaishou-generative-recommendation-survey-review"
 
 - title: "Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers for Generative Recommendations"
