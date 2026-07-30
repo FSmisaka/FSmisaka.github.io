@@ -11,6 +11,14 @@
 #   file    – (optional) slug of the markdown review in _papers/ directory
 #   url     – (optional) external link to the paper
 
+- title: "Wide & Deep Learning for Recommender Systems"
+  year: 2016
+  domain: "Recommendation Systems"
+  model: "Wide & Deep"
+  venue: "DLRS"
+  excerpt: "【20260724】"
+  file: "wide&deep-review"
+
 - title: "A Survey of Generative Recommendation from a Tri-Decoupled Perspective: Tokenization, Architecture, and Optimization"
   year: 2025
   domain: "Recommendation Systems"
