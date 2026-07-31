@@ -1,864 +1,416 @@
-.home-poster-body {
+// ============================
+// ZINE POSTER — Minimal Zine Poster v0.1
+// Centered portrait-hero layout
+// aged paper · huge negative space · single vermillion accent
+// serif type · flat scanned-paper · no 3D
+// ============================
+
+// ============================
+// 1. BODY — aged paper canvas
+// ============================
+.zine-poster-body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(ellipse at 15% 10%, rgba(255, 218, 185, 0.40) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 90%, rgba(186, 213, 200, 0.42) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 50%, rgba(210, 195, 180, 0.18) 0%, transparent 70%),
-    linear-gradient(160deg, #fefaf3 0%, #f2f0e8 28%, #edf4ef 58%, #f2e9ed 100%);
-  color: #203041;
-  cursor: none;
-}
-
-.home-poster-body * {
-  box-sizing: border-box;
-  cursor: none;
-}
-
-.home-poster {
-  position: relative;
-  isolation: isolate;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 42px;
-  overflow: hidden;
-  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-// -- subtle cork-board grid --
-.home-poster::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
+  background-color: #f3efe7;
+  // Subtle paper-tonal variation
   background-image:
-    linear-gradient(rgba(32, 48, 65, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(32, 48, 65, 0.03) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.66), rgba(0, 0, 0, 0.08));
-}
-
-// -- washi tape strips on the "wall" around the poster --
-.home-poster::after {
-  content: "";
-  position: absolute;
-  inset: 18px;
-  z-index: -1;
-  border: 2px dashed rgba(32, 48, 65, 0.14);
-  border-radius: 12px;
-  pointer-events: none;
-}
-
-// ============================
-// POSTER SHEET — the paper
-// ============================
-.poster-sheet {
+    radial-gradient(ellipse at 18% 72%, rgba(180, 160, 130, 0.22) 0%, transparent 42%),
+    radial-gradient(ellipse at 82% 28%, rgba(170, 150, 120, 0.15) 0%, transparent 38%),
+    radial-gradient(circle at 50% 50%, rgba(195, 178, 148, 0.10) 0%, transparent 58%);
+  background-attachment: fixed;
+  // Subtle vignette
+  box-shadow: inset 0 0 180px 60px rgba(180, 160, 130, 0.15);
+  color: #2c2416;
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
   position: relative;
-  width: min(1120px, 100%);
-  min-height: calc(100vh - 84px);
+}
+
+// SVG noise grain overlay
+.zine-poster-body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+// ============================
+// 2. MAIN CONTAINER — centered canvas
+// ============================
+.zine-poster {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 34px;
-  padding: 52px 48px 48px;
-  border: 2px solid rgba(32, 48, 65, 0.35);
-  border-radius: 6px;
-  background:
-    linear-gradient(175deg, rgba(255, 255, 255, 0.84), rgba(254, 250, 242, 0.92)),
-    radial-gradient(circle at 10% 18%, rgba(227, 95, 79, 0.08), transparent 34%),
-    radial-gradient(circle at 90% 12%, rgba(65, 165, 148, 0.08), transparent 32%);
-  box-shadow:
-    8px 8px 0 rgba(32, 48, 65, 0.45),
-    0 2px 20px rgba(32, 48, 65, 0.05);
+  align-items: center;
+  justify-content: center;
+  padding: 4vh 6vw 3vh;
+  box-sizing: border-box;
 }
 
-// -- washi tape holding the poster sheet to the wall --
-.poster-sheet::before,
-.poster-sheet::after {
-  content: "";
+// ============================
+// 3. VERMILLION ACCENT — single high-chroma geometric mark
+// ============================
+.zine-accent {
   position: absolute;
-  height: 36px;
-  border-radius: 3px;
+  // Placed near the portrait's upper-right area
+  top: 50%;
+  right: calc(50% - 230px);
+  width: 20px;
+  height: 20px;
+  background: #d4453b;         // Vermillion red — the one saturated color
+  transform: translate(50%, -190px) rotate(15deg);
   z-index: 2;
-}
-
-.poster-sheet::before {
-  top: -16px;
-  left: 58px;
-  width: 108px;
-  background:
-    repeating-linear-gradient(2deg, rgba(255, 255, 255, 0.32) 0 2px, transparent 2px 6px),
-    rgba(239, 145, 120, 0.72);
-  transform: rotate(-6deg);
-  box-shadow: 0 1px 3px rgba(32, 48, 65, 0.10);
-}
-
-.poster-sheet::after {
-  top: -16px;
-  right: 64px;
-  width: 96px;
-  background:
-    repeating-linear-gradient(-3deg, rgba(255, 255, 255, 0.28) 0 2px, transparent 2px 7px),
-    rgba(120, 190, 170, 0.68);
-  transform: rotate(5deg);
-  box-shadow: 0 1px 3px rgba(32, 48, 65, 0.10);
+  pointer-events: none;
+  // Slightly irregular edges for a printed feel
+  clip-path: polygon(2% 0%, 98% 3%, 100% 97%, 0% 100%);
 }
 
 // ============================
-// GREETING
+// 4. CENTER CLUSTER — everything radiates from here
 // ============================
-.poster-greeting {
-  position: relative;
-  z-index: 1;
+.zine-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 600px;
+}
+
+// ============================
+// 5. NAME — elegant serif, no background
+// ============================
+.zine-name-area {
+  margin-bottom: 0.6rem;
+}
+
+.zine-name {
   margin: 0;
-  max-width: 920px;
-  font-family: "Caveat", "Brush Script MT", cursive;
-  font-size: 2.8rem;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 1.55rem;
+  font-weight: 700;
   line-height: 1.15;
   letter-spacing: 0.02em;
-  font-weight: 520;
-  color: #203041;
+  color: #2c2416;
+  // Slight rotation for zine feel
+  transform: rotate(-0.8deg);
 }
 
-.poster-greeting .fancy-name {
-  display: inline-block;
-  font-family: "Caveat", "Brush Script MT", cursive;
-  font-style: normal;
-  font-weight: 650;
-  font-size: 1.85em;
-  color: #d45846;
-  text-shadow: 2px 2px 0 rgba(246, 201, 94, 0.45), 4px 4px 0 rgba(32, 48, 65, 0.08);
-  transform: rotate(-1.2deg);
-  letter-spacing: 0.02em;
-}
-
-// ============================
-// GRID — text + portrait
-// ============================
-.poster-grid {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 378px);
-  align-items: center;
-  gap: 42px;
-}
-
-// ============================
-// INTRO COPY — handwritten
-// ============================
-.intro-copy {
-  position: relative;
-  max-width: 660px;
-  padding-left: 18px;
-  border-left: 5px solid rgba(212, 88, 70, 0.55);
-  border-radius: 2px;
-}
-
-.intro-copy p {
-  margin: 0 0 22px;
-  font-family: "Caveat", "Brush Script MT", cursive;
-  font-size: 1.55rem;
-  line-height: 1.55;
-  font-weight: 460;
-  color: rgba(32, 48, 65, 0.84);
-  letter-spacing: 0.02em;
-}
-
-.intro-copy p:last-child {
-  margin-bottom: 0;
-}
-
-// ============================
-// PORTRAIT — taped onto poster
-// ============================
-.portrait-frame {
-  width: min(378px, 100%);
-  justify-self: center;
-  text-align: center;
-}
-
-.portrait-image-wrap {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border: 2px solid rgba(32, 48, 65, 0.38);
-  border-radius: 4px;
-  background: #e6eaee;
-  box-shadow: 6px 6px 0 rgba(32, 48, 65, 0.38);
-  transform: rotate(1deg);
-  transition: transform 260ms ease, box-shadow 260ms ease;
-}
-
-// -- washi tape on the photo --
-.portrait-image-wrap::before,
-.portrait-image-wrap::after {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  height: 28px;
-  border-radius: 2px;
-}
-
-.portrait-image-wrap::before {
-  top: -12px;
-  left: 36px;
-  width: 80px;
-  background:
-    repeating-linear-gradient(2deg, rgba(255, 255, 255, 0.30) 0 2px, transparent 2px 6px),
-    rgba(239, 145, 120, 0.68);
-  transform: rotate(-5deg);
-  box-shadow: 0 1px 2px rgba(32, 48, 65, 0.08);
-}
-
-.portrait-image-wrap::after {
-  bottom: -12px;
-  right: 40px;
-  width: 74px;
-  height: 26px;
-  background:
-    repeating-linear-gradient(-2deg, rgba(255, 255, 255, 0.28) 0 2px, transparent 2px 6px),
-    rgba(165, 185, 215, 0.66);
-  transform: rotate(4deg);
-  box-shadow: 0 1px 2px rgba(32, 48, 65, 0.08);
-}
-
-.portrait-image-wrap:hover {
-  transform: rotate(0deg);
-  box-shadow: 5px 5px 0 rgba(32, 48, 65, 0.32);
-}
-
-.portrait-image-wrap img {
-  width: 100%;
-  height: 100%;
+.zine-name-cn {
   display: block;
-  object-fit: cover;
-  object-position: center;
-}
-
-.portrait-caption {
-  margin-top: 22px;
-  color: #203041;
-}
-
-.portrait-caption strong {
-  display: block;
-  font-family: "Caveat", "Brush Script MT", cursive;
-  font-size: 1.75rem;
-  line-height: 1.25;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  margin-top: 0.15rem;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #9b9286;
+  letter-spacing: 0.08em;
+  transform: rotate(-0.5deg);
 }
 
 // ============================
-// SCHOOL LOGOS — clean, no border
+// 6. PORTRAIT HERO — centered, large, low-saturation
 // ============================
-.school-logos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  margin-top: 16px;
-}
-
-.school-logo {
-  width: 58px;
-  height: 58px;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-}
-
-.school-logo img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(32, 48, 65, 0.10));
-  transition: filter 240ms ease, transform 240ms ease;
-}
-
-.school-logo img:hover {
-  transform: scale(1.08);
-  filter: drop-shadow(0 3px 6px rgba(32, 48, 65, 0.16));
-}
-
-.school-logo-fallback {
-  color: rgba(32, 48, 65, 0.64);
-  font-size: 0.72rem;
-  font-weight: 850;
-  line-height: 1;
-}
-
-// ============================
-// SOCIAL DOCK
-// ============================
-.social-dock {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  min-height: 78px;
-  margin-top: 22px;
-}
-
-.social-icon {
-  position: relative;
-  width: 46px;
-  height: 46px;
-  display: grid;
-  place-items: center;
-  border: 2px solid rgba(32, 48, 65, 0.62);
-  border-radius: 50%;
-  background: #fefaf3;
-  color: #203041;
-  text-decoration: none;
-  box-shadow: 3px 3px 0 rgba(32, 48, 65, 0.12);
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
-}
-
-.social-icon .douban-mark,
-.social-icon .linkedin-mark,
-.social-icon .social-svg {
-  position: relative;
-  z-index: 1;
-}
-
-.social-icon .douban-mark,
-.social-icon .linkedin-mark {
-  font-size: 1.35rem;
-}
-
-.linkedin-mark {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.18rem;
-  font-weight: 850;
-  letter-spacing: 0;
-}
-
-.social-svg {
-  width: 24px;
-  height: 24px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
-}
-
-.steam-svg {
-  width: 27px;
-  height: 27px;
-  stroke-width: 1.8;
-}
-
-.social-icon[data-social="linkedin"] {
-  background: #d9ecff;
-}
-
-.social-icon[data-social="mail"] {
-  background: #ffe4db;
-}
-
-.social-icon[data-social="douban"] {
-  background: #dff3d0;
-}
-
-.social-icon[data-social="steam"] {
-  background: #e8e3ff;
-}
-
-.social-icon:hover,
-.social-icon:focus-visible {
-  transform: translate(-2px, -2px) rotate(-4deg) scale(1.1);
-  box-shadow: 6px 6px 0 rgba(32, 48, 65, 0.16);
-  border-color: #203041;
-  outline: none;
-}
-
-.douban-mark {
-  font-weight: 850;
-  font-family: Georgia, "Times New Roman", serif;
-}
-
-.social-tip {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  width: max-content;
-  max-width: 190px;
-  padding: 7px 10px;
-  border: 1px solid rgba(32, 48, 65, 0.20);
-  border-radius: 9px;
-  background: rgba(255, 255, 255, 0.94);
-  color: #203041;
-  font-size: 0.68rem;
-  line-height: 1.36;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(32, 48, 65, 0.10);
-  opacity: 0;
-  transform: translate(-50%, 5px);
-  transition: opacity 200ms ease, transform 200ms ease;
-  pointer-events: none;
-}
-
-.social-tip span {
-  display: block;
-}
-
-.social-icon:hover .social-tip,
-.social-icon:focus-visible .social-tip {
-  opacity: 0.94;
-  transform: translate(-50%, 0);
-}
-
-// ============================
-// POSTER GATES — side-by-side buttons
-// ============================
-.poster-gates {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  gap: 22px;
-  margin-top: auto;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.poster-gates .project-gate {
-  flex: 1;
-  min-width: 260px;
+.zine-hero {
+  margin: 0;
+  line-height: 0;
+  // At least 20% of viewport width
+  width: 28vw;
+  min-width: 220px;
   max-width: 420px;
 }
 
-// ============================
-// PROJECT GATE — sticky note
-// with washi tape
-// ============================
-.project-gate {
-  position: relative;
-  z-index: 1;
+.zine-hero__img {
+  width: 100%;
+  height: auto;
   display: block;
-  padding: 26px 28px 24px;
-  border: none;
-  border-radius: 3px;
-  background:
-    linear-gradient(180deg, #fffef7 0%, #fef9d7 100%);
-  color: #203041;
-  text-decoration: none;
-  text-align: center;
-  font-family: "Caveat", "Brush Script MT", cursive;
-  font-size: 1.55rem;
-  line-height: 1.35;
-  font-weight: 580;
-  letter-spacing: 0.03em;
-  box-shadow:
-    3px 3px 0 rgba(32, 48, 65, 0.18),
-    0 4px 16px rgba(32, 48, 65, 0.10),
-    inset 0 -8px 16px rgba(32, 48, 65, 0.04);
-  transform: rotate(-0.6deg);
-  transition: transform 200ms ease, box-shadow 200ms ease;
+  // Low saturation — not pure grayscale
+  filter: saturate(0.35) contrast(0.92);
+  // Subtle irregular edge for paper-cutout feel
+  border-radius: 2px 4px 1px 3px;
+  // Very slight rotation for organic feel
+  transform: rotate(0.5deg);
+  // No shadow — flat paper look
 }
 
-// -- washi tape strips holding the sticky note --
-.project-gate::before,
-.project-gate::after {
-  content: "";
-  position: absolute;
-  z-index: 2;
+// ============================
+// 7. SCHOOL LOGOS — tiny low-opacity marks
+// ============================
+.zine-schools {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+.zine-schools__item {
+  width: 28px;
   height: 28px;
+  display: grid;
+  place-items: center;
+  text-decoration: none;       // Reset for <a> tag
+  color: inherit;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: grayscale(100%) contrast(0.7) brightness(1.1);
+    opacity: 0.55;
+    transition: opacity 300ms ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+
+.zine-schools__fallback {
+  font-size: 0.48rem;
+  font-weight: 700;
+  color: #b5afa5;
+  letter-spacing: 0.05em;
+}
+
+// ============================
+// 8. TEXT FRAGMENTS — drifting microtext around portrait
+// ============================
+.zine-fragment {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.62rem;
+  line-height: 1.55;
+  color: #7a7265;
+  letter-spacing: 0.03em;
+  max-width: 280px;
+}
+
+.zine-fragment--a {
+  margin-top: 0.9rem;
+  transform: rotate(-0.6deg);
+}
+
+.zine-fragment--b {
+  margin-top: 0.4rem;
+  transform: rotate(0.4deg);
+  color: #9b9286;
+  font-size: 0.58rem;
+}
+
+.zine-fragment--c {
+  margin-top: 0.35rem;
+  transform: rotate(-0.3deg);
+  color: #b5afa5;
+  font-size: 0.55rem;
+  letter-spacing: 0.05em;
+}
+
+// ============================
+// 9. SOCIAL LINKS — tiny scattered text
+// ============================
+.zine-socials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1rem;
+  margin-top: 1rem;
+}
+
+.zine-socials__link {
+  position: relative;
+  font-family: "Inter", sans-serif;
+  font-size: 0.58rem;
+  font-weight: 500;
+  color: #9b9286;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 200ms ease;
+
+  &:hover,
+  &:focus-visible {
+    color: #d4453b;            // Vermillion on hover
+    outline: none;
+  }
+}
+
+// Tooltip on hover
+.zine-socials__tip {
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translate(-50%, 3px);
+  white-space: nowrap;
+  padding: 3px 7px;
+  background: #2c2416;
+  color: #e8e4db;
+  font-size: 0.5rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
   border-radius: 2px;
-}
-
-.project-gate::before {
-  top: -14px;
-  left: 44px;
-  width: 88px;
-  background:
-    repeating-linear-gradient(3deg, rgba(255, 255, 255, 0.30) 0 2px, transparent 2px 6px),
-    rgba(239, 145, 120, 0.70);
-  transform: rotate(-5deg);
-  box-shadow: 0 1px 2px rgba(32, 48, 65, 0.08);
-}
-
-.project-gate::after {
-  top: -14px;
-  right: 50px;
-  width: 78px;
-  background:
-    repeating-linear-gradient(-2deg, rgba(255, 255, 255, 0.28) 0 2px, transparent 2px 6px),
-    rgba(120, 190, 170, 0.64);
-  transform: rotate(4deg);
-  box-shadow: 0 1px 2px rgba(32, 48, 65, 0.08);
-}
-
-.project-gate span {
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-.project-gate:hover,
-.project-gate:focus-visible {
-  transform: rotate(-0.2deg) translate(-2px, -2px);
-  box-shadow:
-    5px 5px 0 rgba(32, 48, 65, 0.20),
-    0 6px 20px rgba(32, 48, 65, 0.12),
-    inset 0 -8px 16px rgba(32, 48, 65, 0.04);
-  outline: none;
-}
-
-// Notes gate — different color and rotation
-.notes-gate {
-  background:
-    linear-gradient(180deg, #f8f5ff 0%, #e8e0f8 100%);
-  transform: rotate(0.8deg);
-
-  &::before {
-    background:
-      repeating-linear-gradient(3deg, rgba(255, 255, 255, 0.30) 0 2px, transparent 2px 6px),
-      rgba(140, 160, 210, 0.70);
-  }
-
-  &::after {
-    background:
-      repeating-linear-gradient(-2deg, rgba(255, 255, 255, 0.28) 0 2px, transparent 2px 6px),
-      rgba(180, 140, 200, 0.64);
-  }
-
-  &:hover,
-  &:focus-visible {
-    transform: rotate(0.4deg) translate(-2px, -2px);
-  }
-}
-
-// Papers gate — warm amber / academic tone
-.papers-gate {
-  background:
-    linear-gradient(180deg, #fdfaf3 0%, #f7edd8 100%);
-  transform: rotate(-0.5deg);
-
-  &::before {
-    background:
-      repeating-linear-gradient(3deg, rgba(255, 255, 255, 0.30) 0 2px, transparent 2px 6px),
-      rgba(200, 160, 100, 0.66);
-  }
-
-  &::after {
-    background:
-      repeating-linear-gradient(-2deg, rgba(255, 255, 255, 0.28) 0 2px, transparent 2px 6px),
-      rgba(185, 150, 120, 0.60);
-  }
-
-  &:hover,
-  &:focus-visible {
-    transform: rotate(-0.1deg) translate(-2px, -2px);
-  }
-}
-
-// ============================
-// NET CURSOR — unchanged
-// ============================
-.net-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  width: 96px;
-  height: 96px;
-  pointer-events: none;
   opacity: 0;
-  transform: translate3d(-120px, -120px, 0) rotate(-18deg);
-  transition: opacity 120ms ease;
-  will-change: transform;
-}
-
-.net-cursor.is-visible {
-  opacity: 1;
-}
-
-.net-cursor__hoop {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 58px;
-  height: 48px;
-  border: 3px solid #24536b;
-  border-radius: 50%;
-  background:
-    repeating-linear-gradient(45deg, rgba(36, 83, 107, 0.32) 0 1px, transparent 1px 8px),
-    repeating-linear-gradient(-45deg, rgba(36, 83, 107, 0.26) 0 1px, transparent 1px 8px),
-    rgba(255, 255, 255, 0.38);
-  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.55);
-  transform: rotate(-24deg);
-}
-
-.net-cursor__neck {
-  position: absolute;
-  top: 42px;
-  left: 46px;
-  width: 18px;
-  height: 16px;
-  border: 3px solid #24536b;
-  border-top: 0;
-  border-radius: 0 0 8px 8px;
-  transform: rotate(-24deg);
-}
-
-.net-cursor__handle {
-  position: absolute;
-  top: 49px;
-  left: 56px;
-  width: 10px;
-  height: 54px;
-  border: 2px solid #203041;
-  border-radius: 7px;
-  background: linear-gradient(90deg, #b87642, #f0bd76);
-  transform: rotate(-35deg);
-  transform-origin: top center;
-}
-
-// ============================
-// BUTTERFLY — unchanged
-// ============================
-.poster-butterfly {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 20;
-  width: 52px;
-  height: 44px;
+  transition: opacity 160ms ease, transform 160ms ease;
   pointer-events: none;
-  transform:
-    translate3d(calc(var(--butterfly-x, 70vw) - 26px), calc(var(--butterfly-y, 24vh) - 22px), 0)
-    rotate(var(--butterfly-rotate, 8deg))
-    scale(var(--butterfly-scale, 1));
-  transition: transform 620ms cubic-bezier(0.2, 0.9, 0.24, 1.24);
-  filter: drop-shadow(0 8px 10px rgba(32, 48, 65, 0.16));
-}
 
-.poster-butterfly__body {
-  position: absolute;
-  top: 11px;
-  left: 23px;
-  width: 7px;
-  height: 25px;
-  border-radius: 999px;
-  background: #203041;
-}
-
-.poster-butterfly__wing {
-  position: absolute;
-  top: 1px;
-  width: 25px;
-  height: 30px;
-  border: 2px solid #203041;
-  background:
-    radial-gradient(circle at 62% 34%, rgba(255, 255, 255, 0.72) 0 4px, transparent 5px),
-    hsl(var(--butterfly-hue, 16), 82%, 70%);
-  animation: butterfly-wing 520ms ease-in-out infinite alternate;
-}
-
-.poster-butterfly__wing--left {
-  left: 2px;
-  border-radius: 78% 32% 78% 36%;
-  transform-origin: right center;
-}
-
-.poster-butterfly__wing--right {
-  right: 2px;
-  border-radius: 32% 78% 36% 78%;
-  transform-origin: left center;
-}
-
-.poster-butterfly.is-surprised .poster-butterfly__wing {
-  animation-duration: 180ms;
-}
-
-@keyframes butterfly-wing {
-  from {
-    transform: rotateY(0deg) rotate(2deg);
-  }
-  to {
-    transform: rotateY(38deg) rotate(-3deg);
+  .zine-socials__link:hover &,
+  .zine-socials__link:focus-visible & {
+    opacity: 0.9;
+    transform: translate(-50%, 0);
   }
 }
 
 // ============================
-// RESPONSIVE
+// 10. NAVIGATION — zine index
 // ============================
-@media (max-width: 960px) {
-  .home-poster {
-    padding: 28px;
-  }
+.zine-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
 
-  .poster-sheet {
-    min-height: calc(100vh - 56px);
-    padding: 44px 36px 36px;
-    box-shadow: 6px 6px 0 rgba(32, 48, 65, 0.42);
-  }
+.zine-nav__link {
+  font-family: "Inter", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #2c2416;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 180ms ease;
 
-  .poster-sheet::before {
-    top: -14px;
-    left: 38px;
-    width: 96px;
-    height: 30px;
-  }
-
-  .poster-sheet::after {
-    top: -14px;
-    right: 42px;
-    width: 82px;
-    height: 30px;
-  }
-
-  .poster-greeting {
-    font-size: 2.3rem;
-  }
-
-  .poster-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .intro-copy {
-    max-width: none;
-  }
-
-  .portrait-frame {
-    width: min(330px, 100%);
+  &:hover,
+  &:focus-visible {
+    color: #d4453b;            // Vermillion on hover
+    outline: none;
   }
 }
 
-@media (max-width: 620px) {
-  .home-poster {
-    align-items: flex-start;
-    padding: 18px;
+// One nav link carries the accent permanently
+.zine-nav__link--accent {
+  color: #d4453b;              // Vermillion — the same high-chroma hue
+  font-weight: 650;
+}
+
+.zine-nav__sep {
+  color: #c8c4bc;
+  font-size: 0.5rem;
+  user-select: none;
+}
+
+// ============================
+// 11. FOOTER — microtext
+// ============================
+.zine-footer {
+  position: absolute;
+  bottom: 2vh;
+  right: 6vw;
+  font-family: "Inter", sans-serif;
+  font-size: 0.5rem;
+  color: #bfbab2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+// ============================
+// 12. RESPONSIVE
+// ============================
+@media (max-width: 720px) {
+  .zine-poster {
+    padding: 3vh 5vw;
   }
 
-  .home-poster::after {
-    inset: 9px;
+  .zine-hero {
+    width: 50vw;
+    min-width: 180px;
   }
 
-  .poster-sheet {
-    min-height: calc(100vh - 36px);
-    gap: 24px;
-    padding: 36px 18px 30px;
+  .zine-name {
+    font-size: 1.3rem;
   }
 
-  .poster-sheet::before {
-    top: -12px;
-    left: 24px;
-    width: 78px;
-    height: 24px;
+  .zine-accent {
+    width: 14px;
+    height: 14px;
+    right: calc(50% - 140px);
+    transform: translate(50%, -130px) rotate(15deg);
   }
 
-  .poster-sheet::after {
-    top: -12px;
-    right: 26px;
-    width: 66px;
-    height: 24px;
+  .zine-fragment {
+    max-width: 220px;
+    font-size: 0.58rem;
   }
 
-  .poster-greeting {
-    font-size: 1.8rem;
-  }
-
-  .poster-grid {
-    gap: 28px;
-  }
-
-  .intro-copy {
-    padding-left: 16px;
-  }
-
-  .intro-copy p {
-    font-size: 1.35rem;
-    line-height: 1.52;
-  }
-
-  .portrait-caption strong {
-    font-size: 1.50rem;
-  }
-
-  .portrait-image-wrap::before,
-  .portrait-image-wrap::after {
-    height: 22px;
-  }
-
-  .portrait-image-wrap::before {
-    top: -10px;
-    left: 22px;
-    width: 64px;
-  }
-
-  .portrait-image-wrap::after {
-    bottom: -10px;
-    right: 24px;
-    width: 58px;
-    height: 20px;
-  }
-
-  .school-logo {
-    width: 52px;
-    height: 52px;
-  }
-
-  .social-dock {
-    gap: 12px;
-  }
-
-  .social-icon {
-    width: 42px;
-    height: 42px;
-  }
-
-  .poster-gates {
-    gap: 14px;
-  }
-
-  .poster-gates .project-gate {
-    min-width: 200px;
-  }
-
-  .project-gate {
-    padding: 22px 18px 20px;
-    font-size: 1.35rem;
-  }
-
-  .project-gate::before {
-    top: -12px;
-    left: 28px;
-    width: 70px;
-    height: 22px;
-  }
-
-  .project-gate::after {
-    top: -12px;
-    right: 30px;
-    width: 62px;
-    height: 22px;
+  .zine-footer {
+    position: static;
+    margin-top: 2rem;
+    text-align: center;
   }
 }
 
+@media (max-width: 400px) {
+  .zine-poster {
+    padding: 2.5vh 4vw;
+  }
+
+  .zine-hero {
+    width: 60vw;
+    min-width: 150px;
+  }
+
+  .zine-name {
+    font-size: 1.1rem;
+  }
+
+  .zine-name-cn {
+    font-size: 0.65rem;
+  }
+
+  .zine-accent {
+    width: 12px;
+    height: 12px;
+    right: calc(50% - 90px);
+    transform: translate(50%, -90px) rotate(15deg);
+  }
+
+  .zine-socials {
+    gap: 0.2rem 0.7rem;
+  }
+
+  .zine-socials__link {
+    font-size: 0.52rem;
+  }
+
+  .zine-nav__link {
+    font-size: 0.56rem;
+  }
+}
+
+// ============================
+// 13. TOUCH + REDUCED MOTION
+// ============================
 @media (pointer: coarse) {
-  .home-poster-body,
-  .home-poster-body * {
-    cursor: auto;
-  }
-
-  .net-cursor {
+  .zine-socials__tip {
     display: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .net-cursor,
-  .poster-butterfly,
-  .poster-butterfly__wing,
-  .social-icon,
-  .project-gate {
+  .zine-socials__link,
+  .zine-nav__link,
+  .zine-schools__item img {
     transition: none;
-    animation: none;
+  }
+
+  .zine-socials__tip {
+    transition: none;
   }
 }
