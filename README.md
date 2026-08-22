@@ -75,6 +75,28 @@ If you are using [Visual Studio Code](https://code.visualstudio.com/) you can us
 
 Bug reports and feature requests to the template should be [submitted via GitHub](https://github.com/academicpages/academicpages.github.io/issues/new/choose). For questions concerning how to style the template, please feel free to start a [new discussion on GitHub](https://github.com/academicpages/academicpages.github.io/discussions).
 
+## The Coding Ledger (home page, second chapter)
+
+Scrolling past the hero cross-fades into a "Coding Ledger": a GitHub contribution
+wall ([Green-Wall](https://github.com/Codennnn/Green-Wall) calendar data) and a
+LeetCode practice log, both re-rendered in the zine's paper palette.
+
+- **Data** lives in `assets/data/contributions.json` and `assets/data/leetcode.json`
+  — committed snapshots, so the page stays static and never calls third-party APIs
+  from the browser.
+- **Refresh** is automatic: `.github/workflows/update-code-stats.yml` runs
+  `scripts/fetch_contrib_data.py` daily and commits any changes. Refresh manually
+  with `python3 scripts/fetch_contrib_data.py`.
+- **Config** (usernames + API endpoints) is in `scripts/code-tracker.json`.
+- The LeetCode data comes from the **leetcode.cn** GraphQL API, using the same
+  per-year calendar fan-out the
+  [github-readme-leetcode-stats](https://github.com/blackscythe123/github-readme-leetcode-stats)
+  tool uses for leetcode.com — that tool's hosted API is single-user-locked and
+  cannot read leetcode.cn accounts, so its data model is re-implemented here and
+  rendered natively in the page design.
+- On failure the script keeps the previous snapshot, so the page degrades
+  gracefully and never breaks the build.
+
 This repository was forked (then detached) by [Stuart Geiger](https://github.com/staeiou) from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/), which is © 2016 Michael Rose and released under the MIT License (see LICENSE.md). It is currently being maintained by [Robert Zupko](https://github.com/rjzupkoii) and additional maintainers would be welcomed.
 
 ## Bugfixes and enhancements

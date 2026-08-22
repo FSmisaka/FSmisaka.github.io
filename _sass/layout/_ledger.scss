@@ -1,0 +1,566 @@
+// ============================
+// ZINE LEDGER — Coding Ledger (scroll chapter)
+// A second printed chapter: GitHub contribution wall + LeetCode practice log.
+// Same aged paper, same ink browns, same single vermillion accent.
+// Hero fades out as you scroll; the ledger rises into view.
+// ============================
+
+$zine-ink:      #2c2416;
+$zine-ink-soft: #7a7265;
+$zine-ink-faint:#9b9286;
+$zine-ink-ghost:#b5afa5;
+$zine-rule:     rgba(44, 36, 22, 0.10);
+$zine-rule-soft:rgba(44, 36, 22, 0.07);
+$zine-red:      #d4453b;
+
+// ---- Heatmap level ramp: paper-ink browns, vermillion for the hottest days
+$zine-l0: rgba(44, 36, 22, 0.07);
+$zine-l1: #ddd2bd;
+$zine-l2: #b3a184;
+$zine-l3: #86704f;
+$zine-l4: #d4453b;
+
+// ============================
+// 1. HERO STAGE — pins the poster while the first chapter is scrolled away
+// ============================
+// The theme gives body 70px/162px masthead-footer padding; the poster layout
+// has neither, so reclaim the full viewport for the two chapters.
+.zine-poster-body {
+  padding: 0 !important;
+}
+
+.zine-hero-stage {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  overflow: hidden;
+
+  .zine-poster {
+    position: sticky;
+    top: 0;
+    will-change: opacity, transform;
+  }
+
+  .zine-footer {
+    transition: opacity 200ms linear;
+  }
+}
+
+// Scroll hint — a vermillion droplet dripping down a hairline
+.zine-scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 2.4vh;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.zine-scroll-hint__label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: $zine-ink-faint;
+}
+
+.zine-scroll-hint__line {
+  position: relative;
+  width: 1px;
+  height: 36px;
+  background: $zine-rule;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -40%;
+    width: 100%;
+    height: 40%;
+    background: $zine-red;
+    animation: zine-drip 2.6s cubic-bezier(0.45, 0, 0.3, 1) infinite;
+  }
+}
+
+@keyframes zine-drip {
+  0%   { top: -40%; }
+  70%  { top: 110%; }
+  100% { top: 110%; }
+}
+
+// ============================
+// 2. LEDGER SECTION — second full-screen chapter
+// ============================
+.zine-ledger {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+.zine-ledger__inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.zine-ledger__fade {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3.1vh;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 6vh 5vw;
+  box-sizing: border-box;
+  will-change: opacity, transform;
+}
+
+// ---- Head: kicker + serif title + hairline rule
+.zine-ledger__head {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid $zine-rule;
+}
+
+.zine-ledger__mark {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  background: $zine-red;
+  clip-path: polygon(2% 0%, 98% 3%, 100% 97%, 0% 100%);
+  transform: rotate(15deg);
+  margin-bottom: 0.35rem;
+}
+
+.zine-ledger__kicker {
+  margin: 0 0 0.3rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: $zine-ink-faint;
+}
+
+.zine-ledger__title {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: $zine-ink;
+  transform: rotate(-0.5deg);
+}
+
+.zine-ledger__aside {
+  margin: 0 0 0.15rem auto;
+  text-align: right;
+  font-family: "Inter", sans-serif;
+  font-size: 0.55rem;
+  line-height: 1.65;
+  letter-spacing: 0.06em;
+  color: $zine-ink-faint;
+
+  strong {
+    font-weight: 650;
+    color: $zine-ink;
+  }
+}
+
+// ============================
+// 3. PLATES — the two walls of habit
+// ============================
+.zine-plates {
+  display: grid;
+  grid-template-columns: 1.06fr 1fr;
+  gap: 2.6vw;
+  align-items: stretch;
+}
+
+.zine-plate {
+  background: rgba(255, 255, 255, 0.30);
+  border: 1px solid $zine-rule;
+  border-radius: 2px 4px 1px 3px;
+  padding: 1.35rem 1.5rem 1.15rem;
+  box-sizing: border-box;
+  transform: rotate(-0.35deg);
+  display: flex;
+  flex-direction: column;
+}
+
+.zine-plate--leetcode {
+  transform: rotate(0.28deg);
+}
+
+.zine-plate__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.95rem;
+}
+
+.zine-plate__title {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: $zine-ink;
+}
+
+.zine-plate__title-sub {
+  font-family: "Inter", sans-serif;
+  font-size: 0.54rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $zine-ink-faint;
+}
+
+// ---- Year tabs (GitHub)
+.zine-years {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.zine-years__btn {
+  appearance: none;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 2px 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: $zine-ink-ghost;
+  cursor: pointer;
+  transition: color 160ms ease;
+
+  &:hover,
+  &:focus-visible {
+    color: $zine-ink;
+    outline: none;
+  }
+
+  &.is-active {
+    color: $zine-red;
+  }
+}
+
+// ---- Heatmap visuals
+.zine-heatmap-wrap {
+  margin: 0 -0.2rem;
+  padding: 0.2rem 0.35rem 0.3rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  transition: opacity 240ms ease;
+  flex: 0 0 auto;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  svg text {
+    font-family: "Inter", sans-serif;
+    font-size: 9px;
+    fill: $zine-ink-ghost;
+    letter-spacing: 0.03em;
+  }
+}
+
+// ---- Plate footer
+.zine-plate__foot {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.6rem;
+  margin-top: auto;      /* pin to the plate bottom — breathing room above */
+  padding-top: 0.85rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+  color: $zine-ink-faint;
+}
+
+.zine-plate__total {
+  font-weight: 650;
+  color: $zine-ink;
+  letter-spacing: 0.03em;
+}
+
+.zine-plate__dot {
+  color: $zine-ink-ghost;
+}
+
+.zine-plate__link {
+  color: $zine-ink-faint;
+  text-decoration: none;
+  border-bottom: 1px solid $zine-rule;
+  transition: color 160ms ease, border-color 160ms ease;
+
+  &:hover,
+  &:focus-visible {
+    color: $zine-red;
+    border-color: $zine-red;
+    outline: none;
+  }
+}
+
+// ============================
+// 4. LEETCODE STAT ROW — ring + difficulty bars
+// ============================
+.zine-lc {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 0.95rem;
+}
+
+.zine-lc__ring {
+  position: relative;
+  flex: 0 0 auto;
+  width: 94px;
+  height: 94px;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+
+  circle {
+    transition: stroke-dashoffset 1.3s cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+}
+
+.zine-lc__ring-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+}
+
+.zine-lc__ring-num {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 1.42rem;
+  font-weight: 700;
+  line-height: 1;
+  color: $zine-ink;
+  font-variant-numeric: tabular-nums;
+}
+
+.zine-lc__ring-sub {
+  font-family: "Inter", sans-serif;
+  font-size: 0.46rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $zine-ink-faint;
+}
+
+.zine-lc__side {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.zine-lc__bar-row {
+  display: grid;
+  grid-template-columns: 2.9rem 1fr auto;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.42rem;
+}
+
+.zine-lc__bar-label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $zine-ink-faint;
+}
+
+.zine-lc__bar-track {
+  height: 5px;
+  background: $zine-rule-soft;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.zine-lc__bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1.1s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+.zine-lc__bar-fill--easy   { background: $zine-l2; }
+.zine-lc__bar-fill--medium { background: $zine-l3; }
+.zine-lc__bar-fill--hard   { background: $zine-red; }
+
+.zine-lc__bar-count {
+  font-family: "Inter", sans-serif;
+  font-size: 0.53rem;
+  color: $zine-ink-soft;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  min-width: 4.1rem;
+  text-align: right;
+}
+
+// ---- Streak + languages microtext
+.zine-lc__streak {
+  margin: 0.6rem 0 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.04em;
+  color: $zine-ink-soft;
+
+  b {
+    font-weight: 700;
+    color: $zine-ink;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.zine-lc__streak-mark {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 0.4rem;
+  background: $zine-red;
+  transform: rotate(15deg);
+  clip-path: polygon(6% 0%, 96% 8%, 100% 94%, 0% 100%);
+}
+
+.zine-lc__langs {
+  margin: 0.7rem 0 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.05em;
+  color: $zine-ink-ghost;
+  font-variant-numeric: tabular-nums;
+}
+
+// ============================
+// 5. LEDGER FOOT — colophon microtext
+// ============================
+.zine-ledger__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $zine-ink-ghost;
+}
+
+// ============================
+// 6. DATA STATES
+// ============================
+.zine-plate__empty {
+  font-family: "Inter", sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+  color: $zine-ink-ghost;
+  padding: 1.4rem 0;
+  text-align: center;
+}
+
+// ============================
+// 7. RESPONSIVE
+// ============================
+@media (max-width: 900px) {
+  .zine-ledger__inner {
+    position: static;
+    height: auto;
+    min-height: 0;
+  }
+
+  .zine-ledger__fade {
+    height: auto;
+    justify-content: flex-start;
+    gap: 1.7rem;
+    padding: 7vh 6vw 9vh;
+  }
+
+  .zine-ledger__aside {
+    display: none;
+  }
+
+  .zine-plates {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .zine-plate {
+    padding: 1.2rem 1.15rem 1.05rem;
+  }
+
+  /* allow the wide grids to scroll horizontally on small screens */
+  .zine-heatmap-wrap svg {
+    min-width: 560px;
+  }
+
+  .zine-heatmap-wrap--lc svg {
+    min-width: 520px;
+  }
+}
+
+@media (max-width: 420px) {
+  .zine-plate__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .zine-lc {
+    gap: 0.9rem;
+  }
+
+  .zine-lc__ring {
+    width: 78px;
+    height: 78px;
+  }
+}
+
+// ============================
+// 8. TOUCH + REDUCED MOTION
+// ============================
+@media (pointer: coarse) {
+  .zine-heatmap-wrap {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zine-scroll-hint__line::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  .zine-heatmap-wrap,
+  .zine-lc__bar-fill,
+  .zine-lc__ring circle,
+  .zine-years__btn {
+    transition: none;
+  }
+}
