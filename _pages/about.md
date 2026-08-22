@@ -134,6 +134,14 @@ redirect_from:
             </h3>
             <nav class="zine-years" id="zine-years" aria-label="Select contribution year"></nav>
           </header>
+
+          <div class="zine-gh-stats" id="zine-gh-stats">
+            <div class="zine-gh-stat"><span class="zine-gh-stat__num" id="zine-gh-stat-total">…</span><span class="zine-gh-stat__label">contributions</span></div>
+            <div class="zine-gh-stat"><span class="zine-gh-stat__num" id="zine-gh-stat-streak">…</span><span class="zine-gh-stat__label">longest streak</span></div>
+            <div class="zine-gh-stat"><span class="zine-gh-stat__num" id="zine-gh-stat-days">…</span><span class="zine-gh-stat__label">active days</span></div>
+            <div class="zine-gh-stat"><span class="zine-gh-stat__num" id="zine-gh-stat-social">…</span><span class="zine-gh-stat__label">followers · following</span></div>
+          </div>
+
           <div class="zine-heatmap-wrap" id="zine-github-heatmap"></div>
           <p class="zine-plate__foot">
             <span class="zine-plate__total" id="zine-github-total">…</span>

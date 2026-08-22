@@ -93,6 +93,8 @@ def fetch_github(config):
         "updated_at": now_iso(),
         "user": data["login"],
         "name": data["name"],
+        "followers": (data.get("followers") or {}).get("totalCount") or 0,
+        "following": (data.get("following") or {}).get("totalCount") or 0,
         "calendars": calendars,
     }
 

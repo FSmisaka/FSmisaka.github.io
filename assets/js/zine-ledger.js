@@ -21,6 +21,10 @@
   var ghWrap = document.getElementById('zine-github-heatmap');
   var ghTotal = document.getElementById('zine-github-total');
   var ghYears = document.getElementById('zine-years');
+  var ghStatTotal = document.getElementById('zine-gh-stat-total');
+  var ghStatStreak = document.getElementById('zine-gh-stat-streak');
+  var ghStatDays = document.getElementById('zine-gh-stat-days');
+  var ghStatSocial = document.getElementById('zine-gh-stat-social');
   var lcRing = document.getElementById('zine-lc-ring');
   var lcBars = document.getElementById('zine-lc-bars');
   var lcStreak = document.getElementById('zine-lc-streak');
@@ -177,10 +181,50 @@
         });
         setGrid(ghWrap, makeGithubGrid(year));
         if (ghTotal) ghTotal.textContent = ghTotalText(year);
+        updateGhStats(year);
       });
     }
     setGrid(ghWrap, makeGithubGrid(currentYear));
     if (ghTotal) ghTotal.textContent = ghTotalText(currentYear);
+    updateGhStats(currentYear);
+  }
+
+  /* year-scoped stat blocks: contributions, longest streak, active days,
+     plus the static follow numbers from the profile */
+  function updateGhStats(year) {
+    if (!ghData || !ghData.calendars) return;
+    var cal = null;
+    for (var i = 0; i < ghData.calendars.length; i++) {
+      if (ghData.calendars[i].year === year) cal = ghData.calendars[i];
+    }
+    if (!cal) return;
+
+    var days = [];
+    for (var w = 0; w < cal.weeks.length; w++) {
+      for (var d = 0; d < cal.weeks[w].length; d++) {
+        var cell = cal.weeks[w][d];
+        if (cell && cell[0] > 0 && cell[2] <= todayIso) {
+          days.push(new Date(cell[2] + 'T00:00:00Z').getTime() / 86400000);
+        }
+      }
+    }
+    days.sort(function (a, b) { return a - b; });
+
+    var longest = 0;
+    var run = 0;
+    for (var i = 0; i < days.length; i++) {
+      run = i > 0 && days[i] === days[i - 1] + 1 ? run + 1 : 1;
+      longest = Math.max(longest, run);
+    }
+
+    if (ghStatTotal) ghStatTotal.textContent = String(cal.total);
+    if (ghStatStreak) ghStatStreak.textContent = String(longest);
+    if (ghStatDays) ghStatDays.textContent = String(days.length);
+    if (ghStatSocial) {
+      var f = ghData.followers, g = ghData.following;
+      ghStatSocial.textContent =
+        (f == null || g == null) ? '—' : f + ' · ' + g;
+    }
   }
 
   function makeGithubGrid(year) {

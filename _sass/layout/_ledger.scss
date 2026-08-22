@@ -181,12 +181,15 @@ $zine-l4: #d4453b;
 // ============================
 .zine-plates {
   display: grid;
-  grid-template-columns: 1.06fr 1fr;
+  /* minmax(0, …) so wide heatmaps can never stretch a plate past its track —
+     they scroll inside their own wrapper instead */
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, 1fr);
   gap: 2.6vw;
   align-items: stretch;
 }
 
 .zine-plate {
+  min-width: 0;
   background: rgba(255, 255, 255, 0.30);
   border: 1px solid $zine-rule;
   border-radius: 2px 4px 1px 3px;
@@ -260,10 +263,10 @@ $zine-l4: #d4453b;
 
 // ---- Heatmap visuals
 .zine-heatmap-wrap {
-  margin: 0 -0.2rem;
   padding: 0.2rem 0.35rem 0.3rem;
   overflow-x: auto;
   overflow-y: hidden;
+  max-width: 100%;
   transition: opacity 240ms ease;
   flex: 0 0 auto;
 
@@ -279,6 +282,49 @@ $zine-l4: #d4453b;
     fill: $zine-ink-ghost;
     letter-spacing: 0.03em;
   }
+}
+
+// ---- GitHub stat row — same band position as the LC stats row, so the two
+//      plates carry equal visual weight (numbers in serif, labels in micro)
+.zine-gh-stats {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 0.95rem;
+}
+
+.zine-gh-stat {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.3rem;
+
+  & + & {
+    border-left: 1px solid $zine-rule;
+  }
+}
+
+.zine-gh-stat__num {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1;
+  color: $zine-ink;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.zine-gh-stat__label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $zine-ink-faint;
+  text-align: center;
+  line-height: 1.5;
 }
 
 // ---- Plate footer
@@ -507,7 +553,7 @@ $zine-l4: #d4453b;
   }
 
   .zine-plates {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
   }
 
@@ -530,6 +576,15 @@ $zine-l4: #d4453b;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+  }
+
+  .zine-gh-stats {
+    flex-wrap: wrap;
+  }
+
+  .zine-gh-stat {
+    flex: 1 1 40%;
+    padding: 0.45rem 0.2rem;
   }
 
   .zine-lc {
