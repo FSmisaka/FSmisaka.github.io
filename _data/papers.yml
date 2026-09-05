@@ -11,6 +11,14 @@
 #   file    – (optional) slug of the markdown review in _papers/ directory
 #   url     – (optional) external link to the paper
 
+- title: "Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers  for Generative Recommendations"
+  year: 2024
+  domain: "Recommendation Systems"
+  model: "HSTU"
+  venue: "ICML"
+  excerpt: "【20260904】不使用特征，而是将它还原成比较原始的动作序列（item、动作、item、动作、...）；【训练】召回任务是预测 item，排序任务是预测动作；【架构】改进了 Transformer 为 HSTU"
+  file: "2024-hstu-review"
+
 - title: "Recommender Systems with Generative Retrieval"
   year: 2023
   domain: "Recommendation Systems"
@@ -26,14 +34,6 @@
   venue: "arxiv"
   excerpt: "【20260715】从 Tokenization (Sparse ID、Text、Semantic ID)、Architecture (Decoder-only、Encoder-decoder、Diffusion)、Optimization (DPO、GRPO) 三个角度总结了近 2 年来的生成式推荐工作。【Why GR】embedding 依赖交互数据，冷启动问题；架构碎片化，MFU 低、难以 scale；优化目标太局部、不一致。【Tokenizer】Sparse ID 没有语义且太稀疏、Text 没办法 grounding 到具体 item、Semantic ID 刚刚好; 【Architeture】Decoder-only 更容易 scale、Encoder-decoder 适合输入输出异构的问题且输入支持双向注意力、Diffusion 是全新的范式; 【Optimization】架构是监督预训练+偏好对齐，现在最主流的对齐方法是 DPO 和 GRPO"
   file: "2025-kuaishou-generative-recommendation-survey-review"
-
-- title: "Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers for Generative Recommendations"
-  year: 2024
-  domain: "Recommendation Systems"
-  model: "HSTU"
-  venue: "ICML"
-  excerpt: "Meta's production-scale generative recommender. The key insight is replacing traditional embedding lookups with a sequential transduction architecture that directly maps user interaction sequences to next-item predictions. At trillion-parameter scale, the model learns rich temporal dynamics that smaller models miss. The engineering feat of training & serving at this scale is as impressive as the algorithmic contribution."
-  file: "hstu-review"
 
 - title: "OneRec: Unifying Retrieval and Ranking for Sequential Recommendation"
   year: 2024
