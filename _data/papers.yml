@@ -11,6 +11,14 @@
 #   file    – (optional) slug of the markdown review in _papers/ directory
 #   url     – (optional) external link to the paper
 
+- title: "Reasoning over Semantic IDs Enhances Generative  Recommendation"
+  year: 2026
+  domain: "Recommendation Systems"
+  model: "SIDReasoner"
+  venue: "KDD"
+  excerpt: "【20260917】离线准备 SID + SID-语言对齐 + 强化推理；【离线准备 SID】item -> Emb -> SID -> LLM Vocab；【对齐】用 teacher 模型生成语料 -> “多任务” SFT；【强化推理】冷启动 SFT 学习生成格式 -> GRPO 学习思维链"
+  file: "2026-sidreasoner-review"
+
 - title: "Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers  for Generative Recommendations"
   year: 2024
   domain: "Recommendation Systems"

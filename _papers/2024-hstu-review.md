@@ -7,7 +7,7 @@ model: "HSTU"
 venue: "ICML"
 ---
 
-# 笔记正文不需要赘述论文题目了
+# 特征序列、HSTU
 
 ## 1. Intro
 
