@@ -11,6 +11,14 @@
 #   file    – (optional) slug of the markdown review in _papers/ directory
 #   url     – (optional) external link to the paper
 
+- title: "Self-Attentive Sequential Recommendation"
+  year: 2026
+  domain: "Recommendation Systems"
+  model: "SASRec"
+  venue: "ICDM"
+  excerpt: "【20260922】"
+  file: "2018-sasrec-review"
+
 - title: "Reasoning over Semantic IDs Enhances Generative  Recommendation"
   year: 2026
   domain: "Recommendation Systems"
