@@ -11,6 +11,14 @@
 #   file    – (optional) slug of the markdown review in _papers/ directory
 #   url     – (optional) external link to the paper
 
+- title: "Session-based Recommendations With Recurrent Neural Networks"
+  year: 2016
+  domain: "Recommendation Systems"
+  model: "GRU4Rec"
+  venue: "ICLR"
+  excerpt: "【20261005】1-layer GRU + session-parallel mini-batch + batch 内负采样 + BPR Loss"
+  file: "2016-gru4rec-review"
+
 - title: "Personalized Top-N Sequential Recommendation via Convolutional Sequence Embedding"
   year: 2018
   domain: "Recommendation Systems"
