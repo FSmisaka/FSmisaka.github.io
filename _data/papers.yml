@@ -11,6 +11,22 @@
 #   file    – (optional) slug of the markdown review in _papers/ directory
 #   url     – (optional) external link to the paper
 
+- title: "Think Before Recommend: Unleashing the Latent Reasoning Power for Sequential Recommendation"
+  year: 2026
+  domain: "Recommendation Systems"
+  model: "ReaRec"
+  venue: "TKDE"
+  excerpt: "【20261007】"
+  file: "2026-rearec-review"
+
+- title: "Adapting Large Language Models by Integrating Collaborative Semantics for Recommendation"
+  year: 2024
+  domain: "Recommendation Systems"
+  model: "LCRec"
+  venue: "ICDE"
+  excerpt: "【20261006】"
+  file: "2024-lcrec-review"
+
 - title: "Session-based Recommendations With Recurrent Neural Networks"
   year: 2016
   domain: "Recommendation Systems"

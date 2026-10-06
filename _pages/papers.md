@@ -1,6 +1,6 @@
 ---
 permalink: /papers/
-title: "Papers"
+title: "Readings"
 layout: papers-list
 author_profile: false
 ---

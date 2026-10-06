@@ -86,7 +86,7 @@ redirect_from:
         <span class="zine-nav__sep" aria-hidden="true">·</span>
         <a class="zine-nav__link" href="{{ '/notes/' | relative_url }}">Notes</a>
         <span class="zine-nav__sep" aria-hidden="true">·</span>
-        <a class="zine-nav__link" href="{{ '/papers/' | relative_url }}">Papers</a>
+        <a class="zine-nav__link" href="{{ '/papers/' | relative_url }}">Readings</a>
       </nav>
     </div>
 
