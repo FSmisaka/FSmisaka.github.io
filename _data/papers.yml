@@ -11,6 +11,14 @@
 #   file    – (optional) slug of the markdown review in _papers/ directory
 #   url     – (optional) external link to the paper
 
+- title: "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models"
+  year: 2024
+  domain: "LLMs"
+  model: "GRPO"
+  venue: "arXiv"
+  excerpt: "【20261009】"
+  file: "2024-grpo-review"
+
 - title: "Think Before Recommend: Unleashing the Latent Reasoning Power for Sequential Recommendation"
   year: 2026
   domain: "Recommendation Systems"
@@ -24,7 +32,7 @@
   domain: "Recommendation Systems"
   model: "LCRec"
   venue: "ICDE"
-  excerpt: "【20261006】"
+  excerpt: "【20261006】相比 RQ-VAE，最后一层使用 Uniform Semantic Mapping 解决索引冲突；相比 TIGER，使用预训练 LLM 而不是 2层 Transformer"
   file: "2024-lcrec-review"
 
 - title: "Session-based Recommendations With Recurrent Neural Networks"
@@ -79,6 +87,6 @@
   year: 2025
   domain: "Recommendation Systems"
   model: "Survey"
-  venue: "arxiv"
+  venue: "arXiv"
   excerpt: "【20260715】从 Tokenization (Sparse ID、Text、Semantic ID)、Architecture (Decoder-only、Encoder-decoder、Diffusion)、Optimization (DPO、GRPO) 三个角度总结了近 2 年来的生成式推荐工作。【Why GR】embedding 依赖交互数据，冷启动问题；架构碎片化，MFU 低、难以 scale；优化目标太局部、不一致。【Tokenizer】Sparse ID 没有语义且太稀疏、Text 没办法 grounding 到具体 item、Semantic ID 刚刚好; 【Architeture】Decoder-only 更容易 scale、Encoder-decoder 适合输入输出异构的问题且输入支持双向注意力、Diffusion 是全新的范式; 【Optimization】架构是监督预训练+偏好对齐，现在最主流的对齐方法是 DPO 和 GRPO"
   file: "2025-kuaishou-generative-recommendation-survey-review"

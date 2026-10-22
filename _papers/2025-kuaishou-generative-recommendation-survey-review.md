@@ -4,7 +4,7 @@ paper_title: "A Survey of Generative Recommendation from a Tri-Decoupled Perspec
 year: 2025
 domain: "Recommendation Systems"
 model: "Survey"
-venue: "arxiv"
+venue: "arXiv"
 ---
 
 # 生成式推荐：SID、架构 & 偏好对齐
