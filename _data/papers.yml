@@ -24,7 +24,7 @@
   domain: "Recommendation Systems"
   model: "ReaRec"
   venue: "TKDE"
-  excerpt: "【20261007】"
+  excerpt: "【20261007】把序列模型的输出表征反复输回到同一个 SeqRec 来实现'思考'；【ERL】希望集成多步思考的结果：步步思考都能预测（rec损失）、步步思考的分布尽可能有差异（KL散度）；【PRL】希望思考先广泛后聚焦：步步思考都能预测（带温度系数的rec损失）、思考有鲁棒性（加噪表征与不加噪表征算 infoNCE）；【实验】除了基本的对比和消融之外，测试了最优思考步数为 2，验证了思考对短序列 user 和低频 item 收益更大"
   file: "2026-rearec-review"
 
 - title: "Adapting Large Language Models by Integrating Collaborative Semantics for Recommendation"
