@@ -1,6 +1,6 @@
 ---
 title: "Transformer Architecture: Attention Is All You Need"
-category: "llms"
+category: "machine-learning"
 date: 2025-05-28
 excerpt: "A detailed walkthrough of the Transformer architecture, from self-attention to positional encoding."
 ---

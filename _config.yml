@@ -23,7 +23,7 @@ repository               : "FSmisaka/FSmisaka.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "York_Wang.jpg"
+  avatar           : "York_Wang_head.jpg"
   name             : "Yiyao Wang 王羿珧"
   pronouns         : "he/his"  
   bio              : "Student interested in Statistical ML, DL, LLMs, recommendation systems, and MLE work."

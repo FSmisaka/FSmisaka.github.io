@@ -1,80 +1,79 @@
-# Project wall data
-# Each project needs: title, image (thumbnail), link (detail page URL)
-# Images should be placed in: images/projects/
+# Projects — listed newest to oldest on the Projects page (3 per page).
 #
-# Example entry:
-# - title: "My Project"
-#   image: "projects/my-project-thumb.jpg"
-#   link: "/portfolio/my-project/"
+# Fields:
+#   title       – project name (rendered like the Scholarships heading on the Awards page)
+#   source      – where the project comes from, e.g. "Undergraduate Thesis Project"
+#   period      – completion time, e.g. "September 2025 - Now"
+#   image       – showcase image under /images/ (shown between the time and the description)
+#   description – short introduction paragraph
+#   order       – YYYYMM used for sorting, newest first
 
 - title: "Project 01"
+  source: "Undergraduate Thesis Project — Independently Completed"
+  period: "September 2026 - Now"
   image: "projects/placeholder.jpg"
-  link: "/portfolio/portfolio-1/"
+  description: "To be added — a short introduction to this project: the problem, the method, and the results."
+  order: 202609
 
 - title: "Project 02"
+  source: "Research Training Program — Collaboratively Completed"
+  period: "March 2026 - September 2026"
   image: "projects/placeholder.jpg"
-  link: "/portfolio/portfolio-2/"
+  description: "To be added — a short introduction to this project: the problem, the method, and the results."
+  order: 202603
 
 - title: "Project 03"
+  source: "Course Project — Collaboratively Completed"
+  period: "September 2025 - December 2025"
   image: "projects/placeholder.jpg"
-  link: "#"
+  description: "To be added — a short introduction to this project: the problem, the method, and the results."
+  order: 202509
 
 - title: "Project 04"
+  source: "Summer Research Internship — Independently Completed"
+  period: "July 2025 - September 2025"
   image: "projects/placeholder.jpg"
-  link: "#"
+  description: "To be added — a short introduction to this project: the problem, the method, and the results."
+  order: 202507
 
 - title: "Project 05"
+  source: "Course Project — Independently Completed"
+  period: "March 2025 - June 2025"
   image: "projects/placeholder.jpg"
-  link: "#"
+  description: "To be added — a short introduction to this project: the problem, the method, and the results."
+  order: 202503
 
 - title: "Project 06"
+  source: "Innovation and Entrepreneurship Training Program — Collaboratively Completed"
+  period: "December 2024 - June 2025"
   image: "projects/placeholder.jpg"
-  link: "#"
+  description: "To be added — a short introduction to this project: the problem, the method, and the results."
+  order: 202412
 
 - title: "Project 07"
+  source: "Course Project — Collaboratively Completed"
+  period: "September 2024 - December 2024"
   image: "projects/placeholder.jpg"
-  link: "#"
+  description: "To be added — a short introduction to this project: the problem, the method, and the results."
+  order: 202409
 
 - title: "Project 08"
+  source: "Student Research Training Program — Independently Completed"
+  period: "March 2024 - September 2024"
   image: "projects/placeholder.jpg"
-  link: "#"
+  description: "To be added — a short introduction to this project: the problem, the method, and the results."
+  order: 202403
 
 - title: "Project 09"
+  source: "Course Project — Collaboratively Completed"
+  period: "September 2023 - December 2023"
   image: "projects/placeholder.jpg"
-  link: "#"
+  description: "To be added — a short introduction to this project: the problem, the method, and the results."
+  order: 202309
 
 - title: "Project 10"
+  source: "Course Project — Independently Completed"
+  period: "March 2023 - June 2023"
   image: "projects/placeholder.jpg"
-  link: "#"
-
-- title: "Project 11"
-  image: "projects/placeholder.jpg"
-  link: "#"
-
-- title: "Project 12"
-  image: "projects/placeholder.jpg"
-  link: "#"
-
-- title: "Project 13"
-  image: "projects/placeholder.jpg"
-  link: "#"
-
-- title: "Project 14"
-  image: "projects/placeholder.jpg"
-  link: "#"
-
-- title: "Project 15"
-  image: "projects/placeholder.jpg"
-  link: "#"
-
-- title: "Project 16"
-  image: "projects/placeholder.jpg"
-  link: "#"
-
-- title: "Project 17"
-  image: "projects/placeholder.jpg"
-  link: "#"
-
-- title: "Project 18"
-  image: "projects/placeholder.jpg"
-  link: "#"
+  description: "To be added — a short introduction to this project: the problem, the method, and the results."
+  order: 202303

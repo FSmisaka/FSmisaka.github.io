@@ -1,10 +1,10 @@
-# Papers I've read — each entry shows year, domain, core model, title, venue.
+# Papers I read — grouped into sections on the Readings page (5 per page).
 # On hover, the personal takeaway expands. Click for full review (markdown).
 #
 # Fields:
 #   title   – paper title
 #   year    – publication year
-#   domain  – research area (Recommendation Systems / LLMs / Machine Learning / ...)
+#   category – section slug (machine-learning / reinforcement-learning / recommender-system)
 #   model   – core model / method name (e.g. HSTU, OneRec, FlashAttention)
 #   venue   – where it was published (NIPS, ICML, KDD, arxiv, etc.)
 #   excerpt – one-paragraph personal takeaway shown on hover
@@ -13,7 +13,7 @@
 
 - title: "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models"
   year: 2024
-  domain: "LLMs"
+  category: "reinforcement-learning"
   model: "GRPO"
   venue: "arXiv"
   excerpt: "【20261009】"
@@ -21,7 +21,7 @@
 
 - title: "Think Before Recommend: Unleashing the Latent Reasoning Power for Sequential Recommendation"
   year: 2026
-  domain: "Recommendation Systems"
+  category: "recommender-system"
   model: "ReaRec"
   venue: "TKDE"
   excerpt: "【20261007】把序列模型的输出表征反复输回到同一个 SeqRec 来实现'思考'；【ERL】希望集成多步思考的结果：步步思考都能预测（rec损失）、步步思考的分布尽可能有差异（KL散度）；【PRL】希望思考先广泛后聚焦：步步思考都能预测（带温度系数的rec损失）、思考有鲁棒性（加噪表征与不加噪表征算 infoNCE）；【实验】除了基本的对比和消融之外，测试了最优思考步数为 2，验证了思考对短序列 user 和低频 item 收益更大"
@@ -29,7 +29,7 @@
 
 - title: "Adapting Large Language Models by Integrating Collaborative Semantics for Recommendation"
   year: 2024
-  domain: "Recommendation Systems"
+  category: "recommender-system"
   model: "LCRec"
   venue: "ICDE"
   excerpt: "【20261006】相比 RQ-VAE，最后一层使用 Uniform Semantic Mapping 解决索引冲突；相比 TIGER，使用预训练 LLM 而不是 2层 Transformer"
@@ -37,7 +37,7 @@
 
 - title: "Session-based Recommendations With Recurrent Neural Networks"
   year: 2016
-  domain: "Recommendation Systems"
+  category: "recommender-system"
   model: "GRU4Rec"
   venue: "ICLR"
   excerpt: "【20261005】1-layer GRU + session-parallel mini-batch + batch 内负采样 + BPR Loss"
@@ -45,7 +45,7 @@
 
 - title: "Personalized Top-N Sequential Recommendation via Convolutional Sequence Embedding"
   year: 2018
-  domain: "Recommendation Systems"
+  category: "recommender-system"
   model: "Caser"
   venue: "WSDM"
   excerpt: "【20260924】把历史序列拼成一个图，用卷积网络提取两类特征，然后和用户 Emb 拼接，得到用户历史的向量表征；【loss】用户历史表征和样本 Emb 做点积，Loss 是 BCE 之和"
@@ -53,7 +53,7 @@
 
 - title: "Self-Attentive Sequential Recommendation"
   year: 2018
-  domain: "Recommendation Systems"
+  category: "recommender-system"
   model: "SASRec"
   venue: "ICDM"
   excerpt: "【20260922】Self Attention + BCE Loss；【loss】每一步模型输出截止该时间步的用户历史表征，和样本 Emb 做点积，Loss 是 BCE 之和"
@@ -61,7 +61,7 @@
 
 - title: "Reasoning over Semantic IDs Enhances Generative  Recommendation"
   year: 2026
-  domain: "Recommendation Systems"
+  category: "recommender-system"
   model: "SIDReasoner"
   venue: "KDD"
   excerpt: "【20260917】离线准备 SID + SID-语言对齐 + 强化推理；【离线准备 SID】item -> Emb -> SID -> LLM Vocab；【对齐】用 teacher 模型生成语料 -> “多任务” SFT；【强化推理】冷启动 SFT 学习生成格式 -> GRPO 学习思维链"
@@ -69,7 +69,7 @@
 
 - title: "Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers  for Generative Recommendations"
   year: 2024
-  domain: "Recommendation Systems"
+  category: "recommender-system"
   model: "HSTU"
   venue: "ICML"
   excerpt: "【20260904】不使用特征，而是将它还原成比较原始的动作序列（item、动作、item、动作、...）；【训练】召回任务是预测 item，排序任务是预测动作；【架构】改进了 Transformer 为 HSTU"
@@ -77,7 +77,7 @@
 
 - title: "Recommender Systems with Generative Retrieval"
   year: 2023
-  domain: "Recommendation Systems"
+  category: "recommender-system"
   model: "TIGER"
   venue: "NIPS"
   excerpt: "【20260901】TIGER = RQ-VAE + Seq2Seq模型"
@@ -85,7 +85,7 @@
 
 - title: "A Survey of Generative Recommendation from a Tri-Decoupled Perspective: Tokenization, Architecture, and Optimization"
   year: 2025
-  domain: "Recommendation Systems"
+  category: "recommender-system"
   model: "Survey"
   venue: "arXiv"
   excerpt: "【20260715】从 Tokenization (Sparse ID、Text、Semantic ID)、Architecture (Decoder-only、Encoder-decoder、Diffusion)、Optimization (DPO、GRPO) 三个角度总结了近 2 年来的生成式推荐工作。【Why GR】embedding 依赖交互数据，冷启动问题；架构碎片化，MFU 低、难以 scale；优化目标太局部、不一致。【Tokenizer】Sparse ID 没有语义且太稀疏、Text 没办法 grounding 到具体 item、Semantic ID 刚刚好; 【Architeture】Decoder-only 更容易 scale、Encoder-decoder 适合输入输出异构的问题且输入支持双向注意力、Diffusion 是全新的范式; 【Optimization】架构是监督预训练+偏好对齐，现在最主流的对齐方法是 DPO 和 GRPO"

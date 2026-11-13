@@ -1,27 +1,11 @@
-# Notes categories — extensible: add a new entry to create a new category.
-# Each category needs:
-#   name  – display name shown on the card
-#   slug  – used in note frontmatter `category` field and for filtering
-#   icon  – emoji or short text displayed on the Switch-style card
-#   color – card background gradient target (soft pastel recommended)
-#
-# Example new category:
-#   - name: "Computer Vision"
-#     slug: "computer-vision"
-#     icon: "👁️"
-#     color: "#e8f0e8"
+# Notes categories — one section per heading on the Notes page.
+# Each note in _notes/ declares one of these slugs in its `category` field.
 
 - name: "Machine Learning"
   slug: "machine-learning"
-  icon: "🧠"
-  color: "#dceaf6"
 
-- name: "Recommendation Systems"
-  slug: "recommendation-systems"
-  icon: "🎯"
-  color: "#fef3e4"
+- name: "Reinforcement Learning"
+  slug: "reinforcement-learning"
 
-- name: "LLMs"
-  slug: "llms"
-  icon: "🤖"
-  color: "#ede4f6"
+- name: "Recommender System"
+  slug: "recommender-system"

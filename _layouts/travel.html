@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+<article itemscope itemtype="http://schema.org/CreativeWork">
+  <div class="article-wrap" itemprop="text">
+
+    {% for group in site.data.travel %}
+    <h2 id="{{ group.continent | slugify }}">{{ group.continent }}</h2>
+
+    {% if group.trips.size > 0 %}
+    <ul class="travel-list">
+      {% for trip in group.trips %}
+      <li class="trip">
+        <span class="trip-meta">{% if trip.date != "" %}{{ trip.date }}{% if trip.place %} &middot; {% endif %}{% endif %}{{ trip.place }}</span>
+        <span class="trip-title">{{ trip.title }}</span>
+        <div class="trip-photos" aria-hidden="true">
+          {% for i in (0..7) %}
+            {% assign photo = trip.photos[i] %}
+            {% if photo %}
+            <img class="trip-photo" src="{{ '/images/' | append: photo | relative_url }}" alt="" loading="lazy">
+            {% else %}
+            <span class="trip-photo trip-photo--empty"></span>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="readings-empty">No trips yet.</p>
+    {% endif %}
+
+    {% unless forloop.last %}<hr />{% endunless %}
+    {% endfor %}
+
+  </div><!-- /.article-wrap -->
+</article>

@@ -1,14 +1,8 @@
-# The following is the order of the links in the header of the website.
-#
-# Changing the order here will adjust the order and you can also add additional
-# links. Removing a link prevents it from showing in the header, but does not
-# prevent it from being included in the site.
-#
-# NOTE that only one of the CV options should be selected, the first is for the
-#      Markdown formatted page while the second is generated using JSON.
+# Main navigation — order matches the top navigation bar.
+# Style follows linyife.github.io: uppercase PT Sans Narrow, current page overlined.
 
 main:
-  - title: "Home"
+  - title: "About Me"
     url: /
 
   - title: "Projects"
@@ -17,5 +11,14 @@ main:
   - title: "Notes"
     url: /notes/
 
-  - title: "Papers"
+  - title: "Readings"
     url: /papers/
+
+  - title: "Awards"
+    url: /awards/
+
+  - title: "Travel"
+    url: /travel/
+
+  - title: "Hobbies"
+    url: /hobbies/

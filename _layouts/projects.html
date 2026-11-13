@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<article itemscope itemtype="http://schema.org/CreativeWork">
+  <div class="article-wrap" itemprop="text">
+    <div id="projects-list" aria-label="Projects">
+      {% comment %}Populated by JS — 3 projects per page{% endcomment %}
+    </div>
+
+    <nav class="holder" id="projects-pagination" aria-label="Projects pagination">
+      {% comment %}Populated by JS{% endcomment %}
+    </nav>
+  </div><!-- /.article-wrap -->
+</article>
+
+{% comment %}Embed projects data as JSON for client-side pagination.{% endcomment %}
+<script id="projects-data" type="application/json">
+{"projects":[{% for p in site.data.projects %}{"title":{{ p.title | jsonify }},"source":{{ p.source | jsonify }},"period":{{ p.period | jsonify }},"image":{{ p.image | jsonify }},"description":{{ p.description | jsonify }},"order":{{ p.order | default: 0 }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}</script>
+
+<script src="{{ '/assets/js/projects-list.js' | relative_url }}"></script>

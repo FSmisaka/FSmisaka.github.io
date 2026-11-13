@@ -1,104 +1,64 @@
 ---
-layout: compress
+layout: default
 ---
 
 {% include base_path %}
 
-<!doctype html>
-<html lang="{{ site.locale | slice: 0,2 }}" class="no-js"{% if site.site_theme == "dark" %} data-theme="dark"{% endif %}>
-  <head>
-    {% include head.html %}
-    {% include head/custom.html %}
+<article itemscope itemtype="http://schema.org/CreativeWork">
+  <div class="article-wrap" itemprop="text">
 
-    <!-- Additional serif fonts for note detail pages -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-  </head>
+    <p class="detail-back"><a href="{{ '/notes/' | relative_url }}">&larr; Notes</a></p>
 
-  <body class="note-detail-body">
-    <!-- Single back button: category chip at top-left -->
-    {% assign cat = site.data.notes_categories | where: "slug", page.category | first %}
-    {% if cat %}
-    <a href="{{ '/notes/' | relative_url }}?category={{ cat.slug }}" class="note-back-link" style="--tag-color: {{ cat.color }};" aria-label="Back to {{ cat.name }} notes">
-      <span class="note-back-arrow">←</span>
-      <span class="note-category-tag__icon">{{ cat.icon }}</span>
-      <span class="note-category-tag__name">{{ cat.name }}</span>
-    </a>
-    {% else %}
-    <a href="{{ '/notes/' | relative_url }}" class="note-back-link" aria-label="Back to notes">
-      <span class="note-back-arrow">←</span>
-      <span class="note-back-label">Notes</span>
-    </a>
-    {% endif %}
+    <header class="detail-header">
+      <h1 class="detail-title" itemprop="headline">{{ page.title }}</h1>
+      {% if page.date %}
+      <p class="detail-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time></p>
+      {% endif %}
+      <hr />
+    </header>
 
-    <main class="note-paper" aria-labelledby="note-title">
-      <!-- Paper stack header — suggests a stack of pages at the top -->
-      <div class="note-paper-top" aria-hidden="true">
-        <div class="note-paper-top__sheet note-paper-top__sheet--back"></div>
-        <div class="note-paper-top__sheet note-paper-top__sheet--mid"></div>
-      </div>
+    <div class="note-body" itemprop="text">
+      {{ content }}
+    </div>
 
-      <article class="note-content">
-        <header class="note-header">
-          <h1 id="note-title" class="note-title">{{ page.title }}</h1>
-          {% if page.date %}
-          <time class="note-date" datetime="{{ page.date | date_to_xmlschema }}">
-            {{ page.date | date: "%B %d, %Y" }}
-          </time>
-          {% endif %}
-          {% if page.excerpt %}
-          <p class="note-excerpt">{{ page.excerpt }}</p>
-          {% endif %}
-          <hr class="note-divider" aria-hidden="true">
-        </header>
+    <p class="detail-back"><a href="{{ '/notes/' | relative_url }}">&larr; Back to Notes</a></p>
+  </div><!-- /.article-wrap -->
+</article>
 
-        <div class="note-body">
-          {{ content }}
-        </div>
-      </article>
-    </main>
+<!-- TOC + back-to-top (shared JS) -->
+<script defer src="{{ '/assets/js/detail-page.js' | relative_url }}"></script>
 
-    <footer class="note-footer">
-      <a href="{{ '/notes/' | relative_url }}?category={{ page.category | default: '' }}" class="note-footer-link">← Back to notes</a>
-    </footer>
-
-    <!-- TOC + back-to-top (shared JS) -->
-    <script defer src="{{ '/assets/js/detail-page.js' | relative_url }}"></script>
-
-    <!--
-      kramdown with math_engine:mathjax wraps $...$ in <script type="math/tex"> tags.
-      MathJax 3 doesn't process those — convert back to standard delimiters first.
-    -->
-    <script defer>
-      (function() {
-        document.querySelectorAll('script[type="math/tex; mode=display"]').forEach(function(el) {
-          var div = document.createElement('div');
-          div.textContent = '$$' + el.textContent + '$$';
-          el.parentNode.replaceChild(div, el);
-        });
-        document.querySelectorAll('script[type="math/tex"]').forEach(function(el) {
-          var span = document.createElement('span');
-          span.textContent = '$' + el.textContent + '$';
-          el.parentNode.replaceChild(span, el);
-        });
-      })();
-    </script>
-    <!-- MathJax config: must appear BEFORE the MathJax script -->
-    <script>
-      window.MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']],
-          displayMath: [['$$', '$$'], ['\\[', '\\]']],
-          processEscapes: true,
-          processEnvironments: true
-        },
-        options: {
-          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-        }
-      };
-    </script>
-    <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
-  </body>
-</html>
+<!--
+  kramdown with math_engine:mathjax wraps $...$ in <script type="math/tex"> tags.
+  MathJax 3 doesn't process those — convert back to standard delimiters first.
+-->
+<script defer>
+  (function() {
+    document.querySelectorAll('script[type="math/tex; mode=display"]').forEach(function(el) {
+      var div = document.createElement('div');
+      div.textContent = '$$' + el.textContent + '$$';
+      el.parentNode.replaceChild(div, el);
+    });
+    document.querySelectorAll('script[type="math/tex"]').forEach(function(el) {
+      var span = document.createElement('span');
+      span.textContent = '$' + el.textContent + '$';
+      el.parentNode.replaceChild(span, el);
+    });
+  })();
+</script>
+<!-- MathJax config: must appear BEFORE the MathJax script -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+<script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>

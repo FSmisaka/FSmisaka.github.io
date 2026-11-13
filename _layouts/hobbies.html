@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+<article itemscope itemtype="http://schema.org/CreativeWork">
+  <div class="article-wrap" itemprop="text">
+
+    {% for group in site.data.hobbies %}
+    <h2 id="{{ group.category | slugify }}">{{ group.category }}</h2>
+
+    {% if group.items.size > 0 %}
+    <ul class="travel-list">
+      {% for item in group.items %}
+      <li class="trip">
+        <span class="trip-meta">{% if item.date != "" %}{{ item.date }}{% if item.place %} &middot; {% endif %}{% endif %}{{ item.place }}</span>
+        <span class="trip-title">{{ item.title }}</span>
+        <div class="trip-photos" aria-hidden="true">
+          {% for i in (0..7) %}
+            {% assign photo = item.photos[i] %}
+            {% if photo %}
+            <img class="trip-photo" src="{{ '/images/' | append: photo | relative_url }}" alt="" loading="lazy">
+            {% else %}
+            <span class="trip-photo trip-photo--empty"></span>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="readings-empty">No records yet.</p>
+    {% endif %}
+
+    {% unless forloop.last %}<hr />{% endunless %}
+    {% endfor %}
+
+  </div><!-- /.article-wrap -->
+</article>

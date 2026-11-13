@@ -1,0 +1,22 @@
+{% include base_path %}
+
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="{{ base_path }}/">{{ site.title }}</a>
+	</div><!-- /.site-name -->
+
+	<div class="top-navigation">
+		<nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+		    <ul>
+		        {% for link in site.data.navigation.main %}
+		        {% assign is_current = '' %}
+		        {% if link.url == '/' %}
+		          {% if page.url == '/' %}{% assign is_current = 'top-navigation-current' %}{% endif %}
+		        {% elsif page.url contains link.url %}
+		          {% assign is_current = 'top-navigation-current' %}{% endif %}
+            <li><a href="{{ base_path }}{{ link.url }}"{% if is_current != '' %} class="{{ is_current }}"{% endif %}>{{ link.title }}</a></li>
+		        {% endfor %}
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->

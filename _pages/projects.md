@@ -1,10 +1,9 @@
 ---
 permalink: /projects/
 title: "Projects"
-layout: project-wall
+layout: projects
 author_profile: false
 
-# Shelf configuration — change these to adjust rows / columns
-shelf_rows: 3
-shelf_cols: 6
+# Projects are listed newest → oldest, 3 per page.
+# Edit the entries in _data/projects.yml
 ---

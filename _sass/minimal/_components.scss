@@ -1,0 +1,626 @@
+/* ==========================================================================
+   Components - page-specific pieces in the minimal style:
+   projects (paginated), notes list, readings list, detail pages,
+   TOC / back-to-top, coding ledger
+   ========================================================================== */
+
+/* -- Education list (About page) ---------------------------- */
+
+.edu-list {
+  margin-bottom: 1.5em;
+  padding-left: 0;
+}
+
+.edu-list li {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15em 0.6em;
+  margin-bottom: 0.6em;
+}
+
+.edu-logo {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  flex: none;
+}
+
+.edu-time {
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #9a9a98;
+  font-size: 0.9rem;
+  min-width: 4.8em;
+}
+
+.edu-school {
+  flex: 1 1 auto;
+}
+
+/* -- Notes page --------------------------------------------- */
+
+.notes-list {
+  margin-bottom: 1.5em;
+}
+
+.notes-list li {
+  margin-bottom: 0.4em;
+}
+
+.notes-list time {
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #7a7a78;
+  margin-right: 0.6em;
+}
+
+/* -- Projects page ------------------------------------------ */
+
+.project-entry__title {
+  /* h2 - same face & size as the Scholarships heading on Awards */
+  margin-bottom: 0.4em;
+}
+
+.project-entry__source {
+  margin: 0 0 0.3em;
+}
+
+.project-entry__period {
+  margin: 0 0 1em;
+}
+
+.project-entry__figure {
+  margin: 0 0 1.5em;
+}
+
+.project-entry__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #e6e6e6;
+}
+
+.project-entry__description {
+  margin: 0 0 1.5em;
+}
+
+/* Pagination - jPaginate holder style from the reference site */
+.holder {
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  margin: 2.5em 0 1.5em;
+  text-align: center;
+}
+
+.holder button {
+  background: none;
+  border: none;
+  padding: 2px 5px;
+  margin: 0 5px;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #343434;
+  cursor: pointer;
+}
+
+.holder button:hover {
+  color: #1a1a1a;
+}
+
+.holder button.jp-current {
+  font-weight: 700;
+  text-decoration: overline;
+  cursor: default;
+}
+
+.holder button[disabled] {
+  color: #b3b3b1;
+  cursor: default;
+}
+
+.holder .jp-ellipsis {
+  margin: 0 5px;
+  color: #b3b3b1;
+}
+
+.holder .pagination-arrow.jp-previous {
+  margin-left: 0;
+  margin-right: 15px;
+}
+
+.holder .pagination-arrow.jp-next {
+  margin-left: 15px;
+  margin-right: 0;
+}
+
+/* -- Readings page ------------------------------------------ */
+
+.readings-list {
+  margin-bottom: 1.5em;
+}
+
+.reading-item {
+  margin-bottom: 0.15em;
+}
+
+.reading-meta {
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #7a7a78;
+  margin-right: 0.6em;
+}
+
+.reading-excerpt {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 0.35s ease;
+  -moz-transition: max-height 0.35s ease;
+  -o-transition: max-height 0.35s ease;
+  transition: max-height 0.35s ease;
+}
+
+.reading-item:hover .reading-excerpt,
+.reading-item:focus-within .reading-excerpt {
+  max-height: 30em;
+}
+
+.reading-excerpt-inner {
+  margin: 0.35em 0 0.6em;
+  padding: 0.2em 0 0.2em 1em;
+  border-left: 2px solid #e6e6e6;
+  font-size: 0.9rem;
+  color: #4e4e4e;
+}
+
+.readings-empty {
+  color: #7a7a78;
+  font-style: italic;
+}
+
+/* -- Detail pages (notes & readings) ------------------------ */
+
+.detail-back {
+  font-size: 0.85rem;
+}
+
+.detail-header {
+  margin-bottom: 1.5em;
+}
+
+.detail-title {
+  font-size: 2rem;
+  line-height: 1.15;
+  margin-bottom: 0.4em;
+}
+
+.detail-subtitle {
+  font-style: italic;
+  color: #4e4e4e;
+  margin: 0 0 0.5em;
+}
+
+.detail-meta {
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #7a7a78;
+  font-size: 0.9rem;
+  margin: 0 0 1em;
+}
+
+.detail-meta .paper-meta-chip {
+  margin-right: 0.75em;
+}
+
+/* compact heading scale for note/review bodies */
+.note-body h1 {
+  font-size: 1.3333333333333333rem;
+  margin: 1.8em 0 0.6em;
+}
+
+.note-body h2 {
+  font-size: 1.1666666666666667rem;
+  margin: 1.6em 0 0.55em;
+}
+
+.note-body h3 {
+  font-size: 1rem;
+  margin: 1.4em 0 0.5em;
+}
+
+.note-body h4,
+.note-body h5,
+.note-body h6 {
+  font-size: 0.9rem;
+  margin: 1.2em 0 0.5em;
+}
+
+.note-body ul,
+.note-body ol {
+  margin: 0 0 1.5em;
+}
+
+/* -- TOC sidebar + back-to-top (assets/js/detail-page.js) --- */
+
+.toc-sidebar {
+  position: fixed;
+  right: 14px;
+  top: 50%;
+  /* padding keeps hover alive while the pointer travels from a dash
+     to the panel - the panel sits flush against this box */
+  padding: 10px 0 10px 16px;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 50;
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+.toc-dashes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.toc-dash {
+  display: block;
+  height: 2px;
+  background: #c8c8c6;
+  cursor: pointer;
+  -webkit-transition: background 0.2s;
+  -moz-transition: background 0.2s;
+  -o-transition: background 0.2s;
+  transition: background 0.2s;
+}
+
+.toc-dash:hover {
+  background: #7a7a78;
+}
+
+.toc-dash.is-active {
+  background: #333332;
+}
+
+.toc-dash--l1 { width: 26px; }
+.toc-dash--l2 { width: 20px; }
+.toc-dash--l3 { width: 14px; }
+.toc-dash--l4,
+.toc-dash--l5,
+.toc-dash--l6 { width: 9px; }
+
+.toc-panel {
+  display: none;
+  position: absolute;
+  right: 100%;
+  top: 0;
+  width: 230px;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  padding: 10px 14px;
+  font-size: 0.8rem;
+}
+
+.toc-sidebar:hover .toc-panel {
+  display: block;
+}
+
+.toc-panel__title {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  margin-bottom: 0.4em;
+}
+
+.toc-link {
+  display: block;
+  color: #343434;
+  padding: 2px 0;
+}
+
+.toc-link:hover {
+  color: #1a1a1a;
+  border-bottom: 0 solid transparent;
+}
+
+.toc-link.is-active {
+  font-weight: 700;
+  text-decoration: overline;
+}
+
+@media (max-width: 1220px) {
+  .toc-sidebar {
+    display: none;
+  }
+}
+
+.back-to-top {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #333332;
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  -o-transition: all 0.25s;
+  transition: all 0.25s;
+  z-index: 60;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  border-color: #333332;
+}
+
+/* -- Coding Ledger (About page) ----------------------------- */
+
+.coding-ledger {
+  margin: 0 0 1.5em;
+}
+
+.ledger-block {
+  margin: 0 0 2.5em;
+}
+
+.ledger-block__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.4em 1em;
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 0.4em;
+  margin-bottom: 1em;
+}
+
+.ledger-block__title {
+  margin: 0;
+  font-size: 1.3333333333333333rem;
+}
+
+.ledger-block__title-sub {
+  font-weight: 400;
+  font-size: 0.8em;
+  color: #7a7a78;
+}
+
+.ledger-years {
+  display: flex;
+  gap: 2px;
+}
+
+.ledger-years__btn {
+  background: none;
+  border: none;
+  padding: 1px 6px;
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 0.85rem;
+  color: #7a7a78;
+  cursor: pointer;
+}
+
+.ledger-years__btn:hover {
+  color: #1a1a1a;
+}
+
+.ledger-years__btn.is-active {
+  font-weight: 700;
+  color: #333332;
+  text-decoration: overline;
+  cursor: default;
+}
+
+.ledger-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em 2em;
+  margin: 0 0 1em;
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+.ledger-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45em;
+}
+
+.ledger-stat__num {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ledger-stat__label {
+  font-size: 0.72rem;
+  color: #7a7a78;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ledger-heatmap {
+  overflow-x: auto;
+  margin-bottom: 0.75em;
+  -webkit-transition: opacity 0.14s;
+  -moz-transition: opacity 0.14s;
+  -o-transition: opacity 0.14s;
+  transition: opacity 0.14s;
+}
+
+.ledger-heatmap svg {
+  display: block;
+  width: 100%;
+  min-width: 600px;
+  height: auto;
+}
+
+.ledger-heatmap svg text {
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 9px;
+  fill: #9a9a98;
+}
+
+.ledger-block__foot {
+  font-size: 0.85rem;
+  color: #7a7a78;
+  margin: 0 0 0.5em;
+}
+
+.ledger-block__empty {
+  color: #b3b3b1;
+  font-style: italic;
+}
+
+/* LeetCode plate */
+.ledger-lc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2em 1.8em;
+  margin-bottom: 1em;
+}
+
+.ledger-lc__ring {
+  position: relative;
+  width: 94px;
+  height: 94px;
+  flex: none;
+}
+
+.ledger-lc__ring svg {
+  display: block;
+}
+
+.ledger-lc__ring-label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  line-height: 1.1;
+}
+
+.ledger-lc__ring-num {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.ledger-lc__ring-sub {
+  font-size: 0.62rem;
+  color: #7a7a78;
+  text-transform: uppercase;
+}
+
+.ledger-lc__side {
+  flex: 1 1 220px;
+}
+
+.ledger-lc__bar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin: 0.35em 0;
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 0.8rem;
+}
+
+.ledger-lc__bar-label {
+  width: 3.4em;
+}
+
+.ledger-lc__bar-track {
+  flex: 1;
+  height: 6px;
+  background: #ededed;
+}
+
+.ledger-lc__bar-fill {
+  display: block;
+  height: 100%;
+  -webkit-transition: width 0.8s ease;
+  -moz-transition: width 0.8s ease;
+  -o-transition: width 0.8s ease;
+  transition: width 0.8s ease;
+}
+
+.ledger-lc__bar-fill--easy { background: #c8c8c6; }
+.ledger-lc__bar-fill--medium { background: #8a8a88; }
+.ledger-lc__bar-fill--hard { background: #333332; }
+
+.ledger-lc__streak,
+.ledger-lc__langs {
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 0.75rem;
+  color: #7a7a78;
+  margin: 0.5em 0 0;
+}
+
+.ledger-note {
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 0.75rem;
+  color: #b3b3b1;
+  text-align: center;
+}
+
+/* -- Travel page -------------------------------------------- */
+
+.trip-meta {
+  font-family: 'PT Sans Narrow', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #9a9a98;
+  margin-right: 0.6em;
+}
+
+.trip-photos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  -webkit-transition: max-height 0.35s ease, padding 0.35s ease;
+  -moz-transition: max-height 0.35s ease, padding 0.35s ease;
+  -o-transition: max-height 0.35s ease, padding 0.35s ease;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+}
+
+.trip:hover .trip-photos {
+  max-height: 340px;
+  padding: 0.5em 0 1em;
+}
+
+.trip-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid #e6e6e6;
+  background: #ededed;
+}
+
+.trip-photo--empty {
+  display: block;
+  border: 1px solid #e6e6e6;
+  background: #ededed;
+}
+
+@media (max-width: 600px) {
+  .trip-photos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

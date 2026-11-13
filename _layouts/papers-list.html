@@ -1,48 +1,40 @@
 ---
-layout: compress
+layout: default
 ---
 
 {% include base_path %}
 
-<!doctype html>
-<html lang="{{ site.locale | slice: 0,2 }}" class="no-js"{% if site.site_theme == "dark" %} data-theme="dark"{% endif %}>
-  <head>
-    {% include head.html %}
-    {% include head/custom.html %}
-  </head>
+<article itemscope itemtype="http://schema.org/CreativeWork">
+  <div class="article-wrap" itemprop="text">
 
-  <body class="papers-list-body">
-    <a href="{{ '/' | relative_url }}" class="door-knob" aria-label="Back to home">
-      <span class="door-knob__handle"></span>
-      <span class="door-knob__plate"></span>
-    </a>
+    {% for cat in site.data.notes_categories %}
+    {% assign cat_papers = site.data.papers | where: "category", cat.slug %}
+    <h2 id="{{ cat.slug }}">{{ cat.name }}</h2>
 
-    <main class="papers-main">
-      <header class="papers-header">
-        <h1 class="papers-title">Readings</h1>
-        <p class="papers-subtitle">What I've been reading</p>
-        <div class="papers-domain-filter" id="domain-filter">
-          <button class="domain-chip is-active" data-domain="all">All</button>
-          {% assign domains = site.data.papers | map: "domain" | uniq | sort %}
-          {% for d in domains %}
-          <button class="domain-chip" data-domain="{{ d | slugify }}">{{ d }}</button>
-          {% endfor %}
+    {% if cat_papers.size == 0 %}
+    <p class="readings-empty">No readings yet.</p>
+    {% else %}
+    <ul class="readings-list" data-paginate>
+      {% for p in cat_papers %}
+      {% capture href %}{% if p.file %}{{ '/papers/' | append: p.file | append: '/' | relative_url }}{% elsif p.url %}{{ p.url }}{% else %}#{% endif %}{% endcapture %}
+      <li class="reading-item">
+        <span class="reading-meta">{{ p.year }} &middot; {{ p.venue }}</span>
+        <a class="reading-title" href="{{ href }}">{{ p.title }}</a>
+        {% if p.excerpt and p.excerpt != "" %}
+        <div class="reading-excerpt">
+          <div class="reading-excerpt-inner">{{ p.excerpt | escape }}</div>
         </div>
-      </header>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    <nav class="holder" aria-label="{{ cat.name }} readings pagination"></nav>
+    {% endif %}
 
-      <div class="papers-list" id="papers-list" aria-label="Paper entries">
-        {% comment %}Populated by JS{% endcomment %}
-      </div>
+    {% unless forloop.last %}<hr />{% endunless %}
+    {% endfor %}
 
-      <nav class="papers-pagination" id="papers-pagination" aria-label="Paper list pagination">
-        {% comment %}Populated by JS{% endcomment %}
-      </nav>
-    </main>
+  </div><!-- /.article-wrap -->
+</article>
 
-    {% comment %}Embed papers data as JSON{% endcomment %}
-    <script id="papers-data" type="application/json">
-    {"papers":[{% for p in site.data.papers %}{"title":{{ p.title | jsonify }},"year":{{ p.year | jsonify }},"domain":{{ p.domain | jsonify }},"model":{{ p.model | jsonify }},"venue":{{ p.venue | jsonify }},"excerpt":{{ p.excerpt | jsonify }}{% if p.file %},"file":"{{ p.file }}"{% endif %}{% if p.url %},"url":{{ p.url | jsonify }}{% endif %}}{% unless forloop.last %},{% endunless %}{% endfor %}]}</script>
-
-    <script src="{{ '/assets/js/papers-list.js' | relative_url }}"></script>
-  </body>
-</html>
+<script defer src="{{ '/assets/js/section-paginator.js' | relative_url }}"></script>

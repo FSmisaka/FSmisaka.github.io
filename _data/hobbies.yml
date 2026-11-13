@@ -1,0 +1,29 @@
+# Hobbies — grouped by category on the Hobbies page.
+#
+# Same record format as _data/travel.yml:
+#   date   – year / month, shown in gray BEFORE the place (e.g. "2025 Jun")
+#   place  – where it happened, shown in gray
+#   title  – the description / strongest feeling, shown in black
+#   photos – up to 8 image paths under /images/ (hover reveals a 2x4 grid);
+#            missing entries render as neutral placeholder tiles
+#
+# Categories with no records show "No records yet." — fill in the items lists.
+
+- category: "Sports"
+  items:
+    - date: "2025 Jun"
+      place: "Beijing, China"
+      title: "Example record — describe the moment you remember here."
+      photos: []
+
+- category: "Student Affairs"
+  items: []
+
+- category: "Games"
+  items: []
+
+- category: "Music"
+  items: []
+
+- category: "Drawing"
+  items: []

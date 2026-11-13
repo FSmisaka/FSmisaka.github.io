@@ -1,40 +1,29 @@
 /* ==========================================================================
-   Coding Ledger — scroll crossfade + zine heatmaps (home page)
-   Vanilla JS; works with the home-poster layout.
+   Coding Ledger — GitHub contribution wall + LeetCode practice log
+   Vanilla JS; renders on load (no scroll choreography).
 
-   Two chapters: the hero poster fades away while the ledger rises.
    Data is injected as committed snapshots next to the site (see
    scripts/fetch_contrib_data.py — refreshed daily by GitHub Actions).
    ========================================================================== */
 
 (function () {
-  /* DOM refs */
-  var hero = document.querySelector('.zine-hero-stage .zine-poster');
-  var ledgerFade = document.querySelector('.zine-ledger__fade');
-  var ledgerItems = Array.prototype.slice.call(
-    document.querySelectorAll('.zine-ledger__item')
-  );
-  var hint = document.querySelector('.zine-scroll-hint');
+  var root = document.getElementById('coding-ledger');
+  if (!root) return;
 
-  if (!hero || !ledgerFade) return;
-
-  var ghWrap = document.getElementById('zine-github-heatmap');
-  var ghTotal = document.getElementById('zine-github-total');
-  var ghYears = document.getElementById('zine-years');
-  var ghStatTotal = document.getElementById('zine-gh-stat-total');
-  var ghStatStreak = document.getElementById('zine-gh-stat-streak');
-  var ghStatDays = document.getElementById('zine-gh-stat-days');
-  var ghStatSocial = document.getElementById('zine-gh-stat-social');
-  var lcRing = document.getElementById('zine-lc-ring');
-  var lcBars = document.getElementById('zine-lc-bars');
-  var lcStreak = document.getElementById('zine-lc-streak');
-  var lcLangs = document.getElementById('zine-lc-langs');
-  var lcWrap = document.getElementById('zine-lc-heatmap');
-  var lcTotal = document.getElementById('zine-lc-total');
-  var refreshDate = document.getElementById('zine-refresh-date');
-
-  /* ── motion preference ── */
-  var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var ghWrap = document.getElementById('gh-heatmap');
+  var ghTotal = document.getElementById('gh-total');
+  var ghYears = document.getElementById('gh-years');
+  var ghStatTotal = document.getElementById('gh-stat-total');
+  var ghStatStreak = document.getElementById('gh-stat-streak');
+  var ghStatDays = document.getElementById('gh-stat-days');
+  var ghStatSocial = document.getElementById('gh-stat-social');
+  var lcRing = document.getElementById('lc-ring');
+  var lcBars = document.getElementById('lc-bars');
+  var lcStreak = document.getElementById('lc-streak');
+  var lcLangs = document.getElementById('lc-langs');
+  var lcWrap = document.getElementById('lc-heatmap');
+  var lcTotal = document.getElementById('lc-total');
+  var refreshDate = document.getElementById('lc-refresh-date');
 
   /* ── data ── */
   var ghData = null;
@@ -52,14 +41,6 @@
   }
 
   /* ── helpers ── */
-  function clamp01(x) {
-    return x < 0 ? 0 : x > 1 ? 1 : x;
-  }
-
-  function easeInOut(t) {
-    return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-  }
-
   function esc(s) {
     return String(s).replace(/[&<>"]/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
@@ -82,16 +63,14 @@
   }
 
   var todayIso = new Date().toISOString().slice(0, 10);
-  var todayEpochDay = Math.floor(Date.now() / 86400000);
 
   function epochIso(day) {
     return new Date(day * 86400000).toISOString().slice(0, 10);
   }
 
-  /* ── heatmap grid (shared by GitHub + LeetCode) ── */
+  /* ── heatmap grid (shared by GitHub + LeetCode) — monochrome on white ── */
   var G = { cell: 10, gap: 3, padL: 28, padT: 15, padB: 8 };
-  var LEVEL_FILLS = ['#2c2416', '#ddd2bd', '#b3a184', '#86704f', '#d4453b'];
-  var LEVEL_OPACITY = [0.07, 1, 1, 1, 1];
+  var LEVEL_FILLS = ['#ededed', '#c8c8c6', '#a0a09e', '#6e6e6c', '#333332'];
   var UNIT = G.cell + G.gap;
 
   function heatSVG(weeks, ariaLabel, noun) {
@@ -138,7 +117,7 @@
         parts.push(
           '<rect x="' + (G.padL + c * UNIT) + '" y="' + (G.padT + row * UNIT) +
           '" width="' + G.cell + '" height="' + G.cell + '" rx="2" fill="' +
-          LEVEL_FILLS[lvl] + '" fill-opacity="' + LEVEL_OPACITY[lvl] + '">' +
+          LEVEL_FILLS[lvl] + '">' +
           '<title>' + esc(tip) + '</title></rect>'
         );
       }
@@ -150,7 +129,7 @@
   /* ── GitHub chapter ── */
   function renderGithub() {
     if (!ghData || !ghData.calendars || !ghData.calendars.length) {
-      if (ghWrap) ghWrap.innerHTML = '<p class="zine-plate__empty">— contribution data unavailable —</p>';
+      if (ghWrap) ghWrap.innerHTML = '<p class="ledger-block__empty">— contribution data unavailable —</p>';
       return;
     }
     var calendars = ghData.calendars.slice().sort(function (a, b) {
@@ -162,7 +141,7 @@
       ghYears.innerHTML = calendars
         .map(function (cal) {
           return (
-            '<button type="button" class="zine-years__btn" data-year="' + cal.year + '">' +
+            '<button type="button" class="ledger-years__btn" data-year="' + cal.year + '">' +
             cal.year + '</button>'
           );
         })
@@ -171,7 +150,7 @@
         b.classList.toggle('is-active', +b.getAttribute('data-year') === currentYear);
       });
       ghYears.addEventListener('click', function (ev) {
-        var btn = ev.target.closest('.zine-years__btn');
+        var btn = ev.target.closest('.ledger-years__btn');
         if (!btn) return;
         var year = +btn.getAttribute('data-year');
         if (year === currentYear) return;
@@ -267,11 +246,11 @@
 
   /* ── LeetCode chapter ── */
   var currentLcYear = null;
-  var lcYears = document.getElementById('zine-lc-years');
+  var lcYears = document.getElementById('lc-years');
 
   function renderLeetcode() {
     if (!lcData || !lcData.solved) {
-      if (lcWrap) lcWrap.innerHTML = '<p class="zine-plate__empty">— practice data unavailable —</p>';
+      if (lcWrap) lcWrap.innerHTML = '<p class="ledger-block__empty">— practice data unavailable —</p>';
       return;
     }
     var solved = lcData.solved;
@@ -284,14 +263,14 @@
       var sw = 7;
       lcRing.innerHTML =
         '<svg viewBox="0 0 94 94" aria-hidden="true">' +
-        '<circle cx="47" cy="47" r="' + R + '" fill="none" stroke="rgba(44,36,22,0.09)" stroke-width="' + sw + '"></circle>' +
-        '<circle id="zine-lc-ring-progress" cx="47" cy="47" r="' + R + '" fill="none" stroke="#d4453b" ' +
+        '<circle cx="47" cy="47" r="' + R + '" fill="none" stroke="#ededed" stroke-width="' + sw + '"></circle>' +
+        '<circle id="lc-ring-progress" cx="47" cy="47" r="' + R + '" fill="none" stroke="#333332" ' +
         'stroke-width="' + sw + '" stroke-linecap="round" ' +
         'stroke-dasharray="' + C + '" stroke-dashoffset="' + C + '"></circle>' +
         '</svg>' +
-        '<div class="zine-lc__ring-label">' +
-        '<span class="zine-lc__ring-num">' + esc(solved.total) + '</span>' +
-        '<span class="zine-lc__ring-sub">solved</span>' +
+        '<div class="ledger-lc__ring-label">' +
+        '<span class="ledger-lc__ring-num">' + esc(solved.total) + '</span>' +
+        '<span class="ledger-lc__ring-sub">solved</span>' +
         '</div>';
     }
 
@@ -300,24 +279,23 @@
       function row(label, cls, stat) {
         var p = stat.total ? stat.solved / stat.total * 100 : 0;
         return (
-          '<div class="zine-lc__bar-row">' +
-          '<span class="zine-lc__bar-label">' + label + '</span>' +
-          '<span class="zine-lc__bar-track"><i class="zine-lc__bar-fill ' + cls + '"></i></span>' +
-          '<span class="zine-lc__bar-count">' + stat.solved + ' / ' + stat.total + '</span>' +
+          '<div class="ledger-lc__bar-row">' +
+          '<span class="ledger-lc__bar-label">' + label + '</span>' +
+          '<span class="ledger-lc__bar-track"><i class="ledger-lc__bar-fill ' + cls + '" style="width:' + p + '%"></i></span>' +
+          '<span class="ledger-lc__bar-count">' + stat.solved + ' / ' + stat.total + '</span>' +
           '</div>'
         );
       }
       lcBars.innerHTML =
-        row('Easy', 'zine-lc__bar-fill--easy', solved.easy) +
-        row('Medium', 'zine-lc__bar-fill--medium', solved.medium) +
-        row('Hard', 'zine-lc__bar-fill--hard', solved.hard);
+        row('Easy', 'ledger-lc__bar-fill--easy', solved.easy) +
+        row('Medium', 'ledger-lc__bar-fill--medium', solved.medium) +
+        row('Hard', 'ledger-lc__bar-fill--hard', solved.hard);
     }
 
     /* streak + active days */
     if (lcStreak) {
       var st = lcData.streak || {};
       lcStreak.innerHTML =
-        '<span class="zine-lc__streak-mark"></span>' +
         '<b>' + esc(st.current || 0) + '</b>-day current streak · longest <b>' +
         esc(st.highest || 0) + '</b> · <b>' + esc(lcData.totalActiveDays || 0) + '</b> active days';
     }
@@ -344,7 +322,7 @@
         lcYears.innerHTML = years
           .map(function (y) {
             return (
-              '<button type="button" class="zine-years__btn" data-year="' + y + '">' +
+              '<button type="button" class="ledger-years__btn" data-year="' + y + '">' +
               y + '</button>'
             );
           })
@@ -353,7 +331,7 @@
           b.classList.toggle('is-active', +b.getAttribute('data-year') === currentLcYear);
         });
         lcYears.addEventListener('click', function (ev) {
-          var btn = ev.target.closest('.zine-years__btn');
+          var btn = ev.target.closest('.ledger-years__btn');
           if (!btn) return;
           var y = +btn.getAttribute('data-year');
           if (y === currentLcYear) return;
@@ -371,11 +349,19 @@
     if (lcTotal) {
       lcTotal.textContent = solved.total + ' of ' + solved.totalQuestions + ' solved';
     }
+
+    /* animate the ring sweep once rendered */
+    var ringProg = document.getElementById('lc-ring-progress');
+    if (ringProg) {
+      var C = 2 * Math.PI * 40;
+      window.requestAnimationFrame(function () {
+        ringProg.style.strokeDashoffset = String(C * (1 - pct));
+      });
+    }
   }
 
   function lcYearGrid(year) {
-    /* Sunday-based week columns trimmed to the year — same geometry as the
-       Green-Wall data, so both plates share one grid language */
+    /* Sunday-based week columns trimmed to the year */
     var start = Date.UTC(year, 0, 1) / 86400000;
     var end = Date.UTC(year + 1, 0, 1) / 86400000;
     var sunday = start - ((start - 3 + 7) % 7);
@@ -403,7 +389,7 @@
   }
 
   function assignLevels(weeks) {
-    /* days with 1 submission stay quiet; only real bursts reach vermillion */
+    /* quiet days stay light; only real bursts reach full ink */
     for (var w = 0; w < weeks.length; w++) {
       for (var d = 0; d < weeks[w].length; d++) {
         var v = weeks[w][d][0];
@@ -412,93 +398,6 @@
     }
     return weeks;
   }
-
-  /* one-shot reveal: ring sweep + bars fill when the ledger becomes visible */
-  var revealed = false;
-
-  function reveal() {
-    if (revealed) return;
-    revealed = true;
-
-    var ringProg = document.getElementById('zine-lc-ring-progress');
-    if (ringProg && lcData && lcData.solved) {
-      var total = lcData.solved.totalQuestions || 1;
-      var p = lcData.solved.total / total;
-      var C = 2 * Math.PI * 40;
-      window.requestAnimationFrame(function () {
-        ringProg.style.strokeDashoffset = String(C * (1 - p));
-      });
-    }
-
-    if (lcBars && lcData && lcData.solved) {
-      var fills = lcBars.querySelectorAll('.zine-lc__bar-fill');
-      var stats = [lcData.solved.easy, lcData.solved.medium, lcData.solved.hard];
-      window.requestAnimationFrame(function () {
-        for (var i = 0; i < fills.length; i++) {
-          var s = stats[i];
-          fills[i].style.width = (s && s.total ? s.solved / s.total * 100 : 0) + '%';
-        }
-      });
-    }
-  }
-
-  /* ── scroll choreography ── */
-  var ticking = false;
-  var ITEM_RANGES = [
-    [0.14, 0.70],
-    [0.26, 0.82],
-    [0.38, 0.94],
-    [0.50, 1.05]
-  ];
-
-  function update() {
-    ticking = false;
-    var reduced = motionQuery.matches;
-    var vh = window.innerHeight || 1;
-    var y = window.scrollY || document.documentElement.scrollTop || 0;
-
-    /* hero chapter fades across the first viewport of scroll */
-    var hp = clamp01(y / (vh * 0.92));
-    hero.style.opacity = reduced ? (hp > 0.5 ? '0' : '1') : String(1 - easeInOut(hp));
-    if (!reduced) {
-      hero.style.transform = 'translateY(' + (-4 * hp) + 'vh)';
-    }
-    if (hint) {
-      hint.style.opacity = String(clamp01(1 - hp * 2.4));
-    }
-
-    /* ledger chapter rises over its own viewport of scroll */
-    var rect = ledgerFade.getBoundingClientRect();
-    var t = clamp01(1 - rect.top / vh);
-    var box = easeInOut(clamp01((t - 0.12) / 0.62));
-    ledgerFade.style.opacity = String(box);
-    if (!reduced) {
-      ledgerFade.style.transform = 'translateY(' + ((1 - box) * 3) + 'vh)';
-    }
-
-    /* staggered items inside the ledger */
-    for (var i = 0; i < ledgerItems.length; i++) {
-      var range = ITEM_RANGES[i] || ITEM_RANGES[ITEM_RANGES.length - 1];
-      var q = clamp01((t - range[0]) / (range[1] - range[0]));
-      var e = reduced ? (q > 0.4 ? 1 : 0) : easeInOut(q);
-      ledgerItems[i].style.opacity = String(e);
-      if (!reduced) {
-        ledgerItems[i].style.transform = 'translateY(' + ((1 - e) * 22) + 'px)';
-      }
-    }
-
-    if (box > 0.45) reveal();
-  }
-
-  function onScroll() {
-    if (!ticking) {
-      ticking = true;
-      window.requestAnimationFrame(update);
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
 
   /* ── init ── */
   Promise.all([
@@ -512,6 +411,5 @@
     if (refreshDate && lcData && lcData.updated_at) {
       refreshDate.textContent = fmtDate(lcData.updated_at.slice(0, 10));
     }
-    update();
   });
 })();

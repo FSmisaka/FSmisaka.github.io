@@ -1,6 +1,6 @@
 ---
 title: "RLHF: Aligning LLMs with Human Preferences"
-category: "llms"
+category: "reinforcement-learning"
 date: 2025-06-18
 excerpt: "Understanding Reinforcement Learning from Human Feedback — the technique behind ChatGPT and Claude."
 ---

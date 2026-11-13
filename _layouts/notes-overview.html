@@ -1,70 +1,34 @@
 ---
-layout: compress
+layout: default
 ---
 
 {% include base_path %}
 
-<!doctype html>
-<html lang="{{ site.locale | slice: 0,2 }}" class="no-js"{% if site.site_theme == "dark" %} data-theme="dark"{% endif %}>
-  <head>
-    {% include head.html %}
-    {% include head/custom.html %}
-  </head>
+<article itemscope itemtype="http://schema.org/CreativeWork">
+  <div class="article-wrap" itemprop="text">
 
-  <body class="notes-overview-body">
-    <a href="{{ '/' | relative_url }}" class="door-knob" aria-label="Back to home">
-      <span class="door-knob__handle"></span>
-      <span class="door-knob__plate"></span>
-    </a>
+    {% for cat in site.data.notes_categories %}
+    {% assign cat_notes = site.notes | where: "category", cat.slug | sort: "date" | reverse %}
+    <h2 id="{{ cat.slug }}">{{ cat.name }}</h2>
 
-    <!-- ============ CATEGORY SLIDER VIEW ============ -->
-    <section class="category-stage" id="category-stage">
-      <h1 class="stage-title">Notes</h1>
-      <p class="stage-subtitle">Browse by topic</p>
+    {% if cat_notes.size == 0 %}
+    <p class="readings-empty">No notes yet.</p>
+    {% else %}
+    <ul class="notes-list" data-paginate>
+      {% for note in cat_notes %}
+      <li>
+        <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: "%b %d, %Y" }}</time>
+        <a href="{{ base_path }}{{ note.url | relative_url }}">{{ note.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    <nav class="holder" aria-label="{{ cat.name }} notes pagination"></nav>
+    {% endif %}
 
-      <div class="carousel-viewport" id="carousel-viewport">
-        <div class="carousel-track" id="carousel-track">
-          {% assign cats = site.data.notes_categories %}
-          {% comment %}Render 3 copies for infinite scroll illusion{% endcomment %}
-          {% for copy in (0..2) %}
-            {% for cat in cats %}
-              <div class="carousel-card"
-                   data-category="{{ cat.slug }}"
-                   data-name="{{ cat.name }}"
-                   style="--card-color: {{ cat.color }};">
-                <span class="carousel-card__icon">{{ cat.icon }}</span>
-                <span class="carousel-card__name">{{ cat.name }}</span>
-              </div>
-            {% endfor %}
-          {% endfor %}
-        </div>
-      </div>
+    {% unless forloop.last %}<hr />{% endunless %}
+    {% endfor %}
 
-      <p class="category-hint">←  drag to browse  ·  double‑click to open  →</p>
-    </section>
+  </div><!-- /.article-wrap -->
+</article>
 
-    <!-- ============ NOTES WALL VIEW (hidden initially) ============ -->
-    <section class="notes-wall-stage" id="notes-wall-stage" style="display:none;">
-      <button class="back-to-categories" id="back-to-categories" aria-label="Back to categories">
-        <span class="back-arrow">←</span> Categories
-      </button>
-
-      <header class="shelf-wall-header">
-        <h1 id="wall-category-title"></h1>
-      </header>
-
-      <div class="shelf-wall" id="notes-shelf-wall">
-        <div class="shelf-wall-grid" id="notes-grid">
-          {% comment %}Populated by JavaScript{% endcomment %}
-        </div>
-      </div>
-    </section>
-
-    {% comment %}Embed notes data & categories as JSON for client-side use.
-      JSON is whitespace-agnostic — survives HTML compression just fine.{% endcomment %}
-    <script id="notes-data" type="application/json">
-    {"categories":{ {% for cat in site.data.notes_categories %}"{{ cat.slug }}":{"name":{{ cat.name | jsonify }},"icon":{{ cat.icon | jsonify }},"color":{{ cat.color | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}},"notes":[{% for note in site.notes %}{"title":{{ note.title | jsonify }},"category":{{ note.category | jsonify }},"url":{{ note.url | relative_url | jsonify }},"date":{{ note.date | date: "%Y-%m-%d" | jsonify }},"excerpt":{{ note.excerpt | strip_html | truncate: 100 | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}]}</script>
-
-    <script src="{{ '/assets/js/notes-carousel.js' | relative_url }}"></script>
-  </body>
-</html>
+<script defer src="{{ '/assets/js/section-paginator.js' | relative_url }}"></script>

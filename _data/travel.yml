@@ -1,0 +1,154 @@
+# Travel records — grouped by continent on the Travel page.
+#
+# Each record:
+#   date   – year and month, shown in gray (e.g. "2026 Jul")
+#   place  – city / country
+#   title  – the highlight / strongest impression (black title after the gray meta)
+#   photos – up to 8 image paths under /images/ (hover reveals a 2x4 grid);
+#            missing entries render as neutral placeholder tiles
+#
+# Example:
+#   - date: "2025 Aug"
+#     place: "Kyoto, Japan"
+#     title: "Temples at dawn — the quietest hour in the city."
+#     photos: ["travel/kyoto-1.jpg", "travel/kyoto-2.jpg"]
+#
+# Continents with no trips show "No trips yet." — fill in the trips lists.
+
+- continent: "China"
+  trips:
+    - date: "2026 Feb"
+      place: "Thousand-Island Lake"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: "2026 Jan"
+      place: "Macau"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: "2026 Jan"
+      place: "Hong Kong"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: "2026 Jan"
+      place: "Shenzhen"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: "2025 Apr"
+      place: "Shanghai"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+    
+    - date: "2023 Jul"
+      place: "Changsha"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: "2022 Aug"
+      place: "Suzhou"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: "2022 Aug"
+      place: "Hangzhou"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: ""
+      place: "Shanghai"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: ""
+      place: "Hangzhou"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: ""
+      place: "Wuzhen"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: ""
+      place: "Tianjin"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: ""
+      place: "Shaoxing"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: ""
+      place: "Guangzhou"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: ""
+      place: "Qingdao"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+    
+    - date: ""
+      place: "Shenyang"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: ""
+      place: "Changzhou"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+- continent: "Asia"
+  trips: 
+    - date: "2013 Aug"
+      place: "Phuket Island"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: "2012 Aug"
+      place: "Singapore"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: "2012 Aug"
+      place: "Bali Island"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: "2011 Aug"
+      place: "Hokkaido"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+  
+    - date: "2010 Aug"
+      place: "Thailand"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+  
+    - date: "2007 Aug"
+      place: "Tokyo"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+- continent: "Europe"
+  trips: 
+    - date: "2017 Jun"
+      place: "London"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+- continent: "North America"
+  trips:
+    - date: "2014 Jul"
+      place: "Quebec"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
+
+    - date: "2014 Jul"
+      place: "Toronto"
+      title: "Example record — describe the highlight of this trip here."
+      photos: []
