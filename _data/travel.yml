@@ -19,136 +19,161 @@
   trips:
     - date: "2026 Feb"
       place: "Thousand-Island Lake"
-      title: "Example record — describe the highlight of this trip here."
+      title: "就是一个小镇。去的几天天r不太好，总体感受非常一般。好几次打车都打到同一个司机，神了。"
       photos: []
 
     - date: "2026 Jan"
       place: "Macau"
-      title: "Example record — describe the highlight of this trip here."
+      title: "北边就是小县城即视感。南边氹仔则豪华不少。"
       photos: []
 
     - date: "2026 Jan"
       place: "Hong Kong"
-      title: "Example record — describe the highlight of this trip here."
+      title: "很喜欢香港！住的地方很像 2077 序章。太平山顶和维港夜景不赖。golden hour 的坚尼地海也不错。"
       photos: []
 
     - date: "2026 Jan"
       place: "Shenzhen"
-      title: "Example record — describe the highlight of this trip here."
+      title: "太高了。"
       photos: []
 
     - date: "2025 Apr"
       place: "Shanghai"
-      title: "Example record — describe the highlight of this trip here."
+      title: "又来上海了。交大徐汇校区不赖。"
       photos: []
     
     - date: "2023 Jul"
       place: "Changsha"
-      title: "Example record — describe the highlight of this trip here."
+      title: "夜生活有点疯狂。IFS 泳池可以。"
       photos: []
 
     - date: "2022 Aug"
       place: "Suzhou"
-      title: "Example record — describe the highlight of this trip here."
+      title: "苏州中心还挺好逛的。"
+      photos: []
+
+    - date: "2022 Aug"
+      place: "Tonglu"
+      title: "玩了史上最史的密室逃脱。去了大山里一个网红书店结果根本打不到回程的车。去富春江看看高三的阅读题怎么个事。"
       photos: []
 
     - date: "2022 Aug"
       place: "Hangzhou"
-      title: "Example record — describe the highlight of this trip here."
+      title: "热麻了。沿着钱塘江和西湖骑车很有感觉。一些景点则都是故地重游、没什么特别的感受。"
+      photos: []
+
+    - date: "2018 Jun"
+      place: "Shanghai"
+      title: "又来上海了。去了好多汽车工厂。第一次做磁悬浮。"
       photos: []
 
     - date: ""
       place: "Shanghai"
-      title: "Example record — describe the highlight of this trip here."
+      title: "在杜莎夫人蜡像馆留下了自己的手。南京路的大棉花还挺好吃。为了满足好奇心坐了一下过江隧道。"
       photos: []
 
     - date: ""
       place: "Hangzhou"
-      title: "Example record — describe the highlight of this trip here."
+      title: "在雷峰塔排了贼久的队。"
+      photos: []
+  
+    - date: ""
+      place: "Chengdu"
+      title: "姥姥说都江堰的水很像 CuSO4，那个时候我还不认识化合物。"
       photos: []
 
     - date: ""
       place: "Wuzhen"
-      title: "Example record — describe the highlight of this trip here."
+      title: "Example record"
       photos: []
 
     - date: ""
       place: "Tianjin"
-      title: "Example record — describe the highlight of this trip here."
+      title: "只记得狗不理包子了。印象中天津人很少。"
+      photos: []
+
+    - date: ""
+      place: "Xian"
+      title: "对西安的城墙印象很深。去兵马俑那天差点没有方式回酒店。"
       photos: []
 
     - date: ""
       place: "Shaoxing"
-      title: "Example record — describe the highlight of this trip here."
+      title: "第一次坐乌篷船。在真正的百草园里对比了一波附小的百草园。"
       photos: []
 
     - date: ""
       place: "Guangzhou"
-      title: "Example record — describe the highlight of this trip here."
+      title: "双皮奶太好吃了。当时广州塔刚建成不久。"
+      photos: []
+
+    - date: ""
+      place: "Nanjing"
+      title: "夫子庙。大报恩寺。雨花台。玄武湖。中山陵。"
       photos: []
 
     - date: ""
       place: "Qingdao"
-      title: "Example record — describe the highlight of this trip here."
+      title: "雾很大遮住了楼，小时候的自己吓哭了直接抱紧我爸大腿。"
       photos: []
     
     - date: ""
       place: "Shenyang"
-      title: "Example record — describe the highlight of this trip here."
+      title: "第一次去那么冷的地方。第一次坐了雪橇。"
       photos: []
 
     - date: ""
       place: "Changzhou"
-      title: "Example record — describe the highlight of this trip here."
+      title: "依稀记得一点恐龙园。"
       photos: []
 
 - continent: "Asia"
   trips: 
     - date: "2013 Aug"
       place: "Phuket Island"
-      title: "Example record — describe the highlight of this trip here."
+      title: "水滑梯太好玩了。"
       photos: []
 
     - date: "2012 Aug"
       place: "Singapore"
-      title: "Example record — describe the highlight of this trip here."
+      title: "第一次在外国见这么多人说中文，很震撼。记得当时因为爸爸一直在给妈妈拍照而感到很生气 XD。"
       photos: []
 
     - date: "2012 Aug"
       place: "Bali Island"
-      title: "Example record — describe the highlight of this trip here."
+      title: "去之前专门学了游泳。果真派上用场、轻松下海。对海边的红杉林印象深刻。"
       photos: []
 
     - date: "2011 Aug"
       place: "Hokkaido"
-      title: "Example record — describe the highlight of this trip here."
+      title: "在熊的牧场买了一个很喜欢的小白熊玩偶。薰衣草花田好看。帝王蟹和白色恋人好吃。温泉真的不赖。榻榻米很好睡、导致我现在都睡榻榻米"
       photos: []
   
     - date: "2010 Aug"
       place: "Thailand"
-      title: "Example record — describe the highlight of this trip here."
+      title: "Example record"
       photos: []
   
     - date: "2007 Aug"
       place: "Tokyo"
-      title: "Example record — describe the highlight of this trip here."
+      title: "只记得去迪士尼前的很长的柏油路。"
       photos: []
 
 - continent: "Europe"
   trips: 
     - date: "2017 Jun"
       place: "London"
-      title: "Example record — describe the highlight of this trip here."
+      title: "剑桥日泊但是下大雨。第一次也希望是最后一次离恐袭这么近。在大巴上远观巨石阵。btw 伦敦确实感觉没什么美食。"
       photos: []
 
 - continent: "North America"
   trips:
     - date: "2014 Jul"
       place: "Quebec"
-      title: "Example record — describe the highlight of this trip here."
+      title: "Example record"
       photos: []
 
     - date: "2014 Jul"
       place: "Toronto"
-      title: "Example record — describe the highlight of this trip here."
+      title: "第一次尝试烤棉花糖。第一次在森林里的小木屋睡一晚（当晚爽玩 Minecraft 被老师没收了 Ipad XD）。看了德国7-1巴西的直播。在保龄球馆见证阿根廷被德国绝杀。尼亚加拉大瀑布很震撼但是当时手机坏了没拍照片、太可惜了。wonderland 的过山车真的好玩，但是赛百味卖 20 加币实在是太坑了。还有卡丁车、英语分级考试、在宿舍大厅和同学们爽看雷神 2、在 apple 店帮同学修 iphone 4、..."
       photos: []

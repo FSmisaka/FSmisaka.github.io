@@ -239,6 +239,9 @@ collections:
   papers:
     output: true
     permalink: /papers/:path/
+  handroll:
+    output: true
+    permalink: /handroll/:path/
 
 
 # These settings control how pages and collections are included in the site
@@ -310,6 +313,14 @@ defaults:
       type: papers
     values:
       layout: paper-detail
+      author_profile: false
+      share: false
+  # _handroll
+  - scope:
+      path: ""
+      type: handroll
+    values:
+      layout: handroll-detail
       author_profile: false
       share: false
 

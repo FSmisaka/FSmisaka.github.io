@@ -1,0 +1,61 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+<article itemscope itemtype="http://schema.org/CreativeWork">
+  <div class="article-wrap" itemprop="text">
+
+    <p class="detail-back"><a href="{{ '/handroll/' | relative_url }}">&larr; Hand-Roll</a></p>
+
+    <header class="detail-header">
+      <h1 class="detail-title" itemprop="headline">{{ page.title }}</h1>
+      <p class="detail-meta">
+        {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>{% endif %}
+        {% if page.difficulty %} &middot; {{ page.difficulty }}{% endif %}
+        {% if page.source %} &middot; <a href="{{ page.source }}">View on GitHub &rarr;</a>{% endif %}
+      </p>
+      <hr />
+    </header>
+
+    <div class="note-body" itemprop="text">
+      {{ content }}
+    </div>
+
+    <p class="detail-back"><a href="{{ '/handroll/' | relative_url }}">&larr; Back to Hand-Roll</a></p>
+  </div><!-- /.article-wrap -->
+</article>
+
+<!-- TOC + back-to-top (shared JS) -->
+<script defer src="{{ '/assets/js/detail-page.js' | relative_url }}"></script>
+
+<script defer>
+  (function() {
+    document.querySelectorAll('script[type="math/tex; mode=display"]').forEach(function(el) {
+      var div = document.createElement('div');
+      div.textContent = '$$' + el.textContent + '$$';
+      el.parentNode.replaceChild(div, el);
+    });
+    document.querySelectorAll('script[type="math/tex"]').forEach(function(el) {
+      var span = document.createElement('span');
+      span.textContent = '$' + el.textContent + '$';
+      el.parentNode.replaceChild(span, el);
+    });
+  })();
+</script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+<script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>

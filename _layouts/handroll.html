@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+<article itemscope itemtype="http://schema.org/CreativeWork">
+  <div class="article-wrap" itemprop="text">
+
+    {% assign section_keys = "leetcode,recsys,llm" | split: "," %}
+    {% assign section_names = "LeetCode,RecSys,LLM" | split: "," %}
+
+    {% for i in (0..2) %}
+    {% assign key = section_keys[i] %}
+    {% assign heading = section_names[i] %}
+    {% assign items = site.handroll | where: "section", key | sort: "order" | reverse %}
+    <h2 id="{{ key }}">{{ heading }}</h2>
+
+    {% if items.size > 0 %}
+    <ul class="notes-list" data-paginate>
+      {% for item in items %}
+      <li>
+        <time datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%b %d, %Y" }}</time>
+        <a href="{{ base_path }}{{ item.url | relative_url }}">{{ item.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    <nav class="holder" aria-label="{{ heading }} pagination"></nav>
+    {% else %}
+    <p class="readings-empty">Nothing here yet.</p>
+    {% endif %}
+
+    {% unless forloop.last %}<hr />{% endunless %}
+    {% endfor %}
+
+  </div><!-- /.article-wrap -->
+</article>
+
+<script defer src="{{ '/assets/js/section-paginator.js' | relative_url }}"></script>

@@ -10,13 +10,11 @@ redirect_from:
 
 <h1 id="about-me">About Me</h1>
 
-<p><img src="{{ '/images/York_Wang.jpg' | relative_url }}" class="floatpic" alt="Portrait of Yiyao Wang" /></p>
-
 <p>Here is <strong>Yiyao Wang (York, 王羿珧)</strong>.</p>
 
-<p>I am a student at <strong>Beihang University</strong> and <strong>Tsinghua University</strong>, Beijing, working on statistical machine learning, deep learning, and large language models, with a focus on building models for real-world recommendation problems.</p>
+<p>I am a student blablabla</p>
 
-<p>If you are interested in any aspect of my work, I am always open to discussions and collaborations. Feel free to reach out to me at york2004cn@163.com</p>
+<p>I am always open to discussions and collaborations. Feel free to reach out to me at york2004cn@163.com</p>
 
 <hr />
 
@@ -31,17 +29,17 @@ redirect_from:
   <li>
     <img class="edu-logo" src="{{ '/images/schools/high_school-logo.jpg' | relative_url }}" alt="The Affiliated High School of Peking University logo">
     <span class="edu-time">2016-2022</span>
-    <span class="edu-school"><strong>The Affiliated High School of Peking University</strong></span>
+    <span class="edu-school"><strong>The Affiliated High School of Peking University</strong> &emsp; 元培 2+4</span>
   </li>
   <li>
     <img class="edu-logo" src="{{ '/images/schools/beihang-logo.png' | relative_url }}" alt="Beihang University logo">
     <span class="edu-time">2022-2026</span>
-    <span class="edu-school"><strong>Beihang University</strong> &mdash; School of Economics and Management</span>
+    <span class="edu-school"><strong>Beihang University</strong> &emsp; Management Information System</span>
   </li>
   <li>
     <img class="edu-logo" src="{{ '/images/schools/tsinghua-logo.png' | relative_url }}" alt="Tsinghua University logo">
     <span class="edu-time">2026-</span>
-    <span class="edu-school"><strong>Tsinghua University</strong> &mdash; School of Economics and Management</span>
+    <span class="edu-school"><strong>Tsinghua University</strong> &emsp; Management Science & Engineering</span>
   </li>
 </ul>
 

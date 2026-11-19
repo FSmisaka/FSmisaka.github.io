@@ -1,0 +1,103 @@
+/* ==========================================================================
+   Syntax highlighting - Rouge token colors using the VS Code Light+ palette
+   (#FFFFFF editor background, #000000 default text)
+   ========================================================================== */
+
+.highlighter-rouge {
+  margin-bottom: 1.5em;
+}
+
+.highlighter-rouge .highlight pre,
+pre.highlight {
+  display: block;
+  padding: 1em;
+  overflow-x: auto;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #e6e6e6;
+  font-size: 80%;
+  line-height: 1.55;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  margin: 0;
+}
+
+/* -- Rouge tokens -> VS Code Light+ -------------------------- */
+
+.highlight .n  { color: #001080; }                     /* identifiers / params  */
+.highlight .nv,
+.highlight .vc,
+.highlight .vg,
+.highlight .vi { color: #001080; }                     /* variables             */
+
+.highlight .c,                                         /* comments              */
+.highlight .c1,
+.highlight .cm,
+.highlight .cs,
+.highlight .ch,
+.highlight .cp { color: #008000; }
+
+.highlight .k,                                         /* keywords (blue)       */
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kc,
+.highlight .ow { color: #0000ff; }
+
+.highlight .kt { color: #267f99; }                     /* types                 */
+
+.highlight .nf,                                        /* function names        */
+.highlight .fm,
+.highlight .nb { color: #795e26; }
+
+.highlight .bp { color: #0000ff; }                     /* self / cls            */
+
+.highlight .nc,                                        /* classes / namespaces  */
+.highlight .nn,
+.highlight .no { color: #267f99; }
+
+.highlight .nd { color: #795e26; }                     /* decorators            */
+
+.highlight .s,                                         /* strings               */
+.highlight .s1,
+.highlight .s2,
+.highlight .sa,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .sh,
+.highlight .ss,
+.highlight .sx { color: #a31515; }
+
+.highlight .se { color: #ee0000; }                     /* escapes               */
+.highlight .si { color: #a31515; }                     /* interpolations        */
+.highlight .sr { color: #811f3f; }                     /* regex                 */
+
+.highlight .m,                                         /* numbers               */
+.highlight .mb,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .mo,
+.highlight .mx,
+.highlight .il { color: #098658; }
+
+.highlight .o  { color: #000000; }                     /* operators             */
+.highlight .p  { color: #000000; }                     /* punctuation           */
+
+.highlight .nt { color: #800000; }                     /* html tags             */
+.highlight .na { color: #001080; }                     /* html attributes       */
+.highlight .ni { color: #001080; }
+.highlight .nl { color: #001080; }
+.highlight .ne { color: #cd3131; }                     /* exceptions            */
+
+.highlight .err { color: #cd3131; background: none; }
+
+.highlight .gd { color: #ad0707; }                     /* diff                  */
+.highlight .gi { color: #107c10; }
+.highlight .gu { color: #000000; font-weight: 700; }
+.highlight .gh { color: #000000; font-weight: 700; }
+.highlight .gs { font-weight: 700; }
+.highlight .ge { font-style: italic; }
